@@ -1,1 +1,12 @@
-{ "title": "Stocks & Options", "pages": ["index", "built", "how-it-runs", "gates", "options-workstation"] }
+{
+  "title": "Stocks & Options",
+  "pages": [
+    "index",
+    "built",
+    "how-it-runs",
+    "gates",
+    "options-workstation",
+    "records",
+    "runbooks"
+  ]
+}

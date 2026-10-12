@@ -1,0 +1,39 @@
+---
+title: The status site
+description: lab.algorythmos.com shows live numbers for every desk. How data reaches it.
+---
+
+<Callout type="info">Source: `trading-lab-research@88c03fd`, read 2026-10-12.</Callout>
+
+These pages explain; [the status site](https://lab.algorythmos.com) measures. It lives in the stocks and
+options repository and shows every desk.
+
+## How a number gets there
+
+1. A job on the host collects the desk's state.
+2. It keeps only fields on an allowlist. Unknown fields are dropped; free text is replaced by codes.
+3. It checks the result against the published format, signs it, and sends it.
+4. The site checks the signature, the timestamp and the format, rejects anything else, and stores the
+   document privately.
+
+The host pushes. The site never connects to the host.
+
+## Formats
+
+| Document | Sent by | Version |
+|---|---|---|
+| Stocks snapshot | Stocks & Options | 3 |
+| Options edition | Stocks & Options | site accepts 2; host sends 1 |
+| Options live | Stocks & Options | site accepts 3; host sends 2 |
+| Crypto snapshot | Crypto | 1 |
+| Forex snapshot | Forex HFT | 1; nothing sent yet |
+
+A platform owns its format. The site keeps a copy pinned by hash, so a change on either side that the other
+has not accepted is refused rather than half-understood.
+
+## Guards
+
+- Each sending key is scoped to one desk.
+- The host refuses to deploy code that sends a newer format than the live site accepts.
+- A watchdog pages when a snapshot is late.
+- Sign-in is required on every address.

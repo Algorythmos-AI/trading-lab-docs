@@ -1,1 +1,12 @@
-{ "title": "Forex HFT", "pages": ["index", "built", "how-it-runs", "phases", "measured"] }
+{
+  "title": "Forex HFT",
+  "pages": [
+    "index",
+    "built",
+    "how-it-runs",
+    "phases",
+    "measured",
+    "records",
+    "runbooks"
+  ]
+}

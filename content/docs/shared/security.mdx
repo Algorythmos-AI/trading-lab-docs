@@ -1,0 +1,40 @@
+---
+title: Security and data classes
+description: What protects the platforms, and what may be written where.
+---
+
+## Paper only, enforced in code
+
+| Platform | How |
+|---|---|
+| Stocks & Options | The broker adapter is hard-coded to paper. A lock checks the mode, the endpoint and the account type before any order |
+| Crypto | No exchange credentials exist and there is no order route; fills happen in the desk's own simulator |
+| Forex HFT | A lock checks before connecting, after the handshake and before every order; only a paper venue and a simulator are registered |
+
+## Data classes
+
+| Class | Examples | Where it may go |
+|---|---|---|
+| Restricted | Specification text, setup names, decision and hypothesis prose, experiment reports, knowledge-base text | Its own repository only. Never the status site, never these pages |
+| Private | Balances, host notes, log lines | Behind sign-in |
+| Safe | Counts, ids, statuses, dates, statistics | Behind sign-in |
+
+Never in any repository: secrets, account ids, host names and addresses, market data, model files.
+
+## How it is enforced
+
+- **Before a commit:** hooks refuse secrets and restricted paths.
+- **Before a snapshot leaves the host:** the allowlist, a secret redactor, and a check against known restricted
+  phrases. If that check cannot run, free text is dropped.
+- **At the status site:** a strict format with a denylist of field names.
+- **On public repositories:** a leak check over the tree and all history.
+- **On these pages:** `pnpm check` before every push. See [updating these pages](/start-here/updating).
+
+## Secrets
+
+Secrets live in a secrets file on the host, one per platform, set by the owner. They are never pasted into a
+chat, a commit, an issue or a page.
+
+## Reporting a problem
+
+Tell the owner directly. Do not open a public issue.

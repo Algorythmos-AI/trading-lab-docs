@@ -1,0 +1,69 @@
+{
+  "synced_on": "2026-10-12",
+  "sources": {
+    "hft-lab": {
+      "sha": "23137ed530498cfffe3586539fafa2456b7e88bf",
+      "files": 44
+    },
+    "crypto-lab": {
+      "sha": "8c240c1bbfa01459657e49b03cecb1aa1edfe6e0",
+      "files": 1
+    },
+    "trading-lab-research": {
+      "sha": "88c03fd6db078d3f30a0a2b9e803fee68928ec50",
+      "files": 16
+    }
+  },
+  "left_out": [
+    {
+      "repo": "hft-lab",
+      "file": "docs/adr/0006-public-repo-and-leak-mechanism.md",
+      "why": "wording the rules keep out"
+    },
+    {
+      "repo": "hft-lab",
+      "file": "docs/runbooks/ibkr-probe.md",
+      "why": "shares a phrase with restricted material"
+    },
+    {
+      "repo": "crypto-lab",
+      "file": "docs/adr/0005-desks.md",
+      "why": "shares a phrase with restricted material"
+    },
+    {
+      "repo": "crypto-lab",
+      "file": "docs/runbooks/crypto-desk.md",
+      "why": "shares a phrase with restricted material"
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/adr/0004-oci-trading-host.md",
+      "why": "wording the rules keep out"
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/adr/0005-desks.md",
+      "why": "shares a phrase with restricted material"
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/runbooks/crypto-desk.md",
+      "why": "shares a phrase with restricted material"
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/runbooks/dashboard-deploy.md",
+      "why": "wording the rules keep out"
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/runbooks/gcp-host.md",
+      "why": "wording the rules keep out; an address or identifier"
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/runbooks/oci-host.md",
+      "why": "wording the rules keep out; an address or identifier"
+    }
+  ]
+}

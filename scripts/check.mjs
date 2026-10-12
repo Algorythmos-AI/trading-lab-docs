@@ -4,6 +4,7 @@
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, rmSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { scanText } from './scan.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const failures = [];
@@ -38,44 +39,7 @@ const tracked = () =>
     .filter((f) => existsSync(join(root, f)));
 const TEXT = /\.(mdx?|tsx?|mjs|json|css|txt|ya?ml)$/;
 
-// Words the organisation's rules keep out of every file, commit and page (decision D-016), and wording that
-// implies more people than there are. Built from parts so this file does not contain the words it bans.
-const BANNED = [
-  ['co', 'authored', 'by'].join('-'),
-  ['generated', 'with'].join(' '),
-  'cl' + 'aude',
-  'chat' + 'gpt',
-  'open' + 'ai',
-  'anth' + 'ropic',
-  'co' + 'pilot',
-  'our ' + 'team',
-  'our ' + 'founders',
-];
-// Shapes of things that must never be copied in with a runbook.
-const SECRET_SHAPES = [
-  [/\b(?:\d{1,3}\.){3}\d{1,3}\b/g, 'IPv4 address'],
-  [/\bD[UF]\d{5,9}[A-Z]?\b/g, 'broker account id'],
-  [/\bPA[0-9A-Z]{8,12}\b/g, 'paper account number'],
-  [/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}\b/g, 'e-mail address'],
-  [/\b(?:prj|team|dpl)_[A-Za-z0-9]{16,}\b/g, 'Vercel id'],
-  [/\b(?:AKIA|PK|SK|CK)[0-9A-Z]{16,}\b/g, 'key id'],
-  [/\bgh[pousr]_[A-Za-z0-9]{30,}\b/g, 'GitHub token'],
-  [/-----BEGIN [A-Z ]*PRIVATE KEY-----/g, 'private key'],
-  [/\b[a-z][a-z0-9-]{4,28}-\d{6}\b/g, 'cloud project id'],
-];
-const SHAPE_SKIP = /^(pnpm-lock\.yaml|LICENSE|scripts\/(check\.mjs|leakcheck\.py)|sync\.lock\.json)$/;
-
-export function scanText(file, text) {
-  const hits = [];
-  const lower = text.toLowerCase();
-  for (const w of BANNED) if (lower.includes(w)) hits.push(`${file}: banned wording "${w}"`);
-  if (!SHAPE_SKIP.test(file)) {
-    for (const [re, what] of SECRET_SHAPES) {
-      for (const m of text.matchAll(re)) hits.push(`${file}: looks like a ${what}: ${m[0].slice(0, 6)}…`);
-    }
-  }
-  return hits;
-}
+const SHAPE_SKIP = /^(pnpm-lock\.yaml|LICENSE|scripts\/(check|scan)\.mjs|scripts\/leakcheck\.py|sync\.lock\.json)$/;
 
 const selfTest = process.argv.includes('--self-test');
 
@@ -85,7 +49,7 @@ step('wording and secret shapes', () => {
   for (const f of tracked()) {
     if (!TEXT.test(f) || f === 'pnpm-lock.yaml') continue;
     n++;
-    hits.push(...scanText(f, readFileSync(join(root, f), 'utf8')));
+    hits.push(...scanText(f, readFileSync(join(root, f), 'utf8'), { shapes: !SHAPE_SKIP.test(f), strictAddresses: false }));
   }
   if (hits.length) throw new Error('\n  ' + hits.join('\n  '));
   return `${n} files`;

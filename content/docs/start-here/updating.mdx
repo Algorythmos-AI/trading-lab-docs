@@ -9,6 +9,16 @@ description: How content gets here and how to keep it true.
 - **Copied pages** (design records, runbooks) and **generated tables** come from the platform repositories at a
   recorded commit. Do not edit them here; change the source and sync again.
 
+## Syncing copied pages
+
+```bash
+node scripts/sync.mjs --check   # has a source moved?
+node scripts/sync.mjs           # copy again and rewrite the changelog
+```
+
+The copier leaves a file out whole when it finds wording, an identifier, or a phrase that may not appear here.
+[Copied pages](/shared/copied-pages) lists what came from where and what was left out.
+
 ## Before every push
 
 ```bash
