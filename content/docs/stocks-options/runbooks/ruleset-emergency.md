@@ -1,6 +1,6 @@
 ---
 title: "Ruleset emergency"
-description: "Copied from trading-lab-research@88c03fd (docs/runbooks/ruleset-emergency.md) on 2026-10-12. Do not edit here."
+description: "Copied from trading-lab-research@6562d6f (docs/runbooks/ruleset-emergency.md) on 2026-10-12. Do not edit here."
 ---
 
 `main` is protected by a repository ruleset. A pull request and the `test` check are required, and there are no

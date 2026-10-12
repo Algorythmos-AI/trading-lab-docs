@@ -1,6 +1,6 @@
 ---
 title: "ADR 0018: Publishing the status snapshot: one reading, checked, signed, and sent only with the owner's key"
-description: "Copied from hft-lab@23137ed (docs/adr/0018-snapshot-publish.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0018-snapshot-publish.md) on 2026-10-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11

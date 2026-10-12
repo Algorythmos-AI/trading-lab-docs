@@ -1,6 +1,6 @@
 ---
 title: "Not flat at the close"
-description: "Copied from trading-lab-research@88c03fd (docs/runbooks/not-flat-at-close.md) on 2026-10-12. Do not edit here."
+description: "Copied from trading-lab-research@6562d6f (docs/runbooks/not-flat-at-close.md) on 2026-10-12. Do not edit here."
 ---
 
 **Signal:**

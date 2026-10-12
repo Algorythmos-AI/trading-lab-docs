@@ -7,9 +7,9 @@ description: "Which commit each copied page came from, and what was left out. Ge
 
 | Repository | Commit | Files copied |
 |---|---|---|
-| `hft-lab` | `23137ed` | 44 |
+| `hft-lab` | `d6d2a94` | 44 |
 | `crypto-lab` | `8c240c1` | 1 |
-| `trading-lab-research` | `88c03fd` | 16 |
+| `trading-lab-research` | `6562d6f` | 17 |
 
 ## Left out
 

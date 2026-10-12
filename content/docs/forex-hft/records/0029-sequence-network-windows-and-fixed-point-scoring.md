@@ -1,6 +1,6 @@
 ---
 title: "ADR 0029: A small sequence network: fitted with arrays and no new library, read through windows, scored in fixed point"
-description: "Copied from hft-lab@23137ed (docs/adr/0029-sequence-network-windows-and-fixed-point-scoring.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0029-sequence-network-windows-and-fixed-point-scoring.md) on 2026-10-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested on synthetic rows and streams only. No model of this

@@ -1,6 +1,6 @@
 ---
 title: "Runbook: a shadow run"
-description: "Copied from hft-lab@23137ed (docs/runbooks/shadow-run.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/runbooks/shadow-run.md) on 2026-10-12. Do not edit here."
 ---
 
 For the owner. A shadow run lets the sleeves decide on real quotes and sends their orders to the shadow venue,
