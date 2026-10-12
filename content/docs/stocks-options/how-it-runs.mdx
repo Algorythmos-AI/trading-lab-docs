@@ -1,0 +1,39 @@
+---
+title: How it runs
+description: The schedule, the host, and how changes reach it.
+---
+
+<Callout type="info">Source: `trading-lab-research@c39fa52`, read 2026-10-12.</Callout>
+
+## Schedule
+
+All times are New York time, so they move against Sydney clocks at each daylight-saving change.
+
+| Job | When | What |
+|---|---|---|
+| `routine` | Mon to Fri 07:30 | Pre-market scan in four stages; no broker calls |
+| `paper-b` | Mon to Fri 08:30 | The paper runner for the stocks strategy |
+| `forward` | Mon to Fri 12:40, waits for the close plus 20 minutes | Forward test of registered trials |
+| `weekly` | Fri 20:00 | Weekly scorecard |
+| `dashboard` | Every 5 minutes in session, 15 otherwise | Builds and sends the status snapshot |
+| `options-live` | Same rhythm, one minute later | Option positions, open interest, rule states |
+
+The crypto jobs also run from this repository until the [cutover](/crypto).
+
+## Host
+
+- One cloud server runs every job as generated service units.
+- The Mac runs nothing. Its old checkout is kept only as a fallback.
+- Every job goes through one runner with a lock, a pre-flight check, a deadline and a heartbeat.
+
+## Deploys
+
+- The owner deploys from the host with one command, and only while the deploy gate is open.
+- The gate is computed: it checks that required checks passed on the commit and that no session is in progress.
+- A status-site change is a production deploy and merges only while the gate is open.
+- The host refuses a deploy when the live status site is older than the snapshot format the new code sends.
+
+## When something goes wrong
+
+Runbooks cover: kill and flatten, not flat at the close, latch reset, rollback, disk full, status site late,
+dead-man switches, secret rotation, backups, position alerts and the options live job.

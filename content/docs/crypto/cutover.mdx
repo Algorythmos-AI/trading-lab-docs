@@ -1,0 +1,38 @@
+---
+title: Cutover
+description: Moving the running desk from the stocks and options repository to its own.
+---
+
+<Callout type="info">Source: `crypto-lab@8c240c1`, read 2026-10-12.</Callout>
+
+## Where it stands
+
+| Step | State |
+|---|---|
+| Repository built by scripted extraction, parity proven | <Standing is="done" /> |
+| Guard in the old repository that marks the desk as moved | <Standing is="done" /> merged; must be deployed to the host first |
+| Host cutover: state moved, never copied | <Standing is="waiting">owner</Standing> |
+| 24 clean hours from the new repository | <Standing is="not started" /> |
+| Desk removed from the old repository | <Standing is="not started" /> prepared on two branches, deliberately without a pull request |
+| Old repository renamed `options-lab` | <Standing is="not started" /> owner's go-ahead |
+
+## How the cutover goes
+
+1. Read-only pre-checks.
+2. Preparation.
+3. The cutover itself, in a slot of about 12 minutes between two bar cycles.
+4. Verification.
+5. Rollback, if verification fails.
+
+Some steps in the runbook were written without host access and are marked as unverified.
+
+## Why the removal waits
+
+Opening the removal before the cutover and a clean day would delete the desk's code while it still runs from
+the old repository.
+
+## Follow-ups recorded
+
+- rename the Python package, which still carries the old name
+- give the repository its own secrets file
+- a new health check for the backup job

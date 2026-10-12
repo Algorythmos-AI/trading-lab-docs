@@ -1,0 +1,60 @@
+---
+title: What is built
+description: The research engine, the stocks desk, the options desk and the status site.
+---
+
+<Callout type="info">Source: `trading-lab-research@c39fa52`, read 2026-10-12.</Callout>
+
+## Engine (`src/wt/`, Python 3.12, about 24,000 lines)
+
+| Area | What it does |
+|---|---|
+| `core` | Paper-only lock, desk records, hash-chained ledgers, a clock that keeps all session logic in New York time |
+| `data` | Market-data client with a local cache, point-in-time universe, splits, quality checks |
+| `scanner` | Candidate pool, morning feature builder, ranking, checklists, a catalyst classifier, funnel explanations in counts |
+| `signals` | Causal indicators, pattern detectors, frozen entry definitions |
+| `backtest` | One-minute long-only simulator, management policies, portfolio admission, random-entry controls, cost stress |
+| `risk` | Pre-trade guard inside the order manager, a small virtual account with a loss latch, macro-event calendar |
+| `oms` | Order manager, one position at a time |
+| `brokers` | Alpaca paper adapter (paper hard-coded), read-only adapter, simulator, cancel-only and shadow adapters |
+| `live` | The paper runner: the only path that can place an order |
+| `options` | Black-Scholes and long-option arithmetic, levels and zones, entry rules, in-session rule states, the edition builder, the live job |
+| `analytics` | Gate definitions, replay, forward books per trial, and the views the status site shows |
+| `ops` | Job runner, schedule, unit generators, deploy gate, pre-flight, alerts, heartbeat, locks, publishing, backup |
+| `research` | Run manifests and the trial registry |
+
+## Stocks desk
+
+- **Scan:** a pool is built and ranked before the open, in four timed stages, with no broker calls.
+- **Trade:** one strategy, on paper. Limits: one allowed symbol, at most 10 shares and US$2,000 per position,
+  one entry a day.
+- **Evidence:** a forward test and a weekly scorecard.
+- **Kill switch:** a file on the host. While it exists there are no new entries; exits continue.
+
+## Options desk
+
+- **Engine:** levels, zones, expected move; four entry rules on probation, replayed on hourly bars.
+- **Edition:** a nightly document for ten large US names, sent signed to the status site.
+- **Live job:** reads a second paper account and sends open option positions, open interest and in-session
+  rule states. Read-only.
+- **Workstation page:** see [Options workstation](/stocks-options/options-workstation).
+
+## Status site (`dashboard/`, lab.algorythmos.com)
+
+- Next.js, static-first, behind sign-in on every address.
+- Pages for stocks (overview, today, radar, options, strategies, research, operations, risk, engineering),
+  for crypto (eight pages) and one for forex.
+- The host pushes signed snapshots built from an allowlist; the site validates them against a strict format
+  and refuses anything else. The site never pulls from the host.
+
+## Records
+
+| Kind | Count |
+|---|---|
+| Hypotheses | 28 |
+| Decisions | 28 |
+| Experiments | 22 |
+| Design records | 5 |
+| Runbooks | 16 |
+| Unit test files | 106, plus 58 on the status site |
+| Merged pull requests | 208 |

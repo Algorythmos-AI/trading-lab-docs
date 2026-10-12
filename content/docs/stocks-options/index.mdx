@@ -1,6 +1,40 @@
 ---
 title: Stocks & Options
-description: US stocks and long options on paper accounts.
+description: US stocks and long options on paper accounts. Running nightly on the cloud server.
 ---
 
-This section is being written.
+<Callout type="info">Source: `trading-lab-research@c39fa52`, read 2026-10-12.</Callout>
+
+## In one paragraph
+
+The oldest platform and the only one running every trading day. It holds a research engine, a stocks desk that
+scans, signals, and trades one strategy on an Alpaca **paper** account, an options desk that prepares levels,
+rules and option arithmetic for the owner's own decisions, and the status site that shows every desk.
+
+The repository will be renamed `options-lab` once the crypto desk has left it.
+
+## Standing
+
+| | |
+|---|---|
+| Jobs | Running on the cloud server since 2026-10-01 |
+| Stocks: proof of edge in backtest (G1) | <Standing is="failed" /> 75 trials, none pass |
+| Stocks: forward and paper evidence (G2) | <Standing is="open" /> 4 of 30 clean sessions at 9 October |
+| Broker acceptance, live, scale (G3 to G5) | <Standing is="not started" /> |
+| Options workstation | Brief, Live and Review views in use; evidence phase <Standing is="not started" /> |
+| Real money | None. Paper accounts only |
+
+## Reading this honestly
+
+No strategy here has shown an edge. The one stocks candidate failed its backtest gate and is being re-evaluated
+under a decision that is still proposed. Forward evidence is being collected because that is the next written
+step, not because a result is expected.
+
+## Pages
+
+<Cards>
+  <Card title="What is built" href="/stocks-options/built" description="The engine, the desks and the status site, module by module." />
+  <Card title="How it runs" href="/stocks-options/how-it-runs" description="The job schedule, the host, and how a deploy happens." />
+  <Card title="Gates" href="/stocks-options/gates" description="K0 to G5 and what each requires." />
+  <Card title="Options workstation" href="/stocks-options/options-workstation" description="Phases P0 to P6 and what is switched on." />
+</Cards>

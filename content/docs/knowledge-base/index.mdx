@@ -1,6 +1,43 @@
 ---
 title: Knowledge Base
-description: Sources and verified claims shared by the platforms.
+description: Sources and verified claims shared by the platforms. Structure and counts only.
 ---
 
-This section is being written.
+<Callout type="info">Source: `trading-kb@b9c29f8`, read 2026-10-12.</Callout>
+
+<Callout type="warn">
+  The knowledge base holds third-party publications with no licence to redistribute. Nothing from it is quoted
+  here, and nothing from it may be copied anywhere else.
+</Callout>
+
+## What it is
+
+One private repository of sources, page extracts and claim cards. Each claim is checked by a second reader
+before it counts. A platform uses it by pinning a tagged release and citing claims by id.
+
+## Collections
+
+| Collection | Sources | Claims | Verified | State |
+|---|---|---|---|---|
+| `hft` | 23 | 965 | 965 | <Standing is="done" /> tagged |
+| `shared` | 2 | 113 | 113 | <Standing is="done" /> tagged |
+| `options` | 0 | 0 | 0 | <Standing is="not started" /> |
+| `crypto` | 0 | 0 | 0 | <Standing is="not started" /> |
+
+The `hft` collection also carries 69 requirements, 20 recorded contradictions, 25 gaps and a reading list of 35.
+
+## Pipeline
+
+Inventory, classify, ingest, check custody, extract, remove duplicates, batch, read, validate, verify, index.
+The tooling is standard-library Python with one local gate; the repository runs no automated checks online.
+
+## Releases
+
+`hft-2026.10.10`, `hft-2026.10.10.1`, `hft-2026.10.11`, `shared-2026.10.11`, `shared-2026.10.11.1`.
+
+The forex platform pins `hft-2026.10.10.1`, one release behind.
+
+## Still to do
+
+- the `options` and `crypto` collections
+- folding the older stocks course-material store in as a collection

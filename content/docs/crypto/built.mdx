@@ -1,0 +1,47 @@
+---
+title: What is built
+description: The desk, the simulator, the tournament, the learning loop and the operations around them.
+---
+
+<Callout type="info">Source: `crypto-lab@8c240c1`, read 2026-10-12.</Callout>
+
+## The desk (`src/wt/crypto/`)
+
+| Part | What it does |
+|---|---|
+| Data and quality | The only code that touches the network; checks each bar before it is used |
+| Cycle | One pass every 15 minutes: read, decide, fill, account |
+| Simulator | Fills on live public quotes, with assumed costs |
+| Risk | Limits per desk and per sleeve; a latch that stays on until reset |
+| Sleeves | Three: trend, breakout and dip |
+| Challengers | Self-drawn variants run in shadow, up to 60 |
+| Harvest | Books across 30 coins kept to gather data |
+| Monitor and controls | A market monitor, and the owner's switches |
+
+## Learning (`src/wt/ml/`)
+
+Features, labels, datasets, validation and a model file format. The loop retrains weekly under a recorded
+decision and promotes only by a margin set in advance.
+
+## Operations
+
+- A hash-chained journal as the record of what happened.
+- One job runner with a lock, pre-flight, deadline and heartbeat.
+- A gated deploy with rollback; backups with write-once anchors; alerts to the phone.
+- A status snapshot every 15 minutes, signed, with no free text.
+
+## Proof that the move changed nothing
+
+A seven-part check compares this repository with the original: files, configuration, snapshot format, a replay
+of 240 cycles, tests, service units and history. It passes.
+
+## Records
+
+| Kind | Count |
+|---|---|
+| Decisions | 14 |
+| Experiments | 7 |
+| Hypotheses | 5 |
+| Lessons | 4 |
+| Registered trials | 12, with 2 of 60 challenger places used |
+| Test functions | 358 |

@@ -1,0 +1,32 @@
+---
+title: Gates
+description: K0 to G5. Each is a written test that must pass before the next stage.
+---
+
+<Callout type="info">Source: `trading-lab-research@c39fa52`, read 2026-10-12.</Callout>
+
+| Gate | What it asks | State |
+|---|---|---|
+| K0 | Knowledge extracted and catalogued | <Standing is="done" /> |
+| G0 | Engine, data and controls in place | <Standing is="done" /> |
+| G1 | Proof of edge in backtest | <Standing is="failed" /> 75 trials, none pass |
+| G2 | Forward and paper evidence: at least 50 trades, 30 sessions, 90% replay match, 20 incident-free sessions | <Standing is="open" /> 4 of 30 clean sessions at 9 October |
+| G3 | Broker acceptance: contract suite, read-only production checks, a canary order by the owner | <Standing is="not started" /> |
+| G4 | Live at very small size | <Standing is="not started" /> |
+| G5 | Scale in steps, with capital capped | <Standing is="not started" /> |
+
+## What G1 failing means
+
+No registered rule has shown an edge after costs. One candidate is being re-evaluated under a decision that is
+still proposed. Ten further trials run forward-only and had produced no signals in their first ten sessions.
+
+G3 to G5 are written down so the path is known. Nothing is being built for them.
+
+## Decisions waiting on the owner
+
+- the re-evaluation decision for the stocks candidate
+- whether the scan's selectivity is as intended
+- a spread limit for the strategy
+- whether G2 should read the replay record
+- paid real-time market data
+- thresholds for the thin-scan alert

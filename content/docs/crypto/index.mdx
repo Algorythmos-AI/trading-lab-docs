@@ -1,6 +1,34 @@
 ---
 title: Crypto
-description: A crypto paper desk on public market data with its own simulator.
+description: A round-the-clock crypto paper desk on public market data with its own simulator.
 ---
 
-This section is being written.
+<Callout type="info">Source: `crypto-lab@8c240c1`, read 2026-10-12.</Callout>
+
+## In one paragraph
+
+A desk that trades crypto on paper, every 15 minutes, all week. It reads public market data only, fills orders
+in its own simulator, runs a tournament of rule variants in shadow, and retrains a model weekly. It has **no
+exchange credentials and no way to send an order**: it is paper by construction.
+
+## Standing
+
+| | |
+|---|---|
+| Desk | Running since 2026-10-04, still from the stocks and options repository |
+| Own repository | Created 2026-10-11 by a scripted extraction; matches the original byte for byte in replay |
+| Running from its own repository | <Standing is="waiting">waiting on the host cutover</Standing> |
+| First research gate (C1) | <Standing is="failed" /> every registered rule and variant fails so far |
+| Second gate (C2) | <Standing is="not started" /> its clock has not started |
+| Model | Four attempts; no standing candidate |
+
+## Reading this honestly
+
+The desk works as a system: it cycles, accounts, and reports. No rule on it has shown an edge.
+
+## Pages
+
+<Cards>
+  <Card title="What is built" href="/crypto/built" description="The desk, the simulator, the tournament and the learning loop." />
+  <Card title="Cutover" href="/crypto/cutover" description="Moving the running desk to its own repository." />
+</Cards>
