@@ -1,0 +1,40 @@
+---
+title: Phases and gates
+description: F0 to F7. A phase is finished when its gate is met, not when its code is merged.
+---
+
+<Callout type="info">Source: `hft-lab@572b1a7`, read 2026-10-12.</Callout>
+
+| Phase | State | Gate | Waits on |
+|---|---|---|---|
+| F0 Foundation | <Standing is="done" /> | Checks green and required | Nothing |
+| F1 Broker probe and adapter | <Standing is="open" /> | A probe report covering pairs, update rate, depth, minimum size, commissions and order timing; two decision records | Owner: the choice between cash balances and CFDs, the two decisions, an order timing taken on the host, a commission from a fill |
+| F2 Recorder | <Standing is="open" /> | Five recorded days, every gap accounted for, replay matches, inside memory and disk budget | Host install, then five trading days |
+| F3 Shadow venue and control | <Standing is="open" /> | A flat strategy earns zero; the random control loses about the modelled cost | The same five days, then the owner's decision |
+| F4 Paper trading | <Standing is="open" /> | Five days at minimum size with zero reconciliation breaks | F1, risk limits set by a decision, then five days on the paper account |
+| F5 Strategies | <Standing is="not started" /> | Pre-registered; staged rollout completed or stepped down by its own rules | Recorded data from F2 |
+| F6 Learning | <Standing is="open" /> | Two full weekly cycles without help; one forced rollback drill | Recorded weeks, timers enabled on the host |
+| F7 Visibility and scale | <Standing is="not started" /> | First snapshot on the status site; more pairs; a second venue | The status site accepting this desk's key and format |
+
+## What code cannot close
+
+F2, F3, F4 and F6 need days or weeks of real operation. Writing more code does not move them.
+
+## Decisions still to be written
+
+There are **no decision records yet**. These values are placeholders until one sets them:
+
+- risk limits
+- promotion rules for sleeves and for models
+- every number in the cost model
+- drift thresholds
+- the weekend training and promotion times
+
+## The order of work from here
+
+1. Owner chooses cash balances or CFDs, and the F1 decisions are recorded.
+2. Pre-flight day on the host, then the install.
+3. Recording starts. Data only accumulates with time, so this starts as early as possible.
+4. After five recorded days: the F2 and F3 gates.
+5. Risk limits decided; control sleeve at minimum size for five days: the F4 gate.
+6. Strategies and the weekly learning loop on real recordings.

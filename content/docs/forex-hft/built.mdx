@@ -1,0 +1,93 @@
+---
+title: What is built
+description: Every component of the forex platform, its state, and where the code lives.
+---
+
+<Callout type="info">Source: `hft-lab@572b1a7`, read 2026-10-12.</Callout>
+
+Everything below is on `main` and tested against the fake broker or synthetic streams only. "Placeholder"
+means the number exists in a config file but is not a measured or decided value.
+
+## Safety
+
+| Component | State | Where |
+|---|---|---|
+| Paper-only lock | <Standing is="done" /> Checked before connecting, after the handshake, and before every order | `src/hftlab/safety/` |
+| Venue registry | <Standing is="done" /> Holds exactly two venues: the paper broker and the simulator; a test enforces it | `src/hftlab/safety/` |
+| Leak check | <Standing is="done" /> Scans the tree and all history for what must not be published | `tools/leakcheck.py` |
+
+## Market access
+
+| Component | State | Where |
+|---|---|---|
+| Venue port and shared guard | <Standing is="done" /> | `src/hftlab/venues/` |
+| Interactive Brokers adapter | <Standing is="done" /> against the fake broker | `src/hftlab/venues/ibkr/` |
+| Capability probe | <Standing is="done" /> Run twice on the real paper gateway | `src/hftlab/venues/ibkr/probe.py` |
+| Fake broker | <Standing is="done" /> Used for fault injection | `src/hftlab/venues/fake/` |
+
+## Recording and replay
+
+| Component | State | Where |
+|---|---|---|
+| Tick recorder with a checksummed, append-only store | <Standing is="waiting">written, no real data</Standing> | `src/hftlab/record/` |
+| Deterministic replay with a day check | <Standing is="waiting">written, no real data</Standing> | `src/hftlab/replay/` |
+| Import of tick files exported by the owner | <Standing is="waiting">written, nothing imported</Standing> | `src/hftlab/history/` |
+
+## Accounting
+
+| Component | State | Where |
+|---|---|---|
+| Book: positions, cash and profit from fills only | <Standing is="done" /> | `src/hftlab/book/` |
+| Shadow venue and cost model | <Standing is="waiting">every cost number is a placeholder</Standing> | `src/hftlab/venues/sim/`, `config/cost_model.yaml` |
+| Reconciliation between the two books | <Standing is="done" /> | `src/hftlab/book/reconcile.py` |
+
+## Trading
+
+| Component | State | Where |
+|---|---|---|
+| Independent risk gate | <Standing is="waiting">every limit is empty; not in force</Standing> | `src/hftlab/risk/`, `config/risk.yaml` |
+| Order manager with a write-ahead outbox | <Standing is="done" /> The only code that may place or cancel | `src/hftlab/exec/` |
+| Trader with staged rollout | <Standing is="waiting">ships in shadow only; no promotion rule set</Standing> | `src/hftlab/trader/` |
+| Fault-injection suite | <Standing is="done" /> against the fake broker | `tests/faults/` |
+
+Rollout stages for a sleeve: `shadow`, `min_size`, `normal`, `stepped_down`, `off`.
+
+## Strategies and models
+
+| Component | State | Where |
+|---|---|---|
+| Idle and random control sleeves | <Standing is="done" /> | `src/hftlab/strategy/` |
+| Directional Change sleeve, two variants, with a random-walk comparison | <Standing is="waiting">in shadow, synthetic data only</Standing> | `src/hftlab/strategy/dc/` |
+| ML sleeve | <Standing is="waiting">skeleton, in shadow</Standing> | `src/hftlab/strategy/ml.py` |
+| Features and labels | <Standing is="done" /> | `src/hftlab/features/`, `src/hftlab/labels/` |
+| Three model kinds: ridge, gradient-boosted trees, a small sequence network | <Standing is="waiting">fitted to synthetic data only; none ships</Standing> | `src/hftlab/models/` |
+| Scorer in its own process | <Standing is="waiting">written; off as shipped</Standing> | `src/hftlab/scoring/` |
+
+## Learning
+
+| Component | State | Where |
+|---|---|---|
+| Datasets with a look-ahead check; walk-forward validation | <Standing is="done" /> | `src/hftlab/learn/` |
+| Weekly loop: train, run challengers in shadow, promote, keep or roll back | <Standing is="waiting">no promotion rule in force; decides "keep"</Standing> | `src/hftlab/learn/`, `src/hftlab/lineup/` |
+| Drift monitors | <Standing is="waiting">thresholds empty</Standing> | `src/hftlab/learn/` |
+
+## Operations
+
+| Component | State | Where |
+|---|---|---|
+| Service units, pre-flight gate, install script, status command, alerts | <Standing is="waiting">never loaded on a host</Standing> | `src/hftlab/ops/`, `deploy/` |
+| Deploy gate | <Standing is="waiting">no deploy made</Standing> | `src/hftlab/ops/deploy.py` |
+| Backups | <Standing is="waiting">no restore drilled</Standing> | `src/hftlab/ops/backup.py` |
+| Daily summary and weekly scorecard | <Standing is="waiting">none produced from real data</Standing> | `src/hftlab/ops/report.py` |
+| Status snapshot, format version 1, and its publisher | <Standing is="waiting">nothing sent</Standing> | `contracts/`, `src/hftlab/publish/` |
+
+## Records
+
+| Kind | Count |
+|---|---|
+| Design records | 29, all accepted |
+| Runbooks | 15 |
+| Hypotheses | 6 |
+| Experiments | 8: 6 registered and not run, 2 records of the probe's runs |
+| Decision records | 0 |
+| Merged pull requests | 22 |

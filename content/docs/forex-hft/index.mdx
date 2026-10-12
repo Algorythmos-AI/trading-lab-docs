@@ -1,6 +1,47 @@
 ---
 title: Forex HFT
-description: Automatic paper trading of currency pairs, seconds to minutes.
+description: Automatic paper trading of currency pairs against a broker paper account. Written and tested; not yet running.
 ---
 
-This section is being written.
+<Callout type="info">Source: `hft-lab@572b1a7`, read 2026-10-12.</Callout>
+
+## In one paragraph
+
+A fully automatic platform for the currency market. It records every price update, decides, passes every order
+through an independent risk gate, keeps two books, retrains at the weekend, and replaces a model only when it
+passes tests written down beforehand. The broker is Interactive Brokers, **paper account only**.
+
+"High frequency" here means many trades a day held for seconds to minutes. It does not mean microsecond races
+or co-location.
+
+## Standing
+
+| | |
+|---|---|
+| Code | Written for every planned phase, F0 to F7 |
+| Tested against | A deterministic fake broker and synthetic price streams |
+| Met the real market | Two short runs of the capability probe, nothing else |
+| Installed on the host | <Standing is="not started" /> |
+| Recorded trading days | 0 |
+| Orders accepted by the broker | 0 (four one-unit test orders were sent; all four were rejected) |
+| Models trained on real data | 0 |
+| Evidence of an edge | None, and none is claimed |
+
+## What it waits on
+
+1. **A choice by the owner** on how to hold positions. The paper account refuses spot purchases without the
+   paying currency in hand, refuses short sales, and cannot hold yen. The options are cash balances in each
+   currency, or CFDs. Until that is decided the trader stays in shadow.
+2. **The host.** A pre-flight day of measurements, the install, the broker gateway and its weekly login.
+3. **Time.** Several gates need five recorded trading days, and the learning gate needs two unattended weeks.
+
+See [phases and gates](/forex-hft/phases) for each one.
+
+## Pages
+
+<Cards>
+  <Card title="What is built" href="/forex-hft/built" description="Component by component, with where the code lives." />
+  <Card title="How it runs" href="/forex-hft/how-it-runs" description="The weekly rhythm, the two books, the guardrails." />
+  <Card title="Phases and gates" href="/forex-hft/phases" description="F0 to F7: what closes each and who it waits on." />
+  <Card title="What has been measured" href="/forex-hft/measured" description="The two probe runs and what they changed." />
+</Cards>

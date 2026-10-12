@@ -1,0 +1,43 @@
+---
+title: How it runs
+description: The weekly rhythm, the two books, and the guardrails around every order.
+---
+
+<Callout type="info">Source: `hft-lab@572b1a7`, read 2026-10-12.</Callout>
+
+<Callout type="warn">This describes the design. Nothing is installed on the host yet.</Callout>
+
+## The week
+
+| Loop | When | What happens |
+|---|---|---|
+| Record | Sunday 17:15 to Friday 17:00, New York time | Every price update for the traded pairs goes to an append-only store |
+| Decide | Continuously | Features, then model scores, then sleeves, each with its own book and limits |
+| Guard | Before every order | The risk gate rebuilds positions from fills and owns the kill switch |
+| Trade | Continuously | Paper orders on the broker's paper account |
+| Account | Continuously | Two books are kept side by side |
+| Learn | Weekend, market closed | Rebuild datasets, train candidates, validate, register |
+| Promote | Weekly | A challenger replaces the champion only if it passes tests set in advance; automatic rollback if it then breaches its loss limit |
+| Report | Daily and on every change | Alerts, a daily summary, a weekly scorecard |
+
+## Two books
+
+- **The broker book** is what the paper account reports.
+- **The shadow book** applies the platform's own latency, spread and slippage model.
+
+The shadow book is the result of record. A paper fill is easier than a real one, so the conservative book is
+the one that counts.
+
+## Guardrails
+
+- The paper lock refuses any connection it cannot prove is a paper connection.
+- One piece of code may place or cancel orders. A test scans the source to keep it that way.
+- An order is written to the outbox before it is sent, so a crash cannot lose track of it.
+- The recorder is a separate process from the trader and cannot place an order.
+- A sleeve starts in shadow and moves up one stage at a time, by a rule written beforehand, or not at all.
+- At its limits the trader first stops entering, then flattens, and never leaves a position unwatched.
+
+## On the host
+
+It will share the existing cloud server with the other platforms, under its own user, its own unit prefix and
+its own resource slice.
