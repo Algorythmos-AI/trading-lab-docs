@@ -1,0 +1,42 @@
+---
+title: Options workstation
+description: A desk for long single-leg options decisions. Phases P0 to P6.
+---
+
+<Callout type="info">Source: `trading-lab-research@c39fa52`, read 2026-10-12.</Callout>
+
+The workstation prepares information; the owner decides and trades. It places no orders.
+
+## Phases
+
+| Phase | Content | State |
+|---|---|---|
+| P0 Foundations | Research records, engine brought into the repository, switch of the nightly routine to it | <Standing is="open" /> Records and engine done; the routine switch waits on a shadow night and the owner's approval |
+| P1 The workstation | Three-pane desk, interactive level map, command palette, phone layout, a page per name | <Standing is="done" /> Hourly range on the map still to come |
+| P2 Volatility and day context | Volatility index, earnings dates, macro events in the edition | <Standing is="waiting">built, switched off</Standing> |
+| P3 Prices, open interest, calculator | Option chain, Black-Scholes calculator, open-interest marks, volatility shape | <Standing is="done" /> |
+| P4 Triggers and alerts | In-session rule states, trigger board, countdown to the hourly close, notices | <Standing is="done" /> Alerts go to the log; phone alerts after a week of observation |
+| P5 Positions, read-only | Open option positions shown beside the levels | <Standing is="open" /> Shipped for a paper account; real-account positions not built |
+| P6 Better evidence | Replay priced on options, calibration, touch rates | <Standing is="not started" /> Its decision is proposed |
+
+## Switched off today
+
+| Setting | Now | Turns on when |
+|---|---|---|
+| Edition format | Version 1 | The shadow night passes and the owner approves |
+| Volatility index contract | Not set | The contract is chosen |
+| Earnings file | Empty | Dates are filled in |
+| Rule alerts | Log only | After a week of observed rule states |
+
+## On the page
+
+- Brief, Live and Review views; keyboard navigation; a command palette; a single-pane phone layout.
+- A page per name with linked zones and compact rows.
+- A count of how far the delayed feed and the reference feed agree.
+
+## Document formats
+
+| Document | Site accepts | Host sends |
+|---|---|---|
+| Options edition | 2 | 1 |
+| Options live | 3 (hourly bars accepted, not yet drawn) | 2 |

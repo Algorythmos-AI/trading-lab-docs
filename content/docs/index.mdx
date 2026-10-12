@@ -1,0 +1,34 @@
+---
+title: Trading Lab
+description: What is built on each trading platform, how it runs, where it stands and where it is heading.
+---
+
+<Callout title="Paper trading only" type="warn">
+  Every platform here trades paper money. No repository can reach a real-money account, and switching that on is
+  the owner's decision alone.
+</Callout>
+
+Three platforms, each in its own repository, and one shared knowledge base. They share one cloud server and one
+[status site](https://lab.algorythmos.com), and nothing else.
+
+## The platforms
+
+| Platform | Trades | Built | Standing |
+|---|---|---|---|
+| [Stocks & Options](/stocks-options) | US stocks and long options | Scanner, signals, backtester, risk, order manager, paper runner, nightly jobs, options workstation | <Standing is="open">forward evidence in progress</Standing> |
+| [Crypto](/crypto) | Crypto, 15-minute to 4-hour bars | Desk, own simulator, three sleeves, challengers, weekly learning loop | <Standing is="waiting">waiting on host cutover</Standing> |
+| [Forex HFT](/forex-hft) | Currency pairs, seconds to minutes | Code for every planned phase, tested on a fake broker | <Standing is="waiting">nothing on the host yet</Standing> |
+| [Knowledge Base](/knowledge-base) | Nothing: sources and verified claims | Two collections built and tagged | <Standing is="open">two collections empty</Standing> |
+
+## Where to go
+
+<Cards>
+  <Card title="Start here" href="/start-here" description="The map, the rules every platform follows, and the words used on these pages." />
+  <Card title="Roadmap" href="/roadmap" description="Now, next and later across the platforms, and the steps waiting on the owner." />
+  <Card title="Changelog" href="/changelog" description="What merged, week by week." />
+  <Card title="Status site" href="https://lab.algorythmos.com" description="Live numbers. These pages explain; the status site measures." />
+</Cards>
+
+## How current is this
+
+State of each repository's `main` on **2026-10-12**. Work that is not merged is not described here.

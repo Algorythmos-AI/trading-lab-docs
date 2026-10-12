@@ -1,0 +1,39 @@
+---
+title: What has been measured
+description: Two short probe runs are all that has touched the real paper gateway.
+---
+
+<Callout type="info">Source: `hft-lab@572b1a7`, read 2026-10-12.</Callout>
+
+## Run 1: 2026-10-11, read-only
+
+Minutes after the weekly open. Recorded as `HFT-EXP-0007`.
+
+- Four pairs each resolve as spot and as a CFD: the euro, the pound and the Australian dollar against the
+  US dollar, and the US dollar against the yen.
+- Five levels of market depth are available, and historical ticks.
+- No order was placed.
+
+## Run 2: 2026-10-12, with four one-unit test orders
+
+Asian session. Recorded as `HFT-EXP-0008`.
+
+| Measured | Result |
+|---|---|
+| Top-of-book updates | About 1 to 3 a second |
+| Median spread | 0.2 to 0.4 pip, one thirty-second sample per pair |
+| Test orders sent | 4 |
+| Test orders accepted | 0 |
+
+**Why the orders were refused.** On this paper account, spot currency cannot be bought without holding the
+currency that pays for it, cannot be sold short, and yen cannot be held at all.
+
+## What this changed
+
+- The design assumed quotes every few milliseconds. The measured rate is a few a second.
+- The trader now refuses any stage above shadow while the account cannot open the positions a sleeve needs.
+- F1 now waits on a choice between holding cash in each currency and trading CFDs.
+
+## Not yet measured
+
+Commissions, the sell side, CFDs, and order timing from the host. Neither run's spreads feed the cost model.

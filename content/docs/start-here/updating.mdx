@@ -1,0 +1,24 @@
+---
+title: Updating these pages
+description: How content gets here and how to keep it true.
+---
+
+## Two kinds of page
+
+- **Written pages** (overviews, standing, roadmap) are edited by hand in `content/docs/`.
+- **Copied pages** (design records, runbooks) and **generated tables** come from the platform repositories at a
+  recorded commit. Do not edit them here; change the source and sync again.
+
+## Before every push
+
+```bash
+pnpm check
+```
+
+It builds the site, checks types and links, and scans for restricted text and secrets. A push is refused when
+it fails.
+
+## What never goes in
+
+Specification text, setup names, decision and hypothesis prose, experiment reports, and knowledge-base text.
+See [the rules](/start-here/rules).
