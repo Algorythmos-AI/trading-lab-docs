@@ -1,1 +1,9 @@
-{ "title": "Crypto", "pages": ["index", "built", "cutover"] }
+{
+  "title": "Crypto",
+  "pages": [
+    "index",
+    "built",
+    "cutover",
+    "runbooks"
+  ]
+}

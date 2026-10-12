@@ -1,6 +1,36 @@
 ---
 title: Shared
-description: The cloud server, the status site, deploys, and security.
+description: One cloud server, one status site, and the same safety rules. Everything else belongs to one platform.
 ---
 
-This section is being written.
+Three things are shared on purpose. Everything else belongs to one platform.
+
+## The cloud server
+
+- One Linux virtual machine in the cloud runs every scheduled job.
+- Each platform has its own user or unit prefix, its own checkout, its own state folder and its own secrets
+  file.
+- Jobs are service units generated from code, so the schedule in the repository is the schedule on the host.
+- The Mac runs nothing.
+
+| Platform | On the server |
+|---|---|
+| Stocks & Options | <Standing is="done">running since 2026-10-01</Standing> |
+| Crypto | <Standing is="open">running, from the stocks and options checkout</Standing> |
+| Forex HFT | <Standing is="not started" /> |
+
+## Deploys
+
+- Only the owner deploys, from a session on the host, with one command per platform.
+- A deploy gate decides whether it may proceed: required checks passed on that commit, and no market session
+  in progress.
+- A rollback is one command.
+- Nothing deploys itself. Automatic deploys after green checks are on the roadmap, not built.
+
+## The status site
+
+One site shows every desk. See [the status site](/shared/status-site).
+
+## Safety
+
+The same rules hold everywhere. See [security and data classes](/shared/security).
