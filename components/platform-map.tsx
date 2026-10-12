@@ -6,7 +6,9 @@ export function PlatformMap() {
   const line = 'stroke-[var(--muted-foreground)]';
   const platforms = ['Stocks & Options', 'Crypto', 'Forex HFT'];
   return (
-    <svg viewBox="0 0 720 300" role="img" aria-label="Knowledge base releases feed three platforms on one server; each sends signed snapshots to the status site." className="not-prose my-6 w-full max-w-3xl">
+    // On a phone the drawing keeps a readable size and scrolls sideways inside its own box.
+    <div className="not-prose my-6 overflow-x-auto">
+    <svg viewBox="0 0 720 300" role="img" aria-label="Knowledge base releases feed three platforms on one server; each sends signed snapshots to the status site." className="w-full min-w-[600px] max-w-3xl">
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M0 0 10 5 0 10z" className="fill-[var(--muted-foreground)]" />
@@ -36,5 +38,6 @@ export function PlatformMap() {
       <text x="635" y="146" textAnchor="middle" className={label}>Status site</text>
       <text x="635" y="164" textAnchor="middle" className={note}>lab.algorythmos.com</text>
     </svg>
+    </div>
   );
 }
