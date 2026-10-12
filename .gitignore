@@ -26,3 +26,4 @@ yarn-error.log*
 next-env.d.ts
 # private leak-scan index (built locally, never committed)
 /.leak/
+.env*
