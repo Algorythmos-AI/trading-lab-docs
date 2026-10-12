@@ -3,7 +3,7 @@ title: Forex HFT
 description: Automatic paper trading of currency pairs against a broker paper account. Written and tested; not yet running.
 ---
 
-<Callout type="info">Source: `hft-lab@572b1a7`, read 2026-10-12.</Callout>
+<Callout type="info">Source: `hft-lab@d6d2a94`, read 2026-10-13.</Callout>
 
 ## In one paragraph
 
@@ -24,14 +24,17 @@ or co-location.
 | Installed on the host | <Standing is="not started" /> |
 | Recorded trading days | 0 |
 | Orders accepted by the broker | 0 (four one-unit test orders were sent; all four were rejected) |
+| Decision records | 3: risk limits and float, cost model, the control sleeve's first step |
 | Models trained on real data | 0 |
 | Evidence of an edge | None, and none is claimed |
 
 ## What it waits on
 
-1. **A choice by the owner** on how to hold positions. The paper account refuses spot purchases without the
-   paying currency in hand, refuses short sales, and cannot hold yen. The options are cash balances in each
-   currency, or CFDs. Until that is decided the trader stays in shadow.
+1. **The first real paper day.** The way to hold positions is decided: spot, on a cash float of US dollars,
+   euros and Australian dollars, because the paper account lends nothing and cannot hold yen. Risk limits, the
+   cost model and the control sleeve's first step are set by three decision records. The owner funds the float
+   and runs the recorder and trader from a laptop; after one clean trading day the control sleeve moves to
+   minimum size. None of this has run against the real gateway yet.
 2. **The host.** A pre-flight day of measurements, the install, the broker gateway and its weekly login.
 3. **Time.** Several gates need five recorded trading days, and the learning gate needs two unattended weeks.
 

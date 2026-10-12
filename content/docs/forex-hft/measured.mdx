@@ -3,7 +3,7 @@ title: What has been measured
 description: Two short probe runs are all that has touched the real paper gateway.
 ---
 
-<Callout type="info">Source: `hft-lab@572b1a7`, read 2026-10-12.</Callout>
+<Callout type="info">Source: `hft-lab@d6d2a94`, read 2026-10-13.</Callout>
 
 ## Run 1: 2026-10-11, read-only
 
@@ -32,7 +32,8 @@ currency that pays for it, cannot be sold short, and yen cannot be held at all.
 
 - The design assumed quotes every few milliseconds. The measured rate is a few a second.
 - The trader now refuses any stage above shadow while the account cannot open the positions a sleeve needs.
-- F1 now waits on a choice between holding cash in each currency and trading CFDs.
+- The choice was made: spot on a cash float. Limits, the cost model and the control sleeve's first step are
+  now set by decision records, and a runbook covers running it from a laptop. It has not yet run for real.
 
 ## Not yet measured
 

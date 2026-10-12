@@ -1,6 +1,6 @@
 ---
 title: "ADR 0017: The host layer: units from code, a gate before the install, one status reading"
-description: "Copied from hft-lab@23137ed (docs/adr/0017-host-layer.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0017-host-layer.md) on 2026-10-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11

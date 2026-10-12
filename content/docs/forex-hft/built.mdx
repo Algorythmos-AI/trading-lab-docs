@@ -3,7 +3,7 @@ title: What is built
 description: Every component of the forex platform, its state, and where the code lives.
 ---
 
-<Callout type="info">Source: `hft-lab@572b1a7`, read 2026-10-12.</Callout>
+<Callout type="info">Source: `hft-lab@d6d2a94`, read 2026-10-13.</Callout>
 
 Everything below is on `main` and tested against the fake broker or synthetic streams only. "Placeholder"
 means the number exists in a config file but is not a measured or decided value.
@@ -38,16 +38,17 @@ means the number exists in a config file but is not a measured or decided value.
 | Component | State | Where |
 |---|---|---|
 | Book: positions, cash and profit from fills only | <Standing is="done" /> | `src/hftlab/book/` |
-| Shadow venue and cost model | <Standing is="waiting">every cost number is a placeholder</Standing> | `src/hftlab/venues/sim/`, `config/cost_model.yaml` |
+| Shadow venue and cost model | <Standing is="open">set by decision from the probe's measurements and the broker's published commission; not yet checked against fills</Standing> | `src/hftlab/venues/sim/`, `config/cost_model.yaml` |
 | Reconciliation between the two books | <Standing is="done" /> | `src/hftlab/book/reconcile.py` |
 
 ## Trading
 
 | Component | State | Where |
 |---|---|---|
-| Independent risk gate | <Standing is="waiting">every limit is empty; not in force</Standing> | `src/hftlab/risk/`, `config/risk.yaml` |
+| Independent risk gate | <Standing is="open">limits and the cash float set by decision</Standing> | `src/hftlab/risk/`, `config/risk.yaml` |
 | Order manager with a write-ahead outbox | <Standing is="done" /> The only code that may place or cancel | `src/hftlab/exec/` |
-| Trader with staged rollout | <Standing is="waiting">ships in shadow only; no promotion rule set</Standing> | `src/hftlab/trader/` |
+| Trader with staged rollout | <Standing is="open">starts in shadow; the control sleeve moves to minimum size after one clean trading day</Standing> |
+| Spot inventory on a cash account: a cash float per currency, a funding plan, a cash check in reconciliation | <Standing is="waiting">written; tested on the fake broker only</Standing> | `src/hftlab/book/`, `src/hftlab/trader/` | `src/hftlab/trader/` |
 | Fault-injection suite | <Standing is="done" /> against the fake broker | `tests/faults/` |
 
 Rollout stages for a sleeve: `shadow`, `min_size`, `normal`, `stepped_down`, `off`.
@@ -85,9 +86,9 @@ Rollout stages for a sleeve: `shadow`, `min_size`, `normal`, `stepped_down`, `of
 
 | Kind | Count |
 |---|---|
-| Design records | 29, all accepted |
-| Runbooks | 15 |
+| Design records | 30 |
+| Runbooks | 16 |
 | Hypotheses | 6 |
 | Experiments | 8: 6 registered and not run, 2 records of the probe's runs |
-| Decision records | 0 |
-| Merged pull requests | 22 |
+| Decision records | 3 |
+| Merged pull requests | 24 |

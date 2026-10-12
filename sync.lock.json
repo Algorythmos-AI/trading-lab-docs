@@ -2,7 +2,7 @@
   "synced_on": "2026-10-12",
   "sources": {
     "hft-lab": {
-      "sha": "23137ed530498cfffe3586539fafa2456b7e88bf",
+      "sha": "d6d2a94e2e4f48871bcd668c89192a2436a5c262",
       "files": 44
     },
     "crypto-lab": {
@@ -10,8 +10,8 @@
       "files": 1
     },
     "trading-lab-research": {
-      "sha": "88c03fd6db078d3f30a0a2b9e803fee68928ec50",
-      "files": 16
+      "sha": "6562d6f7abeb02344414e869e7ddeeb6aa9db25d",
+      "files": 17
     }
   },
   "left_out": [

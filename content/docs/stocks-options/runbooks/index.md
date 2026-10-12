@@ -1,6 +1,6 @@
 ---
 title: Runbooks
-description: "12 copied from trading-lab-research@88c03fd on 2026-10-12."
+description: "13 copied from trading-lab-research@6562d6f on 2026-10-12."
 ---
 
 Step-by-step instructions for one operation or one incident. Copied; change the source, then sync.
@@ -9,6 +9,7 @@ Step-by-step instructions for one operation or one incident. Copied; change the 
 |---|---|
 | [Evidence backups, anchors and the primary lease (OCI host, ADR 0004)](/stocks-options/runbooks/backups-and-lease) | `docs/runbooks/backups-and-lease.md` |
 | [Dashboard late or stopped](/stocks-options/runbooks/dashboard-late) | `docs/runbooks/dashboard-late.md` |
+| [Dashboard screenshots](/stocks-options/runbooks/dashboard-screenshots) | `docs/runbooks/dashboard-screenshots.md` |
 | [Dead-man's switches: who notices when the host goes quiet](/stocks-options/runbooks/dead-man-switches) | `docs/runbooks/dead-man-switches.md` |
 | [Disk nearly full](/stocks-options/runbooks/disk-full) | `docs/runbooks/disk-full.md` |
 | [Kill switch and flatten](/stocks-options/runbooks/kill-and-flatten) | `docs/runbooks/kill-and-flatten.md` |

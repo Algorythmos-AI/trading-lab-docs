@@ -1,6 +1,6 @@
 ---
 title: "Evidence backups, anchors and the primary lease (OCI host, ADR 0004)"
-description: "Copied from trading-lab-research@88c03fd (docs/runbooks/backups-and-lease.md) on 2026-10-12. Do not edit here."
+description: "Copied from trading-lab-research@6562d6f (docs/runbooks/backups-and-lease.md) on 2026-10-12. Do not edit here."
 ---
 
 ## Nightly (wt-backup.timer, 19:30 ET after the forward test)

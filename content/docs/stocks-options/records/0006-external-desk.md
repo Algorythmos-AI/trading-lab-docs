@@ -1,6 +1,6 @@
 ---
 title: "ADR 0006: An external desk on the status site"
-description: "Copied from trading-lab-research@88c03fd (docs/adr/0006-external-desk.md) on 2026-10-12. Do not edit here."
+description: "Copied from trading-lab-research@6562d6f (docs/adr/0006-external-desk.md) on 2026-10-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11

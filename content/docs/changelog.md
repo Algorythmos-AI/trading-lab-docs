@@ -1,19 +1,21 @@
 ---
 title: Changelog
-description: "240 merged pull requests, by week. Generated on 2026-10-12."
+description: "242 merged pull requests, by week. Generated on 2026-10-12."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
 
 ## Week of 2026-10-12
 
-### Forex HFT (2)
+### Forex HFT (3)
 
+- 2026-10-12 · #24 · Cash is read under the tag the gateway sends, and an entry no longer spends what another sleeve's cover needs
 - 2026-10-12 · #23 · Paper trading on spot with a cash float: limits in force, a cost model, and the control sleeve's first step
 - 2026-10-12 · #22 · The probe's run with orders: what the account refuses on spot, the measured quote rate, and a hold at shadow until it can open positions
 
-### Stocks & Options (6)
+### Stocks & Options (7)
 
+- 2026-10-12 · #212 · test(dashboard): pictures of the options desk, compared on every run
 - 2026-10-12 · #211 · feat(ops): the host says when a deploy is ready; it never deploys (ADR 0007)
 - 2026-10-12 · #210 · feat(options): the map's hourly range
 - 2026-10-12 · #209 · fix(options): the host reads every page of bars
