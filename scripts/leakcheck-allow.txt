@@ -1,0 +1,1 @@
+# `<sha256>  <path>` of a file the leak check would otherwise refuse by type. Keep it short.

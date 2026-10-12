@@ -1,0 +1,36 @@
+---
+title: The rules
+description: What holds on every platform, whatever the strategy.
+---
+
+## Paper only
+
+- Broker adapters are locked to paper accounts in code, and tests hold the lock in place.
+- The settings that would allow real money belong to the owner alone.
+- Each platform has a kill switch. While it is on, no new position is opened; open positions are still managed.
+
+## Decide before you look
+
+- A strategy or evaluation change is written down first: a hypothesis, an experiment, a decision record.
+- The record is committed before any affected result is viewed.
+- Experiments are append-only. A re-run gets a new id. A holdout is used once per frozen configuration.
+
+## One platform, one repository
+
+- One platform per pull request. No imports across platforms.
+- Research ids carry the platform: `HFT-` for forex, `CRY-` for crypto. A reference to another repository is
+  written `repo:ID`.
+
+## What may be written down where
+
+| Class | Examples | In these pages |
+|---|---|---|
+| Restricted | Specification text, setup names, decision and hypothesis prose, experiment reports, knowledge-base text | Never |
+| Private | Balances, host notes, log lines | Yes, behind the login |
+| Safe | Counts, ids, statuses, dates, statistics | Yes |
+
+These pages show research records as ids, statuses and dates only.
+
+## Changes
+
+Every change goes through a branch and a pull request, and merges only after its checks pass.

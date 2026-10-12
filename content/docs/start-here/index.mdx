@@ -1,0 +1,28 @@
+---
+title: The map
+description: Which repository does what, what they share, and how the pieces connect.
+---
+
+## Repositories
+
+| Repository | Platform | Role |
+|---|---|---|
+| `trading-lab-research` (to be renamed `options-lab`) | Stocks & Options | Research engine, the stocks desk, the options desk, and the status site |
+| `crypto-lab` | Crypto | The crypto desk, extracted from `trading-lab-research` |
+| `hft-lab` | Forex HFT | The currency-market platform |
+| `trading-kb` | Knowledge Base | Sources, extracts and verified claims, one collection per platform |
+| `trading-lab-docs` | These pages | Documentation only; holds no trading code |
+
+## How they connect
+
+<PlatformMap />
+
+- **Each platform is one repository** with its own configuration, kill switch, state, journal, secrets file,
+  runbooks and deploy units.
+- **Nothing is imported across platforms.** Knowledge is shared through a tagged knowledge-base release that a
+  platform pins. Status is shared through a versioned snapshot format that the status site checks by hash.
+- **The host pushes; the status site never pulls.** A snapshot is built from an allowlist, signed, and sent.
+
+## Shared on purpose
+
+One cloud server, one status site, and the knowledge base. Everything else is separate.

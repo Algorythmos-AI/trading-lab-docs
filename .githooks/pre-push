@@ -1,0 +1,3 @@
+#!/bin/sh
+# No CI runs on this repository: this is the gate.
+exec pnpm -s check
