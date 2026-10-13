@@ -1,6 +1,6 @@
 ---
 title: Design records
-description: "29 copied from hft-lab@d6d2a94 on 2026-10-13."
+description: "30 copied from hft-lab@0188700 on 2026-10-13."
 ---
 
 Each records one decision and why. Copied; change the source, then sync.
@@ -12,6 +12,7 @@ Each records one decision and why. Copied; change the source, then sync.
 | [ADR 0003: Two books; the shadow book is the result of record](/forex-hft/records/0003-two-books) | `docs/adr/0003-two-books.md` |
 | [ADR 0004: The recorder is separate from the trader](/forex-hft/records/0004-recorder-separate-from-trader) | `docs/adr/0004-recorder-separate-from-trader.md` |
 | [ADR 0005: Deterministic replay as the main test strategy](/forex-hft/records/0005-deterministic-replay) | `docs/adr/0005-deterministic-replay.md` |
+| [ADR 0006: A public repository and the leak mechanism](/forex-hft/records/0006-public-repo-and-leak-mechanism) | `docs/adr/0006-public-repo-and-leak-mechanism.md` |
 | [ADR 0007: Living on a shared host without hurting the other desks](/forex-hft/records/0007-shared-host-isolation) | `docs/adr/0007-shared-host-isolation.md` |
 | [ADR 0008: The learning loop: weekend training, automatic promotion, automatic rollback](/forex-hft/records/0008-learning-loop) | `docs/adr/0008-learning-loop.md` |
 | [ADR 0009: The venue port, its guard and the fake broker](/forex-hft/records/0009-venue-port-guard-and-fake-broker) | `docs/adr/0009-venue-port-guard-and-fake-broker.md` |

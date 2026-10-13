@@ -6,6 +6,8 @@
     "architecture",
     "cutover",
     "facts",
-    "runbooks"
+    "records",
+    "runbooks",
+    "changelog"
   ]
 }

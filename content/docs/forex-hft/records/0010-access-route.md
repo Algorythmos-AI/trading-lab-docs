@@ -1,6 +1,6 @@
 ---
 title: "ADR 0010: Access route: the TWS API through IB Gateway first"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0010-access-route.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0010-access-route.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted as the engineering default, 2026-10-10. The research decision on the access route is
@@ -41,7 +41,7 @@ paper, and an account list in the handshake that says paper again before anythin
 ## Consequences
 
 - The owner has to install the gateway, hold a paper-only login and log in about once a week. The runbook
-  says how (ibkr-probe (`docs/runbooks/ibkr-probe.md`)); a weekly-login runbook follows when the host install
+  says how ([ibkr-probe](/forex-hft/runbooks/ibkr-probe)); a weekly-login runbook follows when the host install
   does.
 - The gateway's daily restart and a loss of its own link to the broker are treated as lost connections: the
   supervisor reconnects on its backoff schedule, and every reconnect passes the lock again.

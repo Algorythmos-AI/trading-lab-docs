@@ -6,12 +6,12 @@
 //   sync.lock.json                                                               which commit each came from
 // `node scripts/sync.mjs --check` writes nothing and exits 1 when a source has moved since the last sync.
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { basename, dirname, join, posix } from 'node:path';
 import { scanText } from './scan.mjs';
 import { FACT_PATHS, writeFacts } from './facts.mjs';
+import { sharesPhrase, withhold } from './withhold.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const clones = process.env.DOCS_CLONES ?? join(homedir(), 'Code/platforms');
@@ -63,14 +63,7 @@ if (!existsSync(idxPath)) {
 }
 const phrases = new Set(readFileSync(idxPath, 'utf8').split('\n').filter((l) => l && !l.startsWith('#')));
 const width = [...phrases][0].length;
-const restricted = (text) => {
-  const words = text.normalize('NFKC').toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? [];
-  for (let i = 0; i + 8 <= words.length; i++) {
-    const h = createHash('sha256').update(words.slice(i, i + 8).join(' ')).digest('hex').slice(0, width);
-    if (phrases.has(h)) return true;
-  }
-  return false;
-};
+const restricted = (text) => sharesPhrase(text, phrases, width);
 
 // Everything that needs the network is fetched before any file is written, so a timeout leaves the tree as it was.
 const prLists = {};
@@ -90,6 +83,7 @@ for (const extra of ['trading-kb', '.github-private']) git(extra, 'fetch', '-q',
 
 const yaml = (s) => JSON.stringify(s.replace(/\s+/g, ' ').trim());
 const leftOut = [];
+const redacted = [];
 const newLock = { synced_on: today, sources: {} };
 
 for (const s of SOURCES) {
@@ -107,16 +101,18 @@ for (const s of SOURCES) {
       plan.push({ kind: k, src: f, name: basename(f).toLowerCase() === 'readme.md' ? null : basename(f) });
     }
   }
-  // Decide first which files are left out, so no kept page links to one that is not there.
+  // Decide first which files are left out, so no kept page links to one that is not there. A page is kept with
+  // its offending lines withheld; it is left out whole only when too much of it would go.
   for (const p of plan.filter((x) => x.name)) {
-    p.text = git(s.clone, 'show', `origin/main:${p.src}`);
-    const hits = scanText(p.src, p.text, { strictAddresses: false });
-    const why = new Set(hits.map((h) => (h.includes('banned wording') ? 'wording the rules keep out' : 'an address or identifier')));
-    if (restricted(p.text)) why.add('shares a phrase with restricted material');
-    if (why.size) {
-      leftOut.push({ repo: s.repo, file: p.src, why: [...why].join('; ') });
+    const r = withhold(git(s.clone, 'show', `origin/main:${p.src}`), phrases, width);
+    if (r.dropped) {
+      leftOut.push({ repo: s.repo, file: p.src, why: r.dropped });
       p.name = null;
+      continue;
     }
+    p.text = r.text;
+    p.withheld = r.withheld;
+    if (r.withheld) redacted.push({ repo: s.repo, file: p.src, lines: r.withheld });
   }
   const kept = new Map(plan.filter((p) => p.name).map((p) => [p.src, `/${s.section}/${p.kind.out}/${p.name.replace(/\.md$/, '')}`]));
 
@@ -138,7 +134,8 @@ for (const s of SOURCES) {
         if (to && !bang) return `[${label}](${to}${hash ? '#' + hash : ''})`;
         return `${label} (\`${resolved}\`)`;
       });
-      const front = `---\ntitle: ${yaml(title)}\ndescription: ${yaml(`Copied from ${s.repo}@${short} (${p.src}) on ${today}. Do not edit here.`)}\n---\n\n`;
+      const note = p.withheld ? `> ${p.withheld} line(s) of the source are withheld on this page and marked \`[withheld]\`. Read the file in its repository for the rest.\n\n` : '';
+      const front = `---\ntitle: ${yaml(title)}\ndescription: ${yaml(`Copied from ${s.repo}@${short} (${p.src}) on ${today}. Do not edit here.`)}\n---\n\n${note}`;
       mkdirSync(outDir, { recursive: true });
       writeFileSync(join(outDir, p.name), front + text);
       rows.push(`| [${title.replace(/\|/g, '\\|')}](/${s.section}/${k.out}/${p.name.replace(/\.md$/, '')}) | \`${p.src}\` |`);
@@ -173,32 +170,44 @@ for (const r of CHANGELOG_REPOS) {
     total++;
   }
 }
-let log = `---\ntitle: Changelog\ndescription: ${yaml(`${total} merged pull requests, by week. Generated on ${today}.`)}\n---\n\nTitles and dates of merged pull requests. Weeks start on Monday (UTC).\n`;
-for (const w of [...weeks.keys()].sort().reverse()) {
-  log += `\n## Week of ${w}\n`;
-  for (const r of CHANGELOG_REPOS) {
-    const prs = weeks.get(w).get(r.label);
-    if (!prs) continue;
-    log += `\n### ${r.label} (${prs.length})\n\n`;
-    for (const pr of prs.sort((a, b) => b.mergedAt.localeCompare(a.mergedAt))) {
-      const banned = scanText('title', pr.title, { shapes: false }).length > 0;
-      if (banned || restricted(pr.title)) {
-        withheld++;
-        log += `- ${pr.mergedAt.slice(0, 10)} · #${pr.number} · *(title withheld)*\n`;
-        continue;
-      }
-      log += `- ${pr.mergedAt.slice(0, 10)} · #${pr.number} · ${pr.title.replace(/[<>{}]/g, '').replace(/([*_`\[\]])/g, '\\$1')}\n`;
+const line = (pr) => {
+  const banned = scanText('title', pr.title, { shapes: false }).length > 0;
+  if (banned || restricted(pr.title)) return `- ${pr.mergedAt.slice(0, 10)} · #${pr.number} · *(title withheld)*\n`;
+  return `- ${pr.mergedAt.slice(0, 10)} · #${pr.number} · ${pr.title.replace(/[<>{}]/g, '').replace(/([*_`\[\]])/g, '\\$1')}\n`;
+};
+const renderLog = (only) => {
+  let n = 0;
+  let body = '';
+  for (const w of [...weeks.keys()].sort().reverse()) {
+    let week = '';
+    for (const r of CHANGELOG_REPOS) {
+      if (only && r.label !== only) continue;
+      const prs = weeks.get(w).get(r.label);
+      if (!prs) continue;
+      n += prs.length;
+      if (!only) week += `\n### ${r.label} (${prs.length})\n`;
+      week += '\n' + prs.sort((a, b) => b.mergedAt.localeCompare(a.mergedAt)).map(line).join('');
     }
+    if (week) body += `\n## Week of ${w}\n${week}`;
   }
-}
+  const head = `---\ntitle: Changelog\ndescription: ${yaml(`${n} merged pull requests${only ? ` in ${only}` : ''}, by week. Generated on ${today}.`)}\n---\n\nTitles and dates of merged pull requests. Weeks start on Monday (UTC).\n`;
+  return head + body;
+};
+const log = renderLog(null);
+withheld = (log.match(/\(title withheld\)/g) ?? []).length;
 rmSync(join(root, 'content/docs/changelog.mdx'), { force: true });
 writeFileSync(join(root, 'content/docs/changelog.md'), log);
+for (const r of [...SOURCES, { section: 'knowledge-base', label: 'Knowledge Base' }]) {
+  writeFileSync(join(root, 'content/docs', r.section, 'changelog.md'), renderLog(r.label));
+}
 
 // What was copied from where, and what was left out and why.
 let page = `---\ntitle: Copied pages\ndescription: ${yaml(`Which commit each copied page came from, and what was left out. Generated on ${today}.`)}\n---\n\n## Sources\n\n| Repository | Commit | Files copied |\n|---|---|---|\n`;
 for (const [repo, v] of Object.entries(newLock.sources)) page += `| \`${repo}\` | \`${v.sha.slice(0, 7)}\` | ${v.files} |\n`;
-page += `\n## Left out\n\nA file is left out whole when the copier finds something that may not appear here. Read it in its repository.\n\n| Repository | File | Why |\n|---|---|---|\n`;
+page += `\n## Left out\n\nA line is withheld when it carries wording the rules keep out, an address or identifier, or part of a phrase shared with restricted material. A file is left out whole only when too much of it would be withheld. Read it in its repository.\n\n| Repository | File | Why |\n|---|---|---|\n`;
 for (const l of leftOut) page += `| \`${l.repo}\` | \`${l.file}\` | ${l.why} |\n`;
+page += `\n## Lines withheld\n\nThese pages are copied with some lines withheld and marked. Everything else on them is the source's own text.\n\n| Repository | File | Lines withheld |\n|---|---|---|\n`;
+for (const l of redacted) page += `| \`${l.repo}\` | \`${l.file}\` | ${l.lines} |\n`;
 page += `\n## Changelog\n\n${withheld} pull-request title(s) are withheld for the same reasons.\n`;
 mkdirSync(join(root, 'content/docs/shared'), { recursive: true });
 writeFileSync(join(root, 'content/docs/shared/copied-pages.md'), page);
@@ -209,7 +218,9 @@ writeFacts({ root, git, today, shas, prCounts: Object.fromEntries(Object.entries
 writeFileSync(join(root, 'lib/synced.json'), JSON.stringify({ synced_on: today, sources: Object.fromEntries(Object.entries(shas).map(([k, v]) => [k, v.slice(0, 7)])) }, null, 2) + '\n');
 
 newLock.left_out = leftOut;
+newLock.lines_withheld = redacted;
 writeFileSync(lockPath, JSON.stringify(newLock, null, 2) + '\n');
 for (const [repo, v] of Object.entries(newLock.sources)) console.log(`${repo}@${v.sha.slice(0, 7)}: ${v.files} files`);
 console.log(`changelog: ${total} pull requests`);
+if (redacted.length) console.log(`lines withheld in ${redacted.length} file(s): ${redacted.reduce((a, r) => a + r.lines, 0)}`);
 if (leftOut.length) console.log(`left out (${leftOut.length}):\n` + leftOut.map((l) => `  ${l.repo}:${l.file}  [${l.why}]`).join('\n'));

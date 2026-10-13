@@ -17,7 +17,7 @@ bash ~/trading/dashboard/scripts/provision_secrets.sh
 
 **Broker keys (Alpaca paper):**
 
-The cloud host is the only machine that runs jobs (gcp-host.md (`docs/runbooks/gcp-host.md`)). It reads its keys from
+The cloud host is the only machine that runs jobs ([gcp-host.md](/stocks-options/runbooks/gcp-host)). It reads its keys from
 `/etc/wt/secrets.env`, never from the Mac's `~/trading/.env`. Regenerating a paper key invalidates every older
 copy at once, so the host needs the new pair, and so does every other place that holds the old one.
 

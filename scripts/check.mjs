@@ -40,7 +40,7 @@ const tracked = () =>
     .filter((f) => existsSync(join(root, f)));
 const TEXT = /\.(mdx?|tsx?|mjs|json|css|txt|ya?ml)$/;
 
-const SHAPE_SKIP = /^(pnpm-lock\.yaml|LICENSE|scripts\/(check|scan)\.mjs|scripts\/leakcheck\.py|sync\.lock\.json)$/;
+const SHAPE_SKIP = /^(pnpm-lock\.yaml|LICENSE|scripts\/(check|scan|withhold\.test)\.mjs|scripts\/leakcheck\.py|sync\.lock\.json)$/;
 
 const selfTest = process.argv.includes('--self-test');
 
@@ -106,6 +106,8 @@ step('leak scan catches a planted phrase', () => {
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+step('unit tests of the scripts', () => void run('node', ['--test', 'scripts/withhold.test.mjs']));
 
 step('secrets (gitleaks)', () => {
   const have = spawnSync('gitleaks', ['version'], { encoding: 'utf8' });

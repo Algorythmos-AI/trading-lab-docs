@@ -9,6 +9,7 @@
     "measured",
     "facts",
     "records",
-    "runbooks"
+    "runbooks",
+    "changelog"
   ]
 }

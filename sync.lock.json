@@ -2,68 +2,69 @@
   "synced_on": "2026-10-13",
   "sources": {
     "hft-lab": {
-      "sha": "d6d2a94e2e4f48871bcd668c89192a2436a5c262",
-      "files": 44
+      "sha": "018870025485a46aaae3fe9b017bfb203aa906f4",
+      "files": 46
     },
     "crypto-lab": {
       "sha": "8c240c1bbfa01459657e49b03cecb1aa1edfe6e0",
-      "files": 1
+      "files": 3
     },
     "trading-lab-research": {
       "sha": "f4b65b7e69cfc9c9d727c4dda22666dbf57dfab0",
-      "files": 17
+      "files": 23
     }
   },
-  "left_out": [
+  "left_out": [],
+  "lines_withheld": [
     {
       "repo": "hft-lab",
       "file": "docs/adr/0006-public-repo-and-leak-mechanism.md",
-      "why": "wording the rules keep out"
+      "lines": 1
     },
     {
       "repo": "hft-lab",
       "file": "docs/runbooks/ibkr-probe.md",
-      "why": "shares a phrase with restricted material"
+      "lines": 2
     },
     {
       "repo": "crypto-lab",
       "file": "docs/adr/0005-desks.md",
-      "why": "shares a phrase with restricted material"
+      "lines": 1
     },
     {
       "repo": "crypto-lab",
       "file": "docs/runbooks/crypto-desk.md",
-      "why": "shares a phrase with restricted material"
+      "lines": 5
     },
     {
       "repo": "trading-lab-research",
       "file": "docs/adr/0004-oci-trading-host.md",
-      "why": "wording the rules keep out"
+      "lines": 1
     },
     {
       "repo": "trading-lab-research",
       "file": "docs/adr/0005-desks.md",
-      "why": "shares a phrase with restricted material"
+      "lines": 1
     },
     {
       "repo": "trading-lab-research",
       "file": "docs/runbooks/crypto-desk.md",
-      "why": "shares a phrase with restricted material"
+      "lines": 5
     },
     {
       "repo": "trading-lab-research",
       "file": "docs/runbooks/dashboard-deploy.md",
-      "why": "wording the rules keep out"
+      "lines": 1
     },
     {
       "repo": "trading-lab-research",
       "file": "docs/runbooks/gcp-host.md",
-      "why": "wording the rules keep out; an address or identifier"
+      "lines": 4
     },
     {
       "repo": "trading-lab-research",
       "file": "docs/runbooks/oci-host.md",
-      "why": "wording the rules keep out; an address or identifier"
+      "lines": 5
     }
   ]
 }

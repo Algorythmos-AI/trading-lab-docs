@@ -3,7 +3,7 @@ title: Phases and gates
 description: F0 to F7. A phase is finished when its gate is met, not when its code is merged.
 ---
 
-<Callout type="info">Source: `hft-lab@d6d2a94`, read 2026-10-13.</Callout>
+<Callout type="info">Source: `hft-lab@0188700`, read 2026-10-13.</Callout>
 
 | Phase | State | Gate | Waits on |
 |---|---|---|---|
@@ -34,7 +34,8 @@ Still placeholders until a decision sets them:
 
 ## The order of work from here
 
-1. Owner funds the float and starts the recorder and trader from a laptop, every sleeve in shadow.
+1. Done on 2026-10-12: the float is funded and the recorder and trader have run from a laptop, every sleeve
+   in shadow. Open: the reconciliation break that followed a gateway reconnection.
 2. After one clean trading day the control sleeve places minimum-size paper orders in two pairs; the other
    two pairs stay on the shadow venue.
 3. Five such days with zero reconciliation breaks: the F4 gate. Five recorded days: the F2 and F3 gates.

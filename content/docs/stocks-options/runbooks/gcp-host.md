@@ -1,0 +1,178 @@
+---
+title: "The GCP free-tier trading host: provision, operate, rebuild"
+description: "Copied from trading-lab-research@f4b65b7 (docs/runbooks/gcp-host.md) on 2026-10-13. Do not edit here."
+---
+
+> 4 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
+
+A second home for the trading jobs while OCI has no Ampere capacity: one Google Cloud **e2-micro** in **us-east1**,
+inside the always-free tier. It uses the same host helpers and units as the OCI host (`deploy/oci/bin`,
+`deploy/oci/systemd`, [oci-host.md](/stocks-options/runbooks/oci-host)); only the first boot (`deploy/gcp/cloud-init.yaml`) and the
+[withheld]
+cloud account, or (re)loads units.
+
+| | |
+|---|---|
+| Machine | e2-micro (2 shared vCPU, 1 GB RAM) with zram swap in RAM, Ubuntu 24.04 x86-64 |
+| Disk | 30 GB `pd-standard` boot disk (the free-tier maximum) |
+| Free-tier conditions | one e2-micro in us-west1, us-central1 or us-east1; standard disk ≤ 30 GB; 1 GB egress a month. Snapshots are ~45 KB every ~15 min, about 130 MB a month |
+| Cloud credentials on the VM | none: the VM is created **without a service account**, and the `wt` user is also firewalled off the metadata server |
+| [row withheld] |
+| Secrets | `/etc/wt/secrets.env`, root 0600, typed by you with `sudo wt-set-secrets`; copied at boot to tmpfs `/run/wt-secrets/env` (`wt:wt 0400`) |
+
+The secrets file is on the persistent disk (Google encrypts it at rest). That is weaker than a vault: root on the
+VM and anyone with owner rights on the project can read it. Accepted for a paper-only host; rotate with
+`sudo wt-set-secrets` ([secret-rotation.md](/stocks-options/runbooks/secret-rotation)).
+
+## 0. Project and billing (owner, once)
+1. Use a project of its own (not one shared with other products). Link a billing account: Compute Engine needs one
+   even inside the free tier.
+2. Billing > Budgets & alerts: a **US$1** budget on this project, email alerts at 50/90/100%.
+
+## 1. Network and VM (owner, in Cloud Shell of that project)
+```bash
+PROJECT=<project id from: gcloud projects list>
+gcloud config set project "$PROJECT"
+gcloud services enable compute.googleapis.com iap.googleapis.com
+
+# SSH only through IAP; nothing else inbound.
+gcloud compute firewall-rules delete default-allow-ssh default-allow-rdp --quiet
+gcloud compute firewall-rules create allow-ssh-from-iap --network default --direction INGRESS \
+[withheld]
+
+curl -fsSLo wt-cloud-init.yaml \
+  https://raw.githubusercontent.com/Algorythmos-AI/trading-lab-research/main/deploy/gcp/cloud-init.yaml
+gcloud compute instances create trading-lab-host --zone us-east1-b --machine-type e2-micro \
+  --image-family ubuntu-2404-lts-amd64 --image-project ubuntu-os-cloud \
+  --boot-disk-size 30GB --boot-disk-type pd-standard \
+  --no-service-account --no-scopes \
+  --shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring \
+  --metadata enable-oslogin=TRUE --metadata-from-file user-data=wt-cloud-init.yaml \
+  --deletion-protection
+```
+First boot takes 10–20 minutes on an e2-micro (packages, uv, the locked environment). Nothing trades: no job timer
+is enabled. Follow it with:
+```bash
+gcloud compute instances get-serial-port-output trading-lab-host --zone us-east1-b | grep -E "cloud-init|Trading Lab" | tail
+gcloud compute ssh trading-lab-host --zone us-east1-b --tunnel-through-iap -- \
+  'cloud-init status --wait; ls /var/lib/wt-bootstrap-done && free -h && swapon --show'
+```
+
+## 2. Secrets (owner)
+Have these ready first:
+- **Alpaca:** the keys of a *second* paper account (the shadow run never uses the Mac's account).
+- **ntfy:** a new `[shadow]` topic, subscribed on your phone. Never reuse the Mac's topic.
+- **Dashboard key:** a new secret for key id `gcp-use1` (`openssl rand -hex 32`). In Vercel, Production, add it
+  to `DASHBOARD_INGEST_KEYS` as JSON (`{"gcp-use1":"<secret>"}`, merged into any existing map), Sensitive, then
+  redeploy the dashboard with the deploy gate open. `PRIMARY_HOST` stays unset, so the Mac stays primary and this
+  host's snapshots land in `shadow/latest.json`, which no page or watchdog reads.
+- `DASHBOARD_INGEST_URL` and `VERCEL_AUTOMATION_BYPASS_SECRET`: the same values as on the Mac.
+
+Then:
+```bash
+gcloud compute ssh trading-lab-host --zone us-east1-b --tunnel-through-iap
+sudo wt-set-secrets        # hidden prompts; Enter keeps a value; ends with "wt-secrets: ok"
+```
+`WT_ROLE` stays `shadow` and `DASHBOARD_KEY_ID` stays `gcp-use1`: a shadow host with the default key id refuses to
+publish.
+
+[withheld]
+1. KILL on: `sudo -u wt make -C /home/wt/trading kill REASON="GCP shadow"`.
+2. `sudo wt-install-units` (refuses while the deploy gate is closed).
+3. At least five sessions, then the determinism check and the cutover, as in [oci-host.md](/stocks-options/runbooks/oci-host)
+   ("Shadow → cutover"). Watch memory on the first sessions: `journalctl -k | grep -i oom` must stay empty.
+
+## Rebuild
+Rebuilds come from code. Turn off deletion protection
+(`gcloud compute instances update trading-lab-host --zone us-east1-b --no-deletion-protection`), delete the
+instance, run the create command in step 1 again, then step 2 again. A primary host restores `var/` from R2 first
+([backups-and-lease.md](/stocks-options/runbooks/backups-and-lease)).
+
+## Deploying (owner)
+
+A deploy is one command on the host, run as the job user. It checks the gate and the commit's CI, runs the
+full test suite in a throwaway worktree, then fast-forwards, syncs the environment and smoke-tests, and rolls
+itself back if the smoke test fails.
+
+Run one deploy at a time. A second one started while the first is still testing is refused with "another deploy
+is testing a commit"; wait for the first, then run it again (it says "already at" when nothing is left to do).
+
+```
+gcloud --configuration=algo-trading compute ssh trading-lab-host --zone us-east1-b --tunnel-through-iap
+sudo -u wt nohup /usr/local/bin/wt-deploy deploy > /tmp/wt-deploy.log 2>&1 &
+tail -f /tmp/wt-deploy.log
+```
+
+- **Run it detached, as above.** The staged tests take several minutes and an idle IAP tunnel drops before
+  they finish; a dropped session kills a deploy started in the foreground. `tail -f` can be stopped and
+  started again without touching the deploy.
+- **"Deploy gate CLOSED: inside the trading window"** means it is between 07:00 and 18:00 New York time on a
+  session day (two hours after the close), or a trading job starts within the hour. Nothing is wrong; run it
+  after 18:00 New York. `sudo -u wt /usr/local/bin/wt-deploy gate` says whether it is open.
+- **"Deploy gate CLOSED: market calendar unavailable (weekday fallback in use)"** means the gate could not read
+  Alpaca's calendar. It stays closed, because without the calendar it cannot see a holiday or a half day. The
+  rest of the line gives the cause:
+  - *"Alpaca rejected this host's API keys (HTTP 401 ...)"*: the host's paper key pair is stale. Alpaca is up
+    and a retry will not help. Regenerating a paper key invalidates every older copy, so this follows a
+    regeneration that reached only the Mac's `.env` (seen 2026-10-10). Run `sudo wt-set-secrets`
+    ([secret-rotation.md](/stocks-options/runbooks/secret-rotation)).
+  - *"... is not set: this host's secrets file is missing or unreadable"*: `/run/wt-secrets/env` was not
+    written, the job user cannot read it, or it holds no Alpaca keys. `sudo wt-set-secrets` writes it again;
+    Enter keeps every value already there.
+  - *"Alpaca did not answer ..."* or *"Alpaca could not be reached ..."*: a network fault or an outage at
+    Alpaca. Run the deploy again later.
+  - *"the calendar read failed (...)"*: none of the above; the name in brackets is the error.
+
+  A line that ends in "retry when the Alpaca calendar answers" and names no cause comes from a host that does
+  not have this yet: older code prints it for every one of these causes. If Alpaca is up, check the keys first.
+- **"Refusing: ... is not green (test: pending)"** means the commit's checks are still running on GitHub.
+  Wait for them and run it again. A deploy needs `test` and `ml`.
+- **"Nothing deployed: already at ..."** means the host is on that commit.
+- **It is done** when the log shows `Deployed <from> -> <to>`. If it then prints "units changed", run
+  `sudo wt-install-units`.
+- **Afterwards:** `sudo -u wt /usr/local/bin/wt-deploy preflight` should be all `[ok]`, and
+  `sudo -u wt make -C /home/wt/trading sync-ml` should print `ML environment: current` and nothing else.
+- **To go back:** [rollback](/stocks-options/runbooks/rollback).
+
+## Primary host (cutover v2, 2026-10)
+
+The machine-learning environment (`.venv-ml`) needs the system's OpenMP library, which a wheel cannot carry:
+`sudo apt-get install -y libgomp1` (first boot installs it; a host built before 2026-10-08 needs it once). A
+deploy never swaps in an environment that cannot import its libraries, and `make sync-ml` says whether the live
+one can.
+The VM is the only host that runs jobs. The Mac is a console for writing code and running these commands.
+
+| | |
+|---|---|
+| Machine | e2-medium (2 vCPU, 4 GB), us-east1-b, pd-balanced 30 GB, daily snapshot schedule `wt-daily` (7 days) |
+| Memory fuses | routine/forward/weekly MemoryHigh 1.5G, MemoryMax 2G; publisher 1G; paper-b uncapped (OOMScoreAdjust -500) |
+| Tuning an existing VM | `sudo wt-tune-host` (zram, journald, needrestart, gh and time, git identity); `--check` only reports |
+
+**Moving the state (`wt.ops.hostsync`).** From a checkout of main on the Mac:
+```bash
+deploy/gcp/bin/wt-seed-vm              # rehearsal: copy and verify into /home/wt/seed-rehearsal, nothing swapped
+APPLY=1 deploy/gcp/bin/wt-seed-vm      # cutover: the Mac's com.wt agents must be unloaded first
+```
+- **What moves:** the forward ledger and the paper journal (hash chains verified), the virtual account and plans, the watchlist, heartbeats, routine output, alert state, and the market data the nightly jobs read (`data/daily`, `edgar`, `pm`, `pm_bars`, `candidates`, `minute`, the volume curve).
+- **What never moves:** secrets, the venv, KILL, git-tracked files, the dashboard cache, deploy records, locks, spooled pages, the chain-broken flag, the rate-limit state, and research-only minute data.
+- **How `apply` works:** it archives the VM's copy under `/home/wt/archive/hostsync-<stamp>/` and swaps unit by unit, holding every job lock and the deploy lock. A seed that differs from its manifest by one byte, or has a broken chain, is refused.
+
+**Rollback to the Mac** runs the same tool in the other direction:
+1. On the VM, run `hostsync manifest` and tar the listed files.
+2. On the Mac, extract into a new directory, then `hostsync verify` and `hostsync apply --root ~/trading`.
+
+
+## The deploy notice (ADR 0007)
+
+Twice an hour the unit `wt-deploy-notify` checks whether a deploy would be accepted right now and, if so, sends
+"A deploy is ready" once a day. It deploys nothing.
+
+| | |
+|---|---|
+| See what it last decided | `journalctl -u wt-deploy-notify -n 5 --no-pager` (one line per run, starting "deploy notice:") |
+| Run the check by hand | `sudo -u wt /usr/local/bin/wt-deploy gate`, then `cd /home/wt/trading && sudo -u wt env PYTHONPATH=src .venv/bin/python -m wt.ops.deploy ready` |
+| Silence it | `sudo -u wt touch /home/wt/trading/var/deploy/NOTIFY_OFF` |
+| Turn it back on | `sudo -u wt rm /home/wt/trading/var/deploy/NOTIFY_OFF` |
+
+It stays silent while the gate is closed, while the tip of main is under 30 minutes old, while a required check
+is not green, and while the live dashboard is older than the code main would bring.

@@ -1,6 +1,6 @@
 ---
 title: "ADR 0009: The venue port, its guard and the fake broker"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0009-venue-port-guard-and-fake-broker.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0009-venue-port-guard-and-fake-broker.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10
@@ -111,7 +111,7 @@ seeded session with partial fills, rejects, faulty reports and an outage.
   reported, and what a client knows about its orders after a reconnect); both are now part of the contract.
 - The suite proves the fake broker and the adapter agree with each other and with our reading of the
   library. It cannot prove that reading matches what a real gateway sends. Each such assumption is marked
-  `UNVERIFIED` in the code and listed in the probe runbook (`docs/runbooks/ibkr-probe.md`); the probe is how it
+  `UNVERIFIED` in the code and listed in [the probe runbook](/forex-hft/runbooks/ibkr-probe); the probe is how it
   is confirmed.
 - Sequence numbers are per venue object. The recorder (F2) will own the sequence that a replay follows.
 - "Sealed" is as strong as Python allows: a subclass cannot override, a permit cannot be built by hand, and

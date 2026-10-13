@@ -1,6 +1,6 @@
 ---
 title: Runbooks
-description: "15 copied from hft-lab@d6d2a94 on 2026-10-13."
+description: "16 copied from hft-lab@0188700 on 2026-10-13."
 ---
 
 Step-by-step instructions for one operation or one incident. Copied; change the source, then sync.
@@ -11,6 +11,7 @@ Step-by-step instructions for one operation or one incident. Copied; change the 
 | [Runbook: a deploy](/forex-hft/runbooks/deploy) | `docs/runbooks/deploy.md` |
 | [Runbook: the gateway is down](/forex-hft/runbooks/gateway-down) | `docs/runbooks/gateway-down.md` |
 | [Runbook: importing history from files](/forex-hft/runbooks/history-import) | `docs/runbooks/history-import.md` |
+| [Runbook: the IBKR capability probe](/forex-hft/runbooks/ibkr-probe) | `docs/runbooks/ibkr-probe.md` |
 | [Runbook: installing on the host](/forex-hft/runbooks/install) | `docs/runbooks/install.md` |
 | [Runbook: the KILL and FLATTEN switches](/forex-hft/runbooks/kill-and-flatten) | `docs/runbooks/kill-and-flatten.md` |
 | [Runbook: the weekly learning loop](/forex-hft/runbooks/learning) | `docs/runbooks/learning.md` |

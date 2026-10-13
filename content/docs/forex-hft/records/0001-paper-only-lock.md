@@ -1,6 +1,6 @@
 ---
 title: "ADR 0001: The paper-only lock"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0001-paper-only-lock.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0001-paper-only-lock.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10
