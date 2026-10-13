@@ -1,14 +1,15 @@
 ---
 title: Changelog
-description: "244 merged pull requests, by week. Generated on 2026-10-13."
+description: "245 merged pull requests, by week. Generated on 2026-10-13."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
 
 ## Week of 2026-10-12
 
-### Forex HFT (3)
+### Forex HFT (4)
 
+- 2026-10-13 · #25 · HFT-EXP-0009: the first funding of the float on the paper account, and the break a reconnection left
 - 2026-10-12 · #24 · Cash is read under the tag the gateway sends, and an entry no longer spends what another sleeve's cover needs
 - 2026-10-12 · #23 · Paper trading on spot with a cash float: limits in force, a cost model, and the control sleeve's first step
 - 2026-10-12 · #22 · The probe's run with orders: what the account refuses on spot, the measured quote rate, and a hold at shadow until it can open positions

@@ -1,6 +1,6 @@
 ---
 title: "ADR 0016: The order manager, its outbox, and reconciliation"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0016-order-manager-and-outbox.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0016-order-manager-and-outbox.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested against the fake broker and the shadow venue only. What

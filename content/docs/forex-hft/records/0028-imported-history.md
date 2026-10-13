@@ -1,6 +1,6 @@
 ---
 title: "ADR 0028: Imported history: a store of its own, provenance in the data, no download, and no promotion on it"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0028-imported-history.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0028-imported-history.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Written and tested on a few hand-written rows in temporary folders. **No

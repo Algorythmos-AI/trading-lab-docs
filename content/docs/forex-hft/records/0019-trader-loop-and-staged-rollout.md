@@ -1,6 +1,6 @@
 ---
 title: "ADR 0019: The trader loop, its tape, and the staged rollout"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0019-trader-loop-and-staged-rollout.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0019-trader-loop-and-staged-rollout.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested against the fake broker and the shadow venue only. With
@@ -229,3 +229,19 @@ manager and a reason for a latch. So the rollout gets one more condition, read f
 Every sleeve trades every configured pair, so one held pair holds every sleeve. Nothing here trades from cash
 balances held in each currency, and nothing trades CFDs: neither is built, and which of them is to be built is
 the owner's choice.
+
+## Note of 2026-10-13: the hold, now that the account is run with a float
+
+The addendum above describes the hold as it was built that day: any pair the capability file does not show as
+accepted on both sides holds every sleeve at `shadow`. That is no longer the whole rule.
+[ADR 0031](/forex-hft/records/0031-spot-inventory-on-a-cash-account), section 9, reads the reason for each hold. With a float
+in the limits, a pair whose sides were refused for want of cash, or were not tested, is held only until the
+float is funded and anchored; from then on the pair is opened on the float and the risk gate's cash rules
+decide each order. A pair refused because the account may not hold the currency, or for a reason that was not
+captured, is held whatever is funded, unless the limits keep it on the shadow venue alone. Without a float in
+the limits the addendum stands as written.
+
+The float was funded on the real paper account on 2026-10-12
+(HFT-EXP-0009 (`research/experiments/HFT-EXP-0009-first-float-funding-paper/report.md`)). The capability
+file still says what the probe measured, and is not what lifts the hold.
+

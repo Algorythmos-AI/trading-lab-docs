@@ -1,6 +1,6 @@
 ---
 title: "Runbook: installing on the host"
-description: "Copied from hft-lab@d6d2a94 (docs/runbooks/install.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/runbooks/install.md) on 2026-10-13. Do not edit here."
 ---
 
 For the owner, on the shared host, over your usual route in. Three sittings: ten minutes to start the
@@ -168,7 +168,7 @@ commit whose checks are not green.
 
 | This must be true | Where |
 |---|---|
-| The capability probe has been run and read | IBKR capability probe (`docs/runbooks/ibkr-probe.md`). It closes the F1 gate |
+| The capability probe has been run and read | [IBKR capability probe](/forex-hft/runbooks/ibkr-probe). It closes the F1 gate |
 | The gateway runs on this host in paper mode, on port 4002 | [Weekly login](/forex-hft/runbooks/weekly-login) |
 | `config/recorder.yaml` lists the pairs you want recorded | A pull request, then [a deploy](/forex-hft/runbooks/rollback) |
 

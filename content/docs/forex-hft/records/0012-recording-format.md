@@ -1,6 +1,6 @@
 ---
 title: "ADR 0012: The recording format: fixed-width records in checksummed blocks"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0012-recording-format.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0012-recording-format.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11
@@ -71,7 +71,7 @@ its end is ambiguous. A text log passes it and fails the second.
 - A day's size is known in advance: 64 bytes for every update before compression. The quota is set from the
   host's measured disk budget, not from a guess; the value in `config/recorder.yaml` is still a placeholder.
 - This is a log, not a query format. Analysis that wants columns converts a day first, and what it converts
-  to never enters git (ADR 0006 (`docs/adr/0006-public-repo-and-leak-mechanism.md`)).
+  to never enters git ([ADR 0006](/forex-hft/records/0006-public-repo-and-leak-mechanism)).
 - A wall clock that was corrected backwards is recorded as it was. The check counts those steps, and a
   replay delivers the event at the time already reached instead of moving its clock back.
 - The format has been exercised on the fake broker's quotes and on synthetic streams, including a kill at

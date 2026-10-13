@@ -1,9 +1,9 @@
 ---
 title: What has been measured
-description: Two short probe runs are all that has touched the real paper gateway.
+description: Two probe runs and the first funding of the float are all that has touched the real paper gateway.
 ---
 
-<Callout type="info">Source: `hft-lab@d6d2a94`, read 2026-10-13.</Callout>
+<Callout type="info">Source: `hft-lab@0188700`, read 2026-10-13.</Callout>
 
 ## Run 1: 2026-10-11, read-only
 
@@ -28,6 +28,20 @@ Asian session. Recorded as `HFT-EXP-0008`.
 **Why the orders were refused.** On this paper account, spot currency cannot be bought without holding the
 currency that pays for it, cannot be sold short, and yen cannot be held at all.
 
+## Run 3: 2026-10-12, the float funded
+
+Recorded as `HFT-EXP-0009`. From the owner's laptop, not the host. Every sleeve stayed in shadow.
+
+| Measured | Result |
+|---|---|
+| Orders sent | 7 market orders, one at a time, each through the risk gate and the outbox |
+| Accepted and filled in full | 7 |
+| Commission | Charged in the account's own currency, at the broker's published minimum on every order; it arrives as its own report a few milliseconds after the fill |
+| Cash reconciliation | Exact, commissions included |
+| Position reconciliation | Held until the gateway's first reconnection, then a break |
+
+These are the platform's first accepted orders and first fills. It tests no strategy and counts as no trial.
+
 ## What this changed
 
 - The design assumed quotes every few milliseconds. The measured rate is a few a second.
@@ -37,7 +51,8 @@ currency that pays for it, cannot be sold short, and yen cannot be held at all.
 
 ## Not yet measured
 
-Commissions, the sell side, CFDs, and order timing from the host. Neither run's spreads feed the cost model.
+The commission above its minimum, slippage, CFDs, order timing from the host, and whether cash and
+positions agree after a reconnection. The probe runs' spreads do not feed the cost model.
 
 ## Sources
 

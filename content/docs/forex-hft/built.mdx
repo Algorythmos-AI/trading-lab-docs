@@ -3,7 +3,7 @@ title: What is built
 description: Every component of the forex platform, its state, and where the code lives.
 ---
 
-<Callout type="info">Source: `hft-lab@d6d2a94`, read 2026-10-13.</Callout>
+<Callout type="info">Source: `hft-lab@0188700`, read 2026-10-13.</Callout>
 
 Everything below is on `main` and tested against the fake broker or synthetic streams only. "Placeholder"
 means the number exists in a config file but is not a measured or decided value.
@@ -48,7 +48,7 @@ means the number exists in a config file but is not a measured or decided value.
 | Independent risk gate | <Standing is="open">limits and the cash float set by decision</Standing> | `src/hftlab/risk/`, `config/risk.yaml` |
 | Order manager with a write-ahead outbox | <Standing is="done" /> The only code that may place or cancel | `src/hftlab/exec/` |
 | Trader with staged rollout | <Standing is="open">starts in shadow; the control sleeve moves to minimum size after one clean trading day</Standing> |
-| Spot inventory on a cash account: a cash float per currency, a funding plan, a cash check in reconciliation | <Standing is="waiting">written; tested on the fake broker only</Standing> | `src/hftlab/book/`, `src/hftlab/trader/` | `src/hftlab/trader/` |
+| Spot inventory on a cash account: a cash float per currency, a funding plan, a cash check in reconciliation | <Standing is="open">funded once on the paper account; positions did not reconcile after a reconnection</Standing> | `src/hftlab/book/`, `src/hftlab/trader/` | `src/hftlab/trader/` |
 | Fault-injection suite | <Standing is="done" /> against the fake broker | `tests/faults/` |
 
 Rollout stages for a sleeve: `shadow`, `min_size`, `normal`, `stepped_down`, `off`.
@@ -89,9 +89,9 @@ Rollout stages for a sleeve: `shadow`, `min_size`, `normal`, `stepped_down`, `of
 | Design records | 30 |
 | Runbooks | 16 |
 | Hypotheses | 6 |
-| Experiments | 8: 6 registered and not run, 2 records of the probe's runs |
+| Experiments | 9: 6 registered and not run, 3 records of measurements |
 | Decision records | 3 |
-| Merged pull requests | 24 |
+| Merged pull requests | 25 |
 
 ## Sources
 

@@ -1,6 +1,6 @@
 ---
 title: "ADR 0007: Living on a shared host without hurting the other desks"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0007-shared-host-isolation.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0007-shared-host-isolation.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10

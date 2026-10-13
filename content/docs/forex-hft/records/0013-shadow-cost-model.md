@@ -1,6 +1,6 @@
 ---
 title: "ADR 0013: The shadow venue's cost model"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0013-shadow-cost-model.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0013-shadow-cost-model.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. The model's shape is decided here. Every number in

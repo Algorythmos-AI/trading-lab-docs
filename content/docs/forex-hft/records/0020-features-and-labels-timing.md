@@ -1,6 +1,6 @@
 ---
 title: "ADR 0020: Features and labels: what is known when"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0020-features-and-labels-timing.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@0188700 (docs/adr/0020-features-and-labels-timing.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested on synthetic streams only. No recorded day exists, so no
@@ -95,7 +95,7 @@ A dataset is made per pair and horizon from day folders of the recorder's store,
 the feature keys in column order, the label spec, the cost model's parameters with its placeholder flag, the
 order size, the source days, the number of feature rows that became no dataset row and why, and a SHA-256 of
 all of it and of every row. It holds integers and text. It is derived data: never committed
-(ADR 0006 (`docs/adr/0006-public-repo-and-leak-mechanism.md`)).
+([ADR 0006](/forex-hft/records/0006-public-repo-and-leak-mechanism)).
 
 ## Consequences
 

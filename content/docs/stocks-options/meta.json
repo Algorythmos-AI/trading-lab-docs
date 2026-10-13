@@ -9,6 +9,7 @@
     "options-workstation",
     "facts",
     "records",
-    "runbooks"
+    "runbooks",
+    "changelog"
   ]
 }
