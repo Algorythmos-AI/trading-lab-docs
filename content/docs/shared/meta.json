@@ -1,1 +1,10 @@
-{ "title": "Shared", "pages": ["index", "status-site", "security", "copied-pages"] }
+{
+  "title": "Shared",
+  "pages": [
+    "index",
+    "status-site",
+    "security",
+    "repositories",
+    "copied-pages"
+  ]
+}

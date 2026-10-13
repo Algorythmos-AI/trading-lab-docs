@@ -1,6 +1,6 @@
 ---
 title: "Position and session alerts from the paper runner"
-description: "Copied from trading-lab-research@6562d6f (docs/runbooks/position-alerts.md) on 2026-10-12. Do not edit here."
+description: "Copied from trading-lab-research@f4b65b7 (docs/runbooks/position-alerts.md) on 2026-10-13. Do not edit here."
 ---
 
 These fire during the session, not only after it (the runner pages through a background queue, so an alert can

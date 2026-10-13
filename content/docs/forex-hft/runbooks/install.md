@@ -1,6 +1,6 @@
 ---
 title: "Runbook: installing on the host"
-description: "Copied from hft-lab@d6d2a94 (docs/runbooks/install.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/runbooks/install.md) on 2026-10-13. Do not edit here."
 ---
 
 For the owner, on the shared host, over your usual route in. Three sittings: ten minutes to start the

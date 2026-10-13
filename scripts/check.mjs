@@ -2,7 +2,8 @@
 // The gate before every push: this repository is private and runs no CI, so nothing else stands between a
 // mistake and the site. Any failing step fails the whole check. Nothing is skipped silently.
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, readFileSync, readdirSync, rmSync, statSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { scanText } from './scan.mjs';
 
@@ -77,6 +78,40 @@ step('restricted text (terms and 8-word phrases)', () => {
     run('python3', ['scripts/leakcheck.py', '--repo', '.', '--terms', terms, '--corpus', corpus, '--allow', 'scripts/leakcheck-allow.txt'], env);
   } finally {
     rmSync(index, { force: true });
+  }
+});
+
+step('leak scan catches a planted phrase', () => {
+  // Proves the mechanism end to end on throwaway material: a made-up sentence is indexed, a repository that
+  // contains it must fail the scan, and one that does not must pass.
+  const dir = mkdtempSync(join(tmpdir(), 'leak-selftest-'));
+  try {
+    const secret = 'quartz lanterns drift over nine silent copper harbours at dusk every winter';
+    writeFileSync(join(dir, 'source.txt'), secret + '\n');
+    writeFileSync(join(dir, 'terms.txt'), 'zzqx-a-term-no-page-contains\n');
+    writeFileSync(join(dir, 'allow.txt'), '# none\n');
+    const lc = join(root, 'scripts/leakcheck.py');
+    const sh = (cmd, args, cwd) => spawnSync(cmd, args, { cwd, encoding: 'utf8' });
+    if (sh('python3', [lc, '--build-corpus', join(dir, 'idx'), join(dir, 'source.txt')], dir).status !== 0) throw new Error('could not build the test index');
+    const repo = join(dir, 'repo');
+    sh('git', ['init', '-q', repo], dir);
+    const scan = (text) => {
+      writeFileSync(join(repo, 'page.md'), text + '\n');
+      sh('git', ['add', '-A'], repo);
+      return sh('python3', [lc, '--repo', repo, '--terms', join(dir, 'terms.txt'), '--corpus', join(dir, 'idx'), '--allow', join(dir, 'allow.txt')], repo).status;
+    };
+    if (scan('A page that quotes it: ' + secret) !== 1) throw new Error('a planted phrase was not caught');
+    if (scan('A page with nothing borrowed in it at all, only its own plain words.') !== 0) throw new Error('a clean page was refused');
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+step('secrets (gitleaks)', () => {
+  const have = spawnSync('gitleaks', ['version'], { encoding: 'utf8' });
+  if (have.status !== 0) throw new Error('gitleaks is not installed (brew install gitleaks)');
+  for (const dir of ['content', 'scripts', 'app', 'components', 'lib', '.github']) {
+    if (existsSync(join(root, dir))) run('gitleaks', ['dir', dir, '--no-banner', '--redact']);
   }
 });
 

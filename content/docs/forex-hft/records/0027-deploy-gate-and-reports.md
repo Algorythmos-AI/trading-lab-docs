@@ -1,6 +1,6 @@
 ---
 title: "ADR 0027: A deploy gate, a tape that is bounded, a backup that is whole, and two reports"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0027-deploy-gate-and-reports.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0027-deploy-gate-and-reports.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Written and tested off the host, on temporary folders, synthetic journals

@@ -1,6 +1,6 @@
 ---
 title: "ADR 0020: Features and labels: what is known when"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0020-features-and-labels-timing.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0020-features-and-labels-timing.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested on synthetic streams only. No recorded day exists, so no

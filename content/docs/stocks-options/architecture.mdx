@@ -1,0 +1,57 @@
+---
+title: Architecture
+description: How a trading day flows through the engine, and how evidence and status leave it.
+---
+
+<Callout type="info">Source: `trading-lab-research@f4b65b7` (`README.md`, `docs/adr/`, `src/wt/`), read 2026-10-13.</Callout>
+
+## The stocks day
+
+<Flow steps={[
+  { name: 'Market data', note: 'cached, point in time' },
+  { name: 'Scanner', note: 'pool, features, ranking' },
+  { name: 'Signals', note: 'frozen entry definitions' },
+  { name: 'Pre-trade guard', note: 'limits, inside the order manager' },
+  { name: 'Order manager', note: 'one position at a time' },
+  { name: 'Paper broker', note: 'paper hard-coded' },
+  { name: 'Ledger', note: 'hash-chained' },
+]} />
+
+## The options day
+
+<Flow steps={[
+  { name: 'Hourly and daily bars' },
+  { name: 'Levels and zones', note: 'expected move' },
+  { name: 'Entry rules', note: 'on probation' },
+  { name: 'Edition', note: 'signed, nightly' },
+  { name: 'Workstation', note: 'the owner decides' },
+]} />
+
+The options desk places no orders. In session, a live job adds rule states, open paper positions and open
+interest.
+
+## Layers
+
+| Layer | Packages | Rule |
+|---|---|---|
+| Core | `core` | The paper lock, the clock and the ledgers; everything else depends on it |
+| Research | `data`, `scanner`, `signals`, `backtest`, `research` | No broker calls |
+| Trading | `risk`, `oms`, `brokers`, `live` | The only path that can place an order |
+| Options | `options` | Reads; never trades |
+| Operations | `ops`, `analytics` | Runs jobs, gates deploys, publishes status |
+
+## Design choices
+
+- **One clock.** All session logic runs in New York time, in one module.
+- **Causal by construction.** Features and signals may only read what was known at that moment; tests check it.
+- **Runtime state outside the checkout.** A deploy cannot disturb a running job's state.
+- **Every job through one runner.** Lock, pre-flight, deadline, heartbeat.
+- **A desk is a record.** Each desk declares its own limits, state and keys, so desks cannot reach into each
+  other.
+- **The schedule is code.** Service units are generated from the job table; see
+  [facts and register](/stocks-options/facts).
+
+## How status leaves
+
+A job collects state, keeps only allowlisted fields, signs the result and pushes it. See
+[the status site](/shared/status-site).

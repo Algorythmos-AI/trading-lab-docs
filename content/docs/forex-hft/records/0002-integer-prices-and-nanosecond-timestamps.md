@@ -1,6 +1,6 @@
 ---
 title: "ADR 0002: Integer prices and nanosecond receive timestamps"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0002-integer-prices-and-nanosecond-timestamps.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0002-integer-prices-and-nanosecond-timestamps.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10

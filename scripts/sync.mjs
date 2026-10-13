@@ -11,6 +11,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node
 import { homedir } from 'node:os';
 import { basename, dirname, join, posix } from 'node:path';
 import { scanText } from './scan.mjs';
+import { FACT_PATHS, writeFacts } from './facts.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
 const clones = process.env.DOCS_CLONES ?? join(homedir(), 'Code/platforms');
@@ -41,11 +42,11 @@ if (check) {
     const now = git(s.clone, 'rev-parse', 'origin/main').trim();
     const was = lock.sources[s.repo]?.sha;
     if (now !== was) {
-      // Only a change under the copied paths makes the copies stale.
-      const changed = was ? git(s.clone, 'diff', '--name-only', was, now, '--', ...KINDS.map((k) => k.dir)).trim() : 'never synced';
+      // Only a change under the copied paths, or under a path the generated facts read, makes them stale.
+      const changed = was ? git(s.clone, 'diff', '--name-only', was, now, '--', ...new Set([...KINDS.map((k) => k.dir), ...FACT_PATHS[s.repo]])).trim() : 'never synced';
       if (changed) {
         moved++;
-        console.log(`${s.repo}: copied paths changed since ${was?.slice(0, 7) ?? 'never'}:\n  ${changed.split('\n').join('\n  ')}`);
+        console.log(`${s.repo}: watched paths changed since ${was?.slice(0, 7) ?? 'never'}:\n  ${changed.split('\n').join('\n  ')}`);
       }
     }
   }
@@ -70,6 +71,22 @@ const restricted = (text) => {
   }
   return false;
 };
+
+// Everything that needs the network is fetched before any file is written, so a timeout leaves the tree as it was.
+const prLists = {};
+for (const r of CHANGELOG_REPOS) {
+  // The network to GitHub drops now and then; three tries, then fail with nothing written.
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const out = execFileSync('gh', ['pr', 'list', '-R', `Algorythmos-AI/${r.repo}`, '--state', 'merged', '--limit', '500', '--json', 'number,title,mergedAt'], { encoding: 'utf8', maxBuffer: 1 << 26, stdio: ['ignore', 'pipe', 'pipe'] });
+      prLists[r.repo] = JSON.parse(out);
+      break;
+    } catch (e) {
+      if (attempt === 3) throw new Error(`could not list pull requests of ${r.repo}: ${String(e.stderr ?? e.message).trim().split('\n').pop()}`);
+    }
+  }
+}
+for (const extra of ['trading-kb', '.github-private']) git(extra, 'fetch', '-q', '--tags', 'origin', 'main');
 
 const yaml = (s) => JSON.stringify(s.replace(/\s+/g, ' ').trim());
 const leftOut = [];
@@ -147,8 +164,7 @@ const weeks = new Map();
 let total = 0;
 let withheld = 0;
 for (const r of CHANGELOG_REPOS) {
-  const out = execFileSync('gh', ['pr', 'list', '-R', `Algorythmos-AI/${r.repo}`, '--state', 'merged', '--limit', '500', '--json', 'number,title,mergedAt'], { encoding: 'utf8', maxBuffer: 1 << 26 });
-  for (const pr of JSON.parse(out)) {
+  for (const pr of prLists[r.repo]) {
     const w = weekOf(pr.mergedAt);
     if (!weeks.has(w)) weeks.set(w, new Map());
     const byRepo = weeks.get(w);
@@ -186,6 +202,11 @@ for (const l of leftOut) page += `| \`${l.repo}\` | \`${l.file}\` | ${l.why} |\n
 page += `\n## Changelog\n\n${withheld} pull-request title(s) are withheld for the same reasons.\n`;
 mkdirSync(join(root, 'content/docs/shared'), { recursive: true });
 writeFileSync(join(root, 'content/docs/shared/copied-pages.md'), page);
+
+const shas = Object.fromEntries(Object.entries(newLock.sources).map(([repo, v]) => [repo, v.sha]));
+for (const extra of ['trading-kb', '.github-private']) shas[extra] = git(extra, 'rev-parse', 'origin/main').trim();
+writeFacts({ root, git, today, shas, prCounts: Object.fromEntries(Object.entries(prLists).map(([k, v]) => [k, v.length])) });
+writeFileSync(join(root, 'lib/synced.json'), JSON.stringify({ synced_on: today, sources: Object.fromEntries(Object.entries(shas).map(([k, v]) => [k, v.slice(0, 7)])) }, null, 2) + '\n');
 
 newLock.left_out = leftOut;
 writeFileSync(lockPath, JSON.stringify(newLock, null, 2) + '\n');

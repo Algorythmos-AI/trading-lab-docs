@@ -1,6 +1,6 @@
 ---
 title: "Dashboard screenshots"
-description: "Copied from trading-lab-research@6562d6f (docs/runbooks/dashboard-screenshots.md) on 2026-10-12. Do not edit here."
+description: "Copied from trading-lab-research@f4b65b7 (docs/runbooks/dashboard-screenshots.md) on 2026-10-13. Do not edit here."
 ---
 
 The browser tests include pictures of the Options desk (`dashboard/test/e2e/visual.spec.ts`): the three views and a
@@ -28,6 +28,7 @@ A picture that changes when nothing was meant to is the finding: fix the code, n
 ## What is left out of the pictures
 
 - The site's own header: its clocks run and its feed pills age.
-- Live prices: the pictures are taken with the live feed off.
+- Live prices and option quotes: the pictures are taken with both feeds off, so a position shows without its
+  greeks.
 - Hover and focus states, the command palette, and every failure state. Those are covered by the other browser
   tests, which check what is on the page, not how it looks.

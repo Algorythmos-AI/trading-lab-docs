@@ -1,0 +1,44 @@
+---
+title: Architecture
+description: One 15-minute cycle, the tournament around it, and the weekly learning job.
+---
+
+<Callout type="info">Source: `crypto-lab@8c240c1` (`README.md`, `docs/runbooks/`, `src/wt/crypto/`), read 2026-10-13.</Callout>
+
+## One cycle, every 15 minutes
+
+<Flow steps={[
+  { name: 'Public market data', note: 'the only network code' },
+  { name: 'Quality checks', note: 'per bar' },
+  { name: 'Exits', note: 'before entries' },
+  { name: 'Entries', note: 'rules per sleeve' },
+  { name: 'Simulator', note: 'fills on live quotes' },
+  { name: 'Journal', note: 'hash-chained' },
+  { name: 'Snapshot', note: 'signed' },
+]} />
+
+## Around the cycle
+
+| Job | When | Does |
+|---|---|---|
+| Bar cycle | After every 15-minute close | The chain above |
+| Snapshot | Every 15 minutes | Publishes the desk's status |
+| Challengers | Daily | Retires, draws at most two a week, registers, backtests, admits |
+| Learning | Daily, with weekly retraining | Scores signal outcomes, runs the model's promotion tests |
+
+## Paper by construction
+
+There is no exchange account, no credential and no order route. The simulator is the only place a trade
+happens, and its costs are stated assumptions in the frozen configuration.
+
+## Design choices
+
+- **A frozen configuration, pinned by hash.** A test fails if it changes without a new record.
+- **Limits per desk and per sleeve,** with a latch that stays on until it is reset.
+- **Challengers run in shadow** and enter only through a registered backtest gate.
+- **The snapshot format belongs to this repository.** The status site keeps a copy checked by hash.
+
+## Same code, two homes, for now
+
+The desk still runs from the stocks and options repository. A replay proves the two copies behave the same.
+See [the cutover](/crypto/cutover).

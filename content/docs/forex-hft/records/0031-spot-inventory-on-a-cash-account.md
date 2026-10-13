@@ -1,6 +1,6 @@
 ---
 title: "ADR 0031: Spot on a cash account: a float in every traded currency, and positions as deviations from it"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0031-spot-inventory-on-a-cash-account.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0031-spot-inventory-on-a-cash-account.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-12. Built and tested against the fake broker and synthetic data only. Nothing

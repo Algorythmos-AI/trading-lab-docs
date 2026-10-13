@@ -3,18 +3,26 @@ title: Updating these pages
 description: How content gets here and how to keep it true.
 ---
 
-## Two kinds of page
+## Three kinds of page
 
-- **Written pages** (overviews, standing, roadmap) are edited by hand in `content/docs/`.
-- **Copied pages** (design records, runbooks) and **generated tables** come from the platform repositories at a
-  recorded commit. Do not edit them here; change the source and sync again.
+- **Written pages** (overviews, architecture, standing, roadmap) are edited by hand in `content/docs/`. Each
+  names the commit it was read at and lists its source files at the bottom.
+- **Copied pages** (design records, runbooks) come from the platform repositories at a recorded commit.
+- **Generated pages** (facts and register, repositories, changelog, copied pages) are rebuilt by the sync from
+  structured files: phase and gate states, the job schedule, counts, and research record ids with their status.
+
+Do not edit copied or generated pages here; change the source and sync again.
 
 ## Syncing copied pages
 
 ```bash
-node scripts/sync.mjs --check   # has a source moved?
+node scripts/sync.mjs --check   # has a watched path moved in any platform repository?
 node scripts/sync.mjs           # copy again and rewrite the changelog
 ```
+
+`--check` watches the copied folders and every file the generated facts read, including `research/`. When it
+reports a change, sync, then read the written pages of that platform against its new facts page and correct
+them in the same pull request.
 
 The copier leaves a file out whole when it finds wording, an identifier, or a phrase that may not appear here.
 [Copied pages](/shared/copied-pages) lists what came from where and what was left out.

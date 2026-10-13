@@ -1,6 +1,6 @@
 ---
 title: "ADR 0010: Access route: the TWS API through IB Gateway first"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0010-access-route.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0010-access-route.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted as the engineering default, 2026-10-10. The research decision on the access route is

@@ -1,6 +1,6 @@
 ---
 title: Changelog
-description: "242 merged pull requests, by week. Generated on 2026-10-12."
+description: "244 merged pull requests, by week. Generated on 2026-10-13."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
@@ -13,8 +13,10 @@ Titles and dates of merged pull requests. Weeks start on Monday (UTC).
 - 2026-10-12 · #23 · Paper trading on spot with a cash float: limits in force, a cost model, and the control sleeve's first step
 - 2026-10-12 · #22 · The probe's run with orders: what the account refuses on spot, the measured quote rate, and a hold at shadow until it can open positions
 
-### Stocks & Options (7)
+### Stocks & Options (9)
 
+- 2026-10-12 · #214 · refactor(dashboard): shared pieces for the options desk
+- 2026-10-12 · #213 · test(dashboard): the first pictures of the options desk
 - 2026-10-12 · #212 · test(dashboard): pictures of the options desk, compared on every run
 - 2026-10-12 · #211 · feat(ops): the host says when a deploy is ready; it never deploys (ADR 0007)
 - 2026-10-12 · #210 · feat(options): the map's hourly range

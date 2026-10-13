@@ -1,6 +1,6 @@
 ---
 title: "Loss latch reset"
-description: "Copied from trading-lab-research@6562d6f (docs/runbooks/latch-reset.md) on 2026-10-12. Do not edit here."
+description: "Copied from trading-lab-research@f4b65b7 (docs/runbooks/latch-reset.md) on 2026-10-13. Do not edit here."
 ---
 
 The virtual account latches at a −2% day, a −4% week, or a −10% drawdown from its high-water mark. While
