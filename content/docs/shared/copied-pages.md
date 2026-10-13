@@ -1,6 +1,6 @@
 ---
 title: Copied pages
-description: "Which commit each copied page came from, and what was left out. Generated on 2026-10-12."
+description: "Which commit each copied page came from, and what was left out. Generated on 2026-10-13."
 ---
 
 ## Sources
@@ -9,7 +9,7 @@ description: "Which commit each copied page came from, and what was left out. Ge
 |---|---|---|
 | `hft-lab` | `d6d2a94` | 44 |
 | `crypto-lab` | `8c240c1` | 1 |
-| `trading-lab-research` | `6562d6f` | 17 |
+| `trading-lab-research` | `f4b65b7` | 17 |
 
 ## Left out
 

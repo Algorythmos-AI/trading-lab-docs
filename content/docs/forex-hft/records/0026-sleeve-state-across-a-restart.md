@@ -1,6 +1,6 @@
 ---
 title: "ADR 0026: Sleeve state across a restart, and the two commands the registered experiments name"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0026-sleeve-state-across-a-restart.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0026-sleeve-state-across-a-restart.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested on synthetic streams and against the fake broker only.

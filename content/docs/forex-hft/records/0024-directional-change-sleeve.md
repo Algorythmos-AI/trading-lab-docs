@@ -1,6 +1,6 @@
 ---
 title: "ADR 0024: The Directional Change detector, two baseline sleeves on it, and the null they are read against"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0024-directional-change-sleeve.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0024-directional-change-sleeve.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested on synthetic streams only. It has seen no real data, no

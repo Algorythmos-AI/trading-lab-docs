@@ -1,5 +1,5 @@
 {
-  "synced_on": "2026-10-12",
+  "synced_on": "2026-10-13",
   "sources": {
     "hft-lab": {
       "sha": "d6d2a94e2e4f48871bcd668c89192a2436a5c262",
@@ -10,7 +10,7 @@
       "files": 1
     },
     "trading-lab-research": {
-      "sha": "6562d6f7abeb02344414e869e7ddeeb6aa9db25d",
+      "sha": "f4b65b7e69cfc9c9d727c4dda22666dbf57dfab0",
       "files": 17
     }
   },

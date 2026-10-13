@@ -3,9 +3,11 @@
   "pages": [
     "index",
     "built",
+    "architecture",
     "how-it-runs",
     "phases",
     "measured",
+    "facts",
     "records",
     "runbooks"
   ]

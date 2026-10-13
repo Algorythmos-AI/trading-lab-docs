@@ -3,7 +3,7 @@
 One documentation site for the trading platforms (stocks and options, crypto, forex HFT) and the shared
 knowledge base: what is built, how it runs, where each stands, and the roadmap.
 
-- **Status:** being built.
+- **Status:** live.
 - **Owner:** @skalaliya
 - **Runs at:** `docs.algorythmos.com` (Vercel, sign-in required on every address)
 - **Data class:** confidential. Private repository; never public.

@@ -1,0 +1,50 @@
+---
+title: Architecture
+description: The processes, the path of one order, and what keeps them apart.
+---
+
+<Callout type="info">Source: `hft-lab@d6d2a94` (`docs/architecture.md`, `README.md`), read 2026-10-13.</Callout>
+
+## The path of one order
+
+<Flow steps={[
+  { name: 'Quote', note: 'from the broker feed' },
+  { name: 'Features', note: 'exact integers, causal' },
+  { name: 'Sleeve', note: 'a pure function' },
+  { name: 'Risk gate', note: 'independent, owns the kill switch' },
+  { name: 'Order manager', note: 'writes to the outbox first' },
+  { name: 'Venue', note: 'paper broker and shadow' },
+  { name: 'Two books', note: 'then reconciliation' },
+]} />
+
+## Processes
+
+| Process | Does | Cannot |
+|---|---|---|
+| Recorder | Writes every price update to an append-only, checksummed store | Place an order |
+| Trader | Runs the loop above for every sleeve, against two books | Trade above a sleeve's stage, or past the risk gate |
+| Scorer | Scores models in a process of its own, with a timeout and restart | Hold a venue connection |
+| Weekend learning | Builds datasets, trains candidates, validates, registers | Promote outside the written rule |
+| Publisher | Builds and signs the status snapshot | Send free text |
+
+Keeping the recorder apart from the trader means a trading fault cannot stop the recording, and data keeps
+accumulating.
+
+## Design choices
+
+- **Integer prices everywhere.** No floating-point money, so a replay gives the same result on any machine.
+- **Deterministic replay.** A recorded day can be run again and must reproduce the same decisions.
+- **Sleeves are pure functions.** They take state and a quote and return intents; they hold no connection.
+- **One venue interface.** The paper broker, the simulator and the fake broker used in tests all sit behind it.
+- **Models scored as whole numbers.** A trained model is stored and scored in integers; where rounding could
+  change a decision, the scorer abstains.
+- **Journals are hash-chained.** A changed or missing entry is detectable.
+
+## Test layers
+
+1. Unit and property tests on each package.
+2. The fake broker, with faults injected: disconnects, rejects, partial fills, duplicates.
+3. Replay parity on recordings the tests make.
+4. Scans of the source: only the order manager may place or cancel; only two venues are registered.
+
+None of these is the real market. See [what has been measured](/forex-hft/measured).

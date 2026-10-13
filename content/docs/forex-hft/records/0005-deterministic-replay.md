@@ -1,6 +1,6 @@
 ---
 title: "ADR 0005: Deterministic replay as the main test strategy"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0005-deterministic-replay.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0005-deterministic-replay.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10

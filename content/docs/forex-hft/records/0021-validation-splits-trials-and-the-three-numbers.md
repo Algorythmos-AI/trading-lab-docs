@@ -1,6 +1,6 @@
 ---
 title: "ADR 0021: Validation: splits by week, a hold-out read once, counted trials, three numbers"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0021-validation-splits-trials-and-the-three-numbers.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0021-validation-splits-trials-and-the-three-numbers.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested on synthetic rows and streams only. Nothing has been

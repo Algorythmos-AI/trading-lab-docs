@@ -1,6 +1,6 @@
 ---
 title: "ADR 0003: Two books; the shadow book is the result of record"
-description: "Copied from hft-lab@d6d2a94 (docs/adr/0003-two-books.md) on 2026-10-12. Do not edit here."
+description: "Copied from hft-lab@d6d2a94 (docs/adr/0003-two-books.md) on 2026-10-13. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10

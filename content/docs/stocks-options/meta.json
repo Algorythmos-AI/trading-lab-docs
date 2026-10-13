@@ -3,9 +3,11 @@
   "pages": [
     "index",
     "built",
+    "architecture",
     "how-it-runs",
     "gates",
     "options-workstation",
+    "facts",
     "records",
     "runbooks"
   ]
