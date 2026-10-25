@@ -25,8 +25,8 @@ The host pushes. The site never connects to the host.
 | Stocks snapshot | Stocks & Options | 3 |
 | Options edition | Stocks & Options | site accepts 2; host sends 1 |
 | Options live | Stocks & Options | site accepts 3; host sends 2 |
-| Crypto snapshot | Crypto | 1 |
-| Forex snapshot | Forex HFT | 1; nothing sent yet |
+| Crypto snapshot | Crypto | 1; frozen, nothing sent since the desk closed |
+| Forex snapshot | Forex HFT | 1; nothing sent; the desk is parked |
 
 A platform owns its format. The site keeps a copy pinned by hash, so a change on either side that the other
 has not accepted is refused rather than half-understood.

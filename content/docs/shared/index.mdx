@@ -16,16 +16,17 @@ Three things are shared on purpose. Everything else belongs to one platform.
 | Platform | On the server |
 |---|---|
 | Stocks & Options | <Standing is="done">running since 2026-10-01</Standing> |
-| Crypto | <Standing is="open">running, from the stocks and options checkout</Standing> |
-| Forex HFT | <Standing is="not started" /> |
+| Crypto | <Standing is="failed">closed 2026-10-24; nothing runs</Standing> |
+| Forex HFT | <Standing is="waiting">parked; never installed on the server</Standing> |
 
 ## Deploys
 
-- Only the owner deploys, from a session on the host, with one command per platform.
+- The owner deploys by hand only what the server will not take by itself: a change to the deploy machinery.
 - A deploy gate decides whether it may proceed: required checks passed on that commit, and no market session
   in progress.
 - A rollback is one command.
-- Nothing deploys itself. Automatic deploys after green checks are on the roadmap, not built.
+- The server deploys itself: once an hour it takes the newest green release on `main` when the gate is open.
+  A release that changes the deploy machinery itself waits for the owner to deploy it by hand.
 
 ## The status site
 

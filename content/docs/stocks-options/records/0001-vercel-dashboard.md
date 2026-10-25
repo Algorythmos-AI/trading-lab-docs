@@ -1,6 +1,6 @@
 ---
 title: "ADR 0001: Status dashboard on Vercel, fed by a signed push from the Mac"
-description: "Copied from trading-lab-research@f4b65b7 (docs/adr/0001-vercel-dashboard.md) on 2026-10-13. Do not edit here."
+description: "Copied from trading-lab-research@fa0c7c1 (docs/adr/0001-vercel-dashboard.md) on 2026-10-25. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-09-29

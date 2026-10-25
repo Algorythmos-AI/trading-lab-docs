@@ -1,6 +1,6 @@
 ---
 title: "Runbook: importing history from files"
-description: "Copied from hft-lab@0188700 (docs/runbooks/history-import.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@bf8d099 (docs/runbooks/history-import.md) on 2026-10-25. Do not edit here."
 ---
 
 For the owner ([ADR 0028](/forex-hft/records/0028-imported-history)). The platform's own recordings come first. Before

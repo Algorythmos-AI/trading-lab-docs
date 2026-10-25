@@ -1,6 +1,6 @@
 ---
 title: "Disk nearly full"
-description: "Copied from trading-lab-research@f4b65b7 (docs/runbooks/disk-full.md) on 2026-10-13. Do not edit here."
+description: "Copied from trading-lab-research@fa0c7c1 (docs/runbooks/disk-full.md) on 2026-10-25. Do not edit here."
 ---
 
 The jobs refuse to arm below 3 GB free on `/System/Volumes/Data`. Use that path, not `/`, which misreports on

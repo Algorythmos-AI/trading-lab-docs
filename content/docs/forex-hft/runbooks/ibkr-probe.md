@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the IBKR capability probe"
-description: "Copied from hft-lab@0188700 (docs/runbooks/ibkr-probe.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@bf8d099 (docs/runbooks/ibkr-probe.md) on 2026-10-25. Do not edit here."
 ---
 
 > 2 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.

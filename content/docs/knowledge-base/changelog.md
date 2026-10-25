@@ -1,6 +1,6 @@
 ---
 title: Changelog
-description: "7 merged pull requests in Knowledge Base, by week. Generated on 2026-10-13."
+description: "7 merged pull requests in Knowledge Base, by week. Generated on 2026-10-25."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).

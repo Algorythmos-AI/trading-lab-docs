@@ -1,9 +1,15 @@
 ---
 title: Forex HFT
-description: Automatic paper trading of currency pairs against a broker paper account. Written and tested; not yet running.
+description: Automatic paper trading of currency pairs against a broker paper account. Written and tested; parked since 2026-10-14.
 ---
 
-<Callout type="info">Source: `hft-lab@0188700`, read 2026-10-13.</Callout>
+<Callout type="warn" title="Parked">
+  Nothing runs and nothing is installed on the server (HFT-DEC-0005). It last ran on the owner's laptop from 12 to
+  14 October 2026 and stopped when the broker's paper login was taken by another session ("competing live session").
+  It restarts only under a new decision record, once that login clash is resolved.
+</Callout>
+
+<Callout type="info">Source: `hft-lab@bf8d099`, read 2026-10-25.</Callout>
 
 ## In one paragraph
 
@@ -22,23 +28,19 @@ or co-location.
 | Tested against | A deterministic fake broker and synthetic price streams |
 | Met the real market | Two short runs of the capability probe, and the first funding of the cash float |
 | Installed on the host | <Standing is="not started" /> |
-| Recorded trading days | 0 |
+| Recorded trading days | Parts of three days, 12 to 14 October, none clean |
 | Orders accepted by the broker | 7, all filled in full: the conversions that funded the float on 2026-10-12. No sleeve has traded |
-| Decision records | 3: risk limits and float, cost model, the control sleeve's first step |
+| Decision records | 5: risk limits and float, cost model, the control sleeve's first step, the instrument form, and the parking |
 | Models trained on real data | 0 |
 | Evidence of an edge | None, and none is claimed |
 
 ## What it waits on
 
-1. **A clean trading day.** Positions are held on spot with a cash float, and the float is funded: seven
-   orders, all filled, from the owner's laptop. Hours later the gateway lost its connection, and after it
-   reconnected the positions it listed no longer matched: a reconciliation break, open when the record was
-   written. Ending it is the owner's step. The control sleeve moves to minimum size only after one clean day,
-   and its gate expects five days with no break.
-2. **The host.** A pre-flight day of measurements, the install, the broker gateway and its weekly login.
-3. **Time.** Several gates need five recorded trading days, and the learning gate needs two unattended weeks.
-
-See [phases and gates](/forex-hft/phases) for each one.
+1. **The broker login.** The paper login is shared with another routine; two sessions on one login end each other.
+   That clash must be resolved first.
+2. **A new decision record** that restarts the desk, with either a host install or one clean day on the laptop.
+3. **Then the gates as before.** The reconciliation break of 13 October is still open, the control sleeve needs one
+   clean day in shadow, and several gates need five recorded trading days.
 
 ## Pages
 

@@ -1,6 +1,6 @@
 ---
 title: "Cutover: the live crypto desk moves from trading-lab-research to this repository"
-description: "Copied from crypto-lab@8c240c1 (docs/runbooks/cutover-from-monorepo.md) on 2026-10-13. Do not edit here."
+description: "Copied from crypto-lab@8c240c1 (docs/runbooks/cutover-from-monorepo.md) on 2026-10-25. Do not edit here."
 ---
 
 For the owner. Every command on the host is the owner's to run; nobody else can, and no automated contributor

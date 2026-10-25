@@ -1,13 +1,20 @@
 ---
 title: Crypto
-description: A round-the-clock crypto paper desk on public market data with its own simulator.
+description: "A round-the-clock crypto paper desk on public market data. Closed on 2026-10-24: no rule passed its first gate."
 ---
 
-<Callout type="info">Source: `crypto-lab@8c240c1`, read 2026-10-12.</Callout>
+<Callout type="warn" title="Closed">
+  The desk was closed on 2026-10-24 (DEC-0036 in the stocks and options repository). Every registered rule and every
+  challenger failed the first research gate, and nothing of it runs. Its jobs left the server that day and its code
+  left the stocks and options repository on 2026-10-25; git history keeps both. `crypto-lab` is archived, read-only.
+  This page describes what was built.
+</Callout>
+
+<Callout type="info">Source: `crypto-lab@8c240c1`, read 2026-10-12; standing updated 2026-10-25.</Callout>
 
 ## In one paragraph
 
-A desk that trades crypto on paper, every 15 minutes, all week. It reads public market data only, fills orders
+A desk that traded crypto on paper, every 15 minutes, all week. It reads public market data only, fills orders
 in its own simulator, runs a tournament of rule variants in shadow, and retrains a model weekly. It has **no
 exchange credentials and no way to send an order**: it is paper by construction.
 
@@ -15,22 +22,23 @@ exchange credentials and no way to send an order**: it is paper by construction.
 
 | | |
 |---|---|
-| Desk | Running since 2026-10-04, still from the stocks and options repository |
-| Own repository | Created 2026-10-11 by a scripted extraction; matches the original byte for byte in replay |
-| Running from its own repository | <Standing is="waiting">waiting on the host cutover</Standing> |
+| Desk | Ran on paper from 2026-10-04 to 2026-10-24, from the stocks and options repository |
+| Own repository | Created 2026-10-11 by a scripted extraction; never cut over; archived |
+| State | <Standing is="failed">closed 2026-10-24</Standing> |
 | First research gate (C1) | <Standing is="failed" /> every registered rule and variant fails so far |
-| Second gate (C2) | <Standing is="not started" /> its clock has not started |
+| Second gate (C2) | <Standing is="not started" /> never reached |
 | Model | Four attempts; no standing candidate |
 
 ## Reading this honestly
 
-The desk works as a system: it cycles, accounts, and reports. No rule on it has shown an edge.
+The desk worked as a system: it cycled, accounted, and reported. No rule on it showed an edge, so it was closed
+rather than moved.
 
 ## Pages
 
 <Cards>
   <Card title="What is built" href="/crypto/built" description="The desk, the simulator, the tournament and the learning loop." />
-  <Card title="Cutover" href="/crypto/cutover" description="Moving the running desk to its own repository." />
+  <Card title="Cutover" href="/crypto/cutover" description="The planned move to its own repository, which never happened." />
   <Card title="Architecture" href="/crypto/architecture" description="How the pieces fit and what keeps them apart." />
   <Card title="Facts and register" href="/crypto/facts" description="States, counts and research record ids, generated from the repository." />
 </Cards>

@@ -1,12 +1,105 @@
 ---
 title: Changelog
-description: "211 merged pull requests in Stocks & Options, by week. Generated on 2026-10-13."
+description: "301 merged pull requests in Stocks & Options, by week. Generated on 2026-10-25."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
 
+## Week of 2026-10-19
+
+- 2026-10-25 · #306 · Release 2026-10-25
+- 2026-10-25 · #304 · chore(crypto): the closed desk's code leaves the tree; the options jobs page
+- 2026-10-25 · #305 · docs(runbooks): the six cloud routines, what depends on them, and the weekly report draft
+- 2026-10-24 · #303 · feat(research): the programme on one panel, read from the records
+- 2026-10-24 · #299 · fix(dashboard): rule evidence quotes a record or says nothing was measured
+- 2026-10-24 · #302 · fix(dashboard): Today reads the scan inside each pane
+- 2026-10-24 · #300 · fix(ops): the Operations job table lists the host's real jobs
+- 2026-10-24 · #298 · fix(dashboard): one failing pane no longer takes a page down
+- 2026-10-24 · #301 · fix(scorecard): B's band says its baseline is biased until the DEC-0011 re-run
+- 2026-10-24 · #297 · docs(research): truth sweep: the registry matches its decisions
+- 2026-10-24 · #296 · fix(dashboard): a stale journal never reads OK to trade
+- 2026-10-24 · #295 · data(forward): evidence for 2026-W43
+- 2026-10-24 · #294 · Release 2026-10-24 (2): the crypto desk's jobs leave the host
+- 2026-10-24 · #291 · ops: the crypto desk's four jobs leave the schedule and the dashboard shows the desk closed (DEC-0036, part 1 of 2)
+- 2026-10-24 · #292 · Release 2026-10-24 (1)
+- 2026-10-24 · #293 · ops(ci): read the commit's jobs through the Actions API when a fine-grained token cannot read check runs
+- 2026-10-24 · #285 · ops(evidence): the weekly evidence lands on integration, each week in its own folder
+- 2026-10-24 · #290 · options: realised volatility as the feed sends it, a focus block for the edition, the after-close check waits for the day's bar
+- 2026-10-24 · #289 · research: EXP-0015-r3-dev exists as what it is, registered and not run
+- 2026-10-24 · #288 · research: DEC-0037, G2 measured at the bar and strategy B's stop rule, in code
+- 2026-10-24 · #287 · dashboard: a parked desk says so, instead of "missing" (HFT-DEC-0005)
+- 2026-10-24 · #283 · ops: the host is ready for a private repository before the flip
+- 2026-10-24 · #286 · research: DEC-0036 the crypto desk is closed
+- 2026-10-24 · #284 · chore(dashboard): patch the audited transitive packages (zod, undici, fast-uri)
+- 2026-10-23 · #280 · Release 2026-10-23 (1)
+- 2026-10-23 · #282 · research: DEC-0035 exempts presentation only
+- 2026-10-23 · #281 · research: DEC-0035 focus-card plan is display only, not a lab strategy
+- 2026-10-23 · #276 · options: focus cards spell out entry, stop and targets in plain words
+- 2026-10-23 · #278 · options: the clone's decision log says why a signal was refused and whether its greeks were modelled
+- 2026-10-23 · #279 · chore(dashboard): bump next to 16.4.3
+- 2026-10-22 · #275 · Release 2026-10-22 (1)
+- 2026-10-22 · #274 · *(title withheld)*
+- 2026-10-21 · #273 · Release 2026-10-20 (7)
+- 2026-10-20 · #272 · options: the clone works out delta and IV for same-day contracts the feed leaves blank
+- 2026-10-20 · #271 · Release 2026-10-20 (6)
+- 2026-10-20 · #270 · ops(pipeline-check): choose eligible names with the clone's own session.names
+- 2026-10-20 · #269 · Release 2026-10-20 (5)
+- 2026-10-20 · #268 · ops(pipeline-check): fail only for the names the clone can trade that day
+- 2026-10-20 · #267 · Release 2026-10-20 (4)
+- 2026-10-20 · #266 · ops(pipeline-check): fail only for names the clone may trade; skip a stale radar's closes
+- 2026-10-20 · #265 · Release 2026-10-20 (3)
+- 2026-10-20 · #264 · *(title withheld)*
+- 2026-10-20 · #263 · ops: the pipeline check: radar, options edition and focus names verified against the tape
+- 2026-10-20 · #262 · Release 2026-10-20 (2)
+- 2026-10-20 · #261 · options: DEC-0032 the clone always has names it can trade
+- 2026-10-20 · #260 · data(events): earnings dates for the desk's single names (Oct, Nov 2026)
+- 2026-10-20 · #259 · research(options): EXP-0025 result: both setups lost after costs on SPY and QQQ, Mar to Oct 2026
+- 2026-10-20 · #258 · research(options): EXP-0025's replay and its driver (DEC-0031)
+- 2026-10-20 · #257 · research(options): DEC-0031 register EXP-0025, the clone's historical dry run, before it runs
+- 2026-10-20 · #256 · Release 2026-10-20
+- 2026-10-20 · #255 · options: the clone's focus names from the dashboard, and its session on the Trades page
+- 2026-10-20 · #252 · Release 2026-10-19
+- 2026-10-20 · #254 · options: the clone's nightly review and EXP-0024's write-once verdict
+- 2026-10-20 · #253 · options: the clone's runner, its paper-o job and desk, the runbook
+- 2026-10-20 · #251 · options: the clone's paper broker, order management and guard
+
 ## Week of 2026-10-12
 
+- 2026-10-18 · #250 · options: the clone's pure strategy code (tape, setups, gates, contract, session)
+- 2026-10-18 · #249 · research(options): DEC-0030 the options clone: records and frozen config
+- 2026-10-18 · #248 · Release 2026-10-18
+- 2026-10-18 · #247 · fix(engineering): connect every node of the data-flow diagram
+- 2026-10-18 · #246 · fix(radar): don't claim "no earnings" when no calendar has earnings dates
+- 2026-10-18 · #245 · dashboard: Radar never calls a day normal on missing data
+- 2026-10-18 · #244 · docs(runbook): bind the staging domain to integration
+- 2026-10-18 · #242 · dashboard: Radar leads with the pre-market brief for the names you trade
+- 2026-10-18 · #241 · dashboard: remove the stray Next.js agent notes
+- 2026-10-18 · #240 · Release 2026-10-18 (2)
+- 2026-10-18 · #236 · Dashboard: Today leads with your own trading day
+- 2026-10-18 · #235 · dashboard: Operations shows your feeds, one job grid and a quieter audit trail
+- 2026-10-18 · #239 · ci: release-source waits for integration to become the default branch
+- 2026-10-18 · #238 · dashboard: Risk page leads with the real account's limits
+- 2026-10-18 · #237 · dashboard: the Stocks Engineering page shows what really runs, and whether each feed is on time
+- 2026-10-18 · #234 · Dashboard: the Stocks Overview becomes your trading home page
+- 2026-10-18 · #233 · Release 2026-10-18
+- 2026-10-18 · #232 · dashboard: sharper trade rules, pre-trade checklist and rule-break tracking
+- 2026-10-17 · #231 · Dashboard: phone layout for the chart, desk table, header and focus cards
+- 2026-10-17 · #228 · ops: integration becomes the default branch; main is production (ADR 0009)
+- 2026-10-17 · #230 · Options: clean, broker-style level chart
+- 2026-10-17 · #229 · dashboard: a cleaner Options page for trading
+- 2026-10-17 · #227 · dashboard: today's focus card above the options desk
+- 2026-10-17 · #226 · dashboard: rules before every trade on the Trades and Options pages
+- 2026-10-17 · #225 · dashboard: money in and money out as separate lines on the Trades chart
+- 2026-10-17 · #224 · dashboard: a colour per city on the header clocks
+- 2026-10-17 · #223 · dashboard: money in and out on the Trades page
+- 2026-10-17 · #222 · dashboard: Today panel on the Trades page
+- 2026-10-17 · #221 · dashboard: Trades curve caption matches the band above the line
+- 2026-10-17 · #220 · dashboard: polish the Trades page after a check with real data
+- 2026-10-16 · #219 · dashboard: Trades page for the owner's own closed trades
+- 2026-10-14 · #216 · docs(gcp-host): the VM is e2-standard-2 (8 GB) since 2026-10-13
+- 2026-10-14 · #217 · fix(dashboard): edition chips name their date; flag a stale radar and an old close
+- 2026-10-14 · #218 · test(ops): once\_per\_day uses dates relative to today
+- 2026-10-13 · #215 · feat(ops): the host deploys itself, inside the same gate (ADR 0008)
 - 2026-10-12 · #214 · refactor(dashboard): shared pieces for the options desk
 - 2026-10-12 · #213 · test(dashboard): the first pictures of the options desk
 - 2026-10-12 · #212 · test(dashboard): pictures of the options desk, compared on every run

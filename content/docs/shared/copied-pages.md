@@ -1,15 +1,15 @@
 ---
 title: Copied pages
-description: "Which commit each copied page came from, and what was left out. Generated on 2026-10-13."
+description: "Which commit each copied page came from, and what was left out. Generated on 2026-10-25."
 ---
 
 ## Sources
 
 | Repository | Commit | Files copied |
 |---|---|---|
-| `hft-lab` | `0188700` | 46 |
+| `hft-lab` | `bf8d099` | 46 |
 | `crypto-lab` | `8c240c1` | 3 |
-| `trading-lab-research` | `f4b65b7` | 23 |
+| `trading-lab-research` | `fa0c7c1` | 28 |
 
 ## Left out
 
@@ -28,13 +28,16 @@ These pages are copied with some lines withheld and marked. Everything else on t
 | `hft-lab` | `docs/runbooks/ibkr-probe.md` | 2 |
 | `crypto-lab` | `docs/adr/0005-desks.md` | 1 |
 | `crypto-lab` | `docs/runbooks/crypto-desk.md` | 5 |
+| `trading-lab-research` | `docs/adr/0003-not-used.md` | 2 |
 | `trading-lab-research` | `docs/adr/0004-oci-trading-host.md` | 1 |
-| `trading-lab-research` | `docs/adr/0005-desks.md` | 1 |
-| `trading-lab-research` | `docs/runbooks/crypto-desk.md` | 5 |
+| `trading-lab-research` | `docs/adr/0005-desks.md` | 3 |
+| `trading-lab-research` | `docs/adr/0009-integration-branch.md` | 1 |
+| `trading-lab-research` | `docs/runbooks/cloud-routines.md` | 4 |
 | `trading-lab-research` | `docs/runbooks/dashboard-deploy.md` | 1 |
-| `trading-lab-research` | `docs/runbooks/gcp-host.md` | 4 |
+| `trading-lab-research` | `docs/runbooks/gcp-host.md` | 6 |
 | `trading-lab-research` | `docs/runbooks/oci-host.md` | 5 |
+| `trading-lab-research` | `docs/runbooks/options-clone.md` | 2 |
 
 ## Changelog
 
-5 pull-request title(s) are withheld for the same reasons.
+7 pull-request title(s) are withheld for the same reasons.
