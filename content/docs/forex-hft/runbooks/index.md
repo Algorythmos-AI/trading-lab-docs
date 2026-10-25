@@ -1,6 +1,6 @@
 ---
 title: Runbooks
-description: "16 copied from hft-lab@0188700 on 2026-10-13."
+description: "16 copied from hft-lab@bf8d099 on 2026-10-25."
 ---
 
 Step-by-step instructions for one operation or one incident. Copied; change the source, then sync.

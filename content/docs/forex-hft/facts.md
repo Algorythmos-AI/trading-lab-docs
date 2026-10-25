@@ -3,7 +3,7 @@ title: "Facts and register"
 description: "Phase states, counts and the research register, generated from the repository."
 ---
 
-Generated from `hft-lab@0188700` on 2026-10-13. Do not edit; run the sync.
+Generated from `hft-lab@bf8d099` on 2026-10-25. Do not edit; run the sync.
 
 ## Phase states
 
@@ -26,10 +26,10 @@ From `config/ops.yaml`.
 |---|---|
 | Design records | 30 |
 | Runbooks | 16 |
-| Decision records | 3 |
+| Decision records | 5 |
 | Experiment records | 9 |
 | Hypothesis records | 6 |
-| Merged pull requests | 25 |
+| Merged pull requests | 28 |
 
 ## Research register
 
@@ -40,6 +40,8 @@ Ids, statuses and dates only.
 | `HFT-DEC-0001` | Decision | proposed | — |
 | `HFT-DEC-0002` | Decision | proposed | — |
 | `HFT-DEC-0003` | Decision | proposed | — |
+| `HFT-DEC-0004` | Decision | — | 2026-10-12 |
+| `HFT-DEC-0005` | Decision | — | 2026-10-24 |
 | `HFT-EXP-0001` | Experiment | registered | 2026-10-11 |
 | `HFT-EXP-0002` | Experiment | registered | 2026-10-11 |
 | `HFT-EXP-0003` | Experiment | registered | 2026-10-11 |

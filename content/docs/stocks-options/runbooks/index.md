@@ -1,6 +1,6 @@
 ---
 title: Runbooks
-description: "17 copied from trading-lab-research@f4b65b7 on 2026-10-13."
+description: "18 copied from trading-lab-research@fa0c7c1 on 2026-10-25."
 ---
 
 Step-by-step instructions for one operation or one incident. Copied; change the source, then sync.
@@ -8,7 +8,7 @@ Step-by-step instructions for one operation or one incident. Copied; change the 
 | Title | Source |
 |---|---|
 | [Evidence backups, anchors and the primary lease (OCI host, ADR 0004)](/stocks-options/runbooks/backups-and-lease) | `docs/runbooks/backups-and-lease.md` |
-| [Crypto desk](/stocks-options/runbooks/crypto-desk) | `docs/runbooks/crypto-desk.md` |
+| [Cloud routines](/stocks-options/runbooks/cloud-routines) | `docs/runbooks/cloud-routines.md` |
 | [Dashboard deploys (and the watchdog drill)](/stocks-options/runbooks/dashboard-deploy) | `docs/runbooks/dashboard-deploy.md` |
 | [Dashboard late or stopped](/stocks-options/runbooks/dashboard-late) | `docs/runbooks/dashboard-late.md` |
 | [Dashboard screenshots](/stocks-options/runbooks/dashboard-screenshots) | `docs/runbooks/dashboard-screenshots.md` |
@@ -19,6 +19,7 @@ Step-by-step instructions for one operation or one incident. Copied; change the 
 | [Loss latch reset](/stocks-options/runbooks/latch-reset) | `docs/runbooks/latch-reset.md` |
 | [Not flat at the close](/stocks-options/runbooks/not-flat-at-close) | `docs/runbooks/not-flat-at-close.md` |
 | [The OCI trading host: provision, operate, rebuild (ADR 0004)](/stocks-options/runbooks/oci-host) | `docs/runbooks/oci-host.md` |
+| [Options clone (DEC-0030)](/stocks-options/runbooks/options-clone) | `docs/runbooks/options-clone.md` |
 | [Options desk: paper positions](/stocks-options/runbooks/options-positions) | `docs/runbooks/options-positions.md` |
 | [Position and session alerts from the paper runner](/stocks-options/runbooks/position-alerts) | `docs/runbooks/position-alerts.md` |
 | [Rollback a deploy](/stocks-options/runbooks/rollback) | `docs/runbooks/rollback.md` |

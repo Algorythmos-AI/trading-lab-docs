@@ -1,12 +1,18 @@
 ---
 title: Changelog
-description: "25 merged pull requests in Forex HFT, by week. Generated on 2026-10-13."
+description: "28 merged pull requests in Forex HFT, by week. Generated on 2026-10-25."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
 
+## Week of 2026-10-19
+
+- 2026-10-24 · #28 · The desk is parked (HFT-DEC-0005): the laptop run written down
+
 ## Week of 2026-10-12
 
+- 2026-10-14 · #27 · HFT-DEC-0004: the instrument form is spot on a float; the access route waits for a timing taken on the server
+- 2026-10-13 · #26 · Spot is reconciled on cash: a reconnection no longer leaves a break, and a break always has a way out
 - 2026-10-13 · #25 · HFT-EXP-0009: the first funding of the float on the paper account, and the break a reconnection left
 - 2026-10-12 · #24 · Cash is read under the tag the gateway sends, and an entry no longer spends what another sleeve's cover needs
 - 2026-10-12 · #23 · Paper trading on spot with a cash float: limits in force, a cost model, and the control sleeve's first step

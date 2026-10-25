@@ -3,7 +3,7 @@ title: "Facts"
 description: "Collection counts and release tags, generated from the repository."
 ---
 
-Generated from `trading-kb@b9c29f8` on 2026-10-13. Do not edit; run the sync.
+Generated from `trading-kb@b9c29f8` on 2026-10-25. Do not edit; run the sync.
 
 ## Collections with a release
 

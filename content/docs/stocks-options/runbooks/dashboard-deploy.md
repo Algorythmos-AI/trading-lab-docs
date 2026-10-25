@@ -1,6 +1,6 @@
 ---
 title: "Dashboard deploys (and the watchdog drill)"
-description: "Copied from trading-lab-research@f4b65b7 (docs/runbooks/dashboard-deploy.md) on 2026-10-13. Do not edit here."
+description: "Copied from trading-lab-research@fa0c7c1 (docs/runbooks/dashboard-deploy.md) on 2026-10-25. Do not edit here."
 ---
 
 > 1 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
@@ -17,6 +17,21 @@ each one is a production deploy of the only off-host dead-man's switch.
   - `VERCEL_TOKEN`: a Vercel token scoped to the team, with an expiry (Vercel > Account settings > Tokens).
   - `VERCEL_AUTOMATION_BYPASS_SECRET`: the same value as in `~/trading/.env`.
 Without both secrets the deploy job fails on purpose ("Main is NOT deployed").
+
+**Staging (ADR 0009).** Every push to `integration` that touches the dashboard runs `deploy (staging)`: a
+Vercel preview built in fixture mode (`DASHBOARD_FIXTURE=1`), aliased to staging.lab.algorythmos.com and checked
+through `/api/health`, which must report the commit and `fixture: true`. One-time setup (owner):
+- Vercel > the project > Settings > Domains: add `staging.lab.algorythmos.com` with Git branch `integration`
+  (the workflow aliases it). Never leave the branch empty: a domain without one is a production domain, and every
+  `vercel deploy --prod` would point staging at the live dashboard and its data. Add its DNS record where
+  algorythmos.com is hosted: a CNAME `staging.lab` to the target Vercel shows, DNS only (grey cloud).
+- Vercel > the project > Settings > Environment Variables: the Preview environment holds no production secret
+  (no blob token, ingest keys or broker keys). `vercel env ls` should show only `DASHBOARD_FIXTURE` on Preview.
+- Repo Settings > Environments > New environment `staging`: deployment branch rule `integration`; secrets
+  `VERCEL_TOKEN` (its own token, with an expiry) and `VERCEL_AUTOMATION_BYPASS_SECRET` (the same value as for
+  production: protection is per project).
+- Repo Settings > Secrets and variables > Actions > Variables: `STAGING_ENABLED` = `true`. Until then the staging
+  job is skipped.
 
 **If a deploy fails.** The previous deployment stays live. Read the failed step:
 - Environment variables (not secret, but kept out of git): `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`, the values

@@ -1,6 +1,6 @@
 ---
 title: "Runbook: a deploy"
-description: "Copied from hft-lab@0188700 (docs/runbooks/deploy.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@bf8d099 (docs/runbooks/deploy.md) on 2026-10-25. Do not edit here."
 ---
 
 For the owner, on the host. A deploy puts another commit of `main` in service. It is one command,

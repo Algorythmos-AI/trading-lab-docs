@@ -1,9 +1,9 @@
 ---
 title: "ADR 0005: Desks"
-description: "Copied from trading-lab-research@f4b65b7 (docs/adr/0005-desks.md) on 2026-10-13. Do not edit here."
+description: "Copied from trading-lab-research@fa0c7c1 (docs/adr/0005-desks.md) on 2026-10-25. Do not edit here."
 ---
 
-> 1 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
+> 3 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
 
 - **Status:** accepted, 2026-10-04
 [withheld]
@@ -69,6 +69,14 @@ trigger, no tests, state lost on redeploy. It is rebuilt here, not copied.
      pass through `run_job`.
    - Removing the marker brings the desk back: that is the rollback.
 
+[withheld]
+   `wt-install-units` removes their units once the owner runs it; until then a leftover unit runs
+   `wt.ops.jobs run <name>` for a job that is no longer in `JOBS`, and `main` exits 0 for those names
+   (`RETIRED_JOBS`) without a lock, a heartbeat, a ping or a child. The marker guard above still holds for any
+   job of a desk that is in `JOBS`. The desk's code (`wt.crypto`), its `Desk` record and `var/crypto` leave in
+   the next release; the dashboard shows one page at `/crypto` that states the record, and its watchdog does not
+   watch a closed desk.
+
 ## Consequences
 
 - A third desk (FX) is a new `Desk` record, a venue package and a snapshot schema; the shared layers do not
@@ -77,3 +85,19 @@ trigger, no tests, state lost on redeploy. It is rebuilt here, not copied.
   separate decision.
 - The nightly backup becomes daily, because evidence is now written on weekends.
 - Two snapshots mean two publishers, two freshness pills and two watchdog states to keep green.
+
+## Addendum, 2026-10-25: the crypto desk's code is gone
+
+DEC-0036 closed the crypto desk on 2026-10-24. Its jobs left the schedule first; this addendum records the second
+step. `wt.crypto`, `wt.ml` (which only served the desk), their tests and scripts, `config/crypto.yaml`, the desk's
+keys in `config/risk.yaml` and the `ml` CI job are deleted. Git history keeps all of it.
+
+What stays, on purpose:
+- the desk model itself (`wt.core.desk`), so the backup still carries the crypto journals already written;
+- the closed-desk page and the desk's state in `dashboard/src/lib/desks.json`;
+- `dashboard/src/lib/crypto.schema.json`, frozen (no longer regenerated), so the dashboard's dormant crypto ingest
+  keeps a contract until it is removed;
+- the family-C rows of `config/trial_registry.yaml` and every record in `research/`.
+
+The host's deploy gate now requires the `test` check only (`wt.ops.ci`).
+

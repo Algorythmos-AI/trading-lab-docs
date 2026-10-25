@@ -1,6 +1,6 @@
 ---
 title: "Runbook: going back"
-description: "Copied from hft-lab@0188700 (docs/runbooks/rollback.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@bf8d099 (docs/runbooks/rollback.md) on 2026-10-25. Do not edit here."
 ---
 
 For the owner, on the host. Going back puts the code that was in service before the last deploy in service

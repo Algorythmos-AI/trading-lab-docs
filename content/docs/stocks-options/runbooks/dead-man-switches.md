@@ -1,6 +1,6 @@
 ---
 title: "Dead-man's switches: who notices when the host goes quiet"
-description: "Copied from trading-lab-research@f4b65b7 (docs/runbooks/dead-man-switches.md) on 2026-10-13. Do not edit here."
+description: "Copied from trading-lab-research@fa0c7c1 (docs/runbooks/dead-man-switches.md) on 2026-10-25. Do not edit here."
 ---
 
 Three independent monitors, none of them on the trading host:
@@ -27,28 +27,15 @@ Three independent monitors, none of them on the trading host:
 | `wt-paper-b` | `0 6 * * 1-5` | 11 h | ~16:05 (13:05 early close) | The paper-B session job didn't end cleanly |
 | `wt-forward` | `0 12 * * 1-5` | 7 h | ~16:30–17:50 | The forward test didn't run |
 | `wt-weekly` | `0 18 * * 5` | 6 h | Fri ~19:00–21:00 | The weekly scorecard didn't run |
+| `wt-paper-o-armed` | `0 9 * * 1-5` | 1 h | ~09:25 (arm) and after the close | The options clone never armed: not started, refused or crashed while arming |
+| `wt-paper-o` | `0 9 * * 1-5` | 8 h | ~15:20–16:05 | The options clone's session job didn't end cleanly |
+| `wt-pipeline-check` | `0 8,18 * * 1-5` | 1 h 30 min | ~08:55 and ~18:30 | The options pipeline check didn't run or crashed (a failed check pages through ntfy, not here) |
+| `wt-options-review` | `0 16 * * 1-5` | 3 h | ~16:30 | The options clone's nightly review didn't run |
 
-The crypto desk (ADR 0005) runs at every hour of every day, so its check is a **Simple** schedule, not a cron:
-
-| Slug | Period | Grace | Normal ping | What a page means |
-|---|---|---|---|---|
-| `wt-crypto` | 15 min | 30 min | every 15 minutes, 10–30 s after the bar closes | No crypto bar cycle has finished for 45 minutes |
-
-The crypto desk's two daily jobs run every day of the week, at New York times, so their checks are **Cron**
-schedules in **America/New_York** like the stock jobs':
-
-| Slug | Cron | Grace | Normal ping (ET) | What a page means |
-|---|---|---|---|---|
-| `wt-crypto-challengers` | `0 3 * * *` | 2 h | 03:30 to 04:30 | The challengers' run didn't finish, refused, or its timer never fired |
-| `wt-crypto-learn` | `0 4 * * *` | 2 h 30 min | 04:30 to 06:00 | The learning run (outcomes, tests, weekly training) didn't finish, refused, or its timer never fired |
-
-A run with learning switched off still ends normally and pings. A failed weekly training is its own notice and
-does not fail the job, so it does not page here.
-
-With the crypto desk on the host, `wt-backup` also pings at weekends: change its cron to `30 19 * * *`.
-
-Eight checks with the crypto desk's three; the VM adds backup and restore-test checks (at most 15 of the free 20). The Mac and the VM
-share these slugs: the ping body says which host and role sent it.
+Nine checks for the stocks and options jobs; the VM adds backup and restore-test checks (at most 15 of the free 20). The
+crypto desk's three (`wt-crypto`, `wt-crypto-challengers`, `wt-crypto-learn`) ended with the desk (DEC-0036, 2026-10-24):
+pause or delete them on healthchecks.io, or they page for a job that no longer exists. The Mac and the VM share these
+slugs: the ping body says which host and role sent it.
 
 ## What the jobs send
 

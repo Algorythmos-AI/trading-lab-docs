@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the weekly learning loop"
-description: "Copied from hft-lab@0188700 (docs/runbooks/learning.md) on 2026-10-13. Do not edit here."
+description: "Copied from hft-lab@bf8d099 (docs/runbooks/learning.md) on 2026-10-25. Do not edit here."
 ---
 
 For the owner. The loop is two jobs at the weekend and one journal

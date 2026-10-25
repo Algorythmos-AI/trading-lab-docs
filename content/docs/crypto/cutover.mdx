@@ -1,7 +1,12 @@
 ---
 title: Cutover
-description: Moving the running desk from the stocks and options repository to its own.
+description: "The planned move of the desk to its own repository. It never happened: the desk was closed first."
 ---
+
+<Callout type="warn" title="Not done, and not needed">
+  The desk was closed on 2026-10-24 (DEC-0036) before the cutover ran. Its jobs and then its code left the stocks and
+  options repository instead, and `crypto-lab` was archived. This page is kept as the record of the plan.
+</Callout>
 
 <Callout type="info">Source: `crypto-lab@8c240c1`, read 2026-10-12.</Callout>
 
@@ -11,9 +16,9 @@ description: Moving the running desk from the stocks and options repository to i
 |---|---|
 | Repository built by scripted extraction, parity proven | <Standing is="done" /> |
 | Guard in the old repository that marks the desk as moved | <Standing is="done" /> merged; must be deployed to the host first |
-| Host cutover: state moved, never copied | <Standing is="waiting">owner</Standing> |
+| Host cutover: state moved, never copied | <Standing is="not started">dropped: the desk was closed</Standing> |
 | 24 clean hours from the new repository | <Standing is="not started" /> |
-| Desk removed from the old repository | <Standing is="not started" /> prepared on two branches, deliberately without a pull request |
+| Desk removed from the old repository | <Standing is="done" /> jobs on 2026-10-24, code on 2026-10-25 |
 | Old repository renamed `options-lab` | <Standing is="not started" /> owner's go-ahead |
 
 ## How the cutover goes

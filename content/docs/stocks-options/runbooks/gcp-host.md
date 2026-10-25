@@ -1,9 +1,9 @@
 ---
 title: "The GCP free-tier trading host: provision, operate, rebuild"
-description: "Copied from trading-lab-research@f4b65b7 (docs/runbooks/gcp-host.md) on 2026-10-13. Do not edit here."
+description: "Copied from trading-lab-research@fa0c7c1 (docs/runbooks/gcp-host.md) on 2026-10-25. Do not edit here."
 ---
 
-> 4 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
+> 6 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
 
 A second home for the trading jobs while OCI has no Ampere capacity: one Google Cloud **e2-micro** in **us-east1**,
 inside the always-free tier. It uses the same host helpers and units as the OCI host (`deploy/oci/bin`,
@@ -40,8 +40,8 @@ gcloud compute firewall-rules delete default-allow-ssh default-allow-rdp --quiet
 gcloud compute firewall-rules create allow-ssh-from-iap --network default --direction INGRESS \
 [withheld]
 
-curl -fsSLo wt-cloud-init.yaml \
-  https://raw.githubusercontent.com/Algorythmos-AI/trading-lab-research/main/deploy/gcp/cloud-init.yaml
+# From a checkout of this repository (the raw GitHub URL stops answering once the repository is private).
+cp deploy/gcp/cloud-init.yaml wt-cloud-init.yaml
 gcloud compute instances create trading-lab-host --zone us-east1-b --machine-type e2-micro \
   --image-family ubuntu-2404-lts-amd64 --image-project ubuntu-os-cloud \
   --boot-disk-size 30GB --boot-disk-type pd-standard \
@@ -126,25 +126,79 @@ tail -f /tmp/wt-deploy.log
   A line that ends in "retry when the Alpaca calendar answers" and names no cause comes from a host that does
   not have this yet: older code prints it for every one of these causes. If Alpaca is up, check the keys first.
 - **"Refusing: ... is not green (test: pending)"** means the commit's checks are still running on GitHub.
-  Wait for them and run it again. A deploy needs `test` and `ml`.
+  Wait for them and run it again. A deploy needs `test` (`ml` left with the crypto code, DEC-0036).
 - **"Nothing deployed: already at ..."** means the host is on that commit.
 - **It is done** when the log shows `Deployed <from> -> <to>`. If it then prints "units changed", run
   `sudo wt-install-units`.
-- **Afterwards:** `sudo -u wt /usr/local/bin/wt-deploy preflight` should be all `[ok]`, and
-  `sudo -u wt make -C /home/wt/trading sync-ml` should print `ML environment: current` and nothing else.
+- **Afterwards:** `sudo -u wt /usr/local/bin/wt-deploy preflight` should be all `[ok]`.
 - **To go back:** [rollback](/stocks-options/runbooks/rollback).
+
+## Going private (owner)
+
+The host reads the repository in two ways: `git fetch origin main` in every deploy (`wt.ops.deploy`), and the
+GitHub checks API for the commit's CI (`wt.ops.ci`). While the repository is public both work anonymously. The
+moment it is private, an unprepared host fails both: every hourly `deploy-auto` and `deploy-notify` run errors,
+and `wt-alert@` pages. Do these steps first, inside a deploy-gate window, and the flip changes nothing for the
+host. Deploy keys work on public repositories too, so there is no reason to wait.
+
+Two ways to let the host read a private repository. The organisation's policy had **deploy keys disabled** on
+2026-10-24, so the token path below is the one in use; the key path stays here for the day the policy changes.
+
+**Token path (in use).** The remote stays HTTPS; git asks `gh` for credentials, and `gh` reads `GH_TOKEN` from
+the secrets every unit already loads. Do step 3 first, then:
+```
+sudo -u wt git -C /home/wt/trading config credential.helper '!gh auth git-credential'
+sudo -u wt bash -c 'cd /home/wt/trading && set -a && . /run/wt-secrets/env && set +a && GIT_TERMINAL_PROMPT=0 git fetch --quiet origin main && echo fetch ok'
+```
+The one thing to remember is the token's expiry: `wt-deploy preflight` says "origin reachable" fails the day it
+lapses, and `sudo wt-set-secrets` with a new token is the fix. Then go to step 4.
+
+**Deploy-key path (when the organisation allows it).**
+
+1. **Register the host's deploy key** (read-only). Print the public half:
+   `sudo -u wt cat /home/wt/.ssh/github_deploy.pub` (a host built before this runbook section has the key
+   already; one without it: `sudo -u wt ssh-keygen -q -t ed25519 -N "" -C "trading-lab-host deploy key" -f /home/wt/.ssh/github_deploy`).
+   GitHub: repository Settings, Deploy keys, Add deploy key, paste it, leave "Allow write access" off.
+2. **Point the host at SSH** and trust GitHub's host key:
+   ```
+   sudo -Hu wt sh -c 'printf "Host github.com\n  IdentityFile ~/.ssh/github_deploy\n  IdentitiesOnly yes\n" > ~/.ssh/config && chmod 0600 ~/.ssh/config'
+   sudo -Hu wt sh -c 'printf "github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\n" > ~/.ssh/known_hosts && chmod 0600 ~/.ssh/known_hosts'
+[withheld]
+   # The host key above is GitHub's published ed25519 key (https://api.github.com/meta), pinned rather than scanned.
+[withheld]
+   sudo -u wt git -C /home/wt/trading fetch --quiet origin main && echo fetch ok
+   ```
+3. **Give the host a token** for reading the checks API, pushing the weekly evidence branch and, on the token
+   path, every fetch. One fine-grained token, this repository only, permissions *Contents: read and write*,
+   *Pull requests: read and write*, *Checks: read* (Metadata is implied), with an expiry. Store it under `GH_TOKEN`
+   with `sudo wt-set-secrets` (Enter keeps every other value). The evidence job pushes to GitHub over HTTPS with
+   this token; it never pushes through `origin`. Its pull requests target `integration`; they merge on their own
+   only when the repository setting "Allow auto-merge" is on, otherwise you merge them like any other.
+   Weeks the job could not push while the repository was public are archived one at a time, oldest first, each
+   after the previous one has merged:
+   ```
+   sudo -u wt bash -c 'cd /home/wt/trading && set -a && . /run/wt-secrets/env && set +a && PYTHONPATH=src .venv/bin/python -m wt.ops.evidence --week 2026-W41'
+   ```
+4. **Check before the flip:** `sudo -u wt /usr/local/bin/wt-deploy preflight` must show `[ok] origin reachable`,
+   and `sudo -u wt /usr/local/bin/wt-deploy gate` must still answer.
+5. **Flip** the repository to private on GitHub (Settings, Danger zone). Then read the next hourly line in
+   `logs/deploy_auto_<date>.log`: "nothing to deploy (already at ...)" or a deploy, never a fetch error.
+
+Going back (public again) is one click only until the first evidence pull request has merged: from then on the
+repository holds scorecards and account figures, and it stays private. The SSH remote and the token work either way. A GCP rebuild tries
+SSH first and falls back to HTTPS while the repository is public; with a private repository, register the new host's
+key (step 1) and clone by hand before step 2 of the runbook. The OCI template still clones over HTTPS at first boot.
 
 ## Primary host (cutover v2, 2026-10)
 
-The machine-learning environment (`.venv-ml`) needs the system's OpenMP library, which a wheel cannot carry:
-`sudo apt-get install -y libgomp1` (first boot installs it; a host built before 2026-10-08 needs it once). A
-deploy never swaps in an environment that cannot import its libraries, and `make sync-ml` says whether the live
-one can.
+The machine-learning environment (`.venv-ml`) left with the crypto desk's code (DEC-0036): a deploy finds no
+`requirements-ml.lock.txt` and leaves it alone. A `.venv-ml` directory left on the host is unused and can be removed.
 The VM is the only host that runs jobs. The Mac is a console for writing code and running these commands.
 
 | | |
 |---|---|
-| Machine | e2-medium (2 vCPU, 4 GB), us-east1-b, pd-balanced 30 GB, daily snapshot schedule `wt-daily` (7 days) |
+| Machine | e2-standard-2 (2 vCPU, 8 GB) since 2026-10-13 21:07 UTC, before that e2-medium (4 GB); us-east1-b, pd-balanced 30 GB, daily snapshot schedule `wt-daily` (7 days). The external address is ephemeral and changes on a stop; nothing depends on it |
+| Why 8 GB | The forex desk's pre-flight measured 1.06 GB as the least memory available over a day at 4 GB, under the 1.5 GB it needs. Resized in a gap with no job running; the desks were down about 80 s |
 | Memory fuses | routine/forward/weekly MemoryHigh 1.5G, MemoryMax 2G; publisher 1G; paper-b uncapped (OOMScoreAdjust -500) |
 | Tuning an existing VM | `sudo wt-tune-host` (zram, journald, needrestart, gh and time, git identity); `--check` only reports |
 
@@ -176,3 +230,25 @@ Twice an hour the unit `wt-deploy-notify` checks whether a deploy would be accep
 
 It stays silent while the gate is closed, while the tip of main is under 30 minutes old, while a required check
 is not green, and while the live dashboard is older than the code main would bring.
+
+## Automatic deploys (ADR 0008)
+
+Once an hour (minute 35) the job `deploy-auto` looks at whether your own deploy would be accepted and the gate
+will stay open for an hour.
+
+- **It is off until you switch it on.** Off, each run writes one line saying what it would have done. Read a
+  night of them first: `grep "auto deploy" /home/wt/trading/logs/deploy_auto_*.log | tail -20`.
+- **Switch it on:** `sudo -u wt touch /home/wt/trading/var/deploy/AUTO_ON`. Before you do, restrict who can
+  merge to `main` on GitHub: from then on a merge is a deploy.
+- **Switch it off:** `sudo -u wt rm /home/wt/trading/var/deploy/AUTO_ON`. A run in its tests stops before the
+  switch.
+- **What it leaves to you:** a release that changes the schedule, the units, the host helpers or the deploy's own
+  code. Your phone gets "A deploy needs you". Run `sudo -u wt /usr/local/bin/wt-deploy deploy`, then
+  `sudo wt-install-units`.
+- **What it did:** the log above has one line per run and why; each deploy's record in `var/deploy/` carries
+  `"by": "auto"`.
+- **Go back:** `sudo -u wt /usr/local/bin/wt-deploy 'rollback runtime-<tag>'`; the tag is in the newest record.
+  The commit you rolled back is not deployed again; a newer one is, so switch it off if `main` still holds the
+  fault.
+- **A commit it gave up on:** it remembers a target that failed here in `var/deploy-auto.json` and tries it
+  once more after six hours. Delete that file to make it try now.

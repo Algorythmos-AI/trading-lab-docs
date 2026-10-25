@@ -1,8 +1,8 @@
 {
-  "synced_on": "2026-10-13",
+  "synced_on": "2026-10-25",
   "sources": {
     "hft-lab": {
-      "sha": "018870025485a46aaae3fe9b017bfb203aa906f4",
+      "sha": "bf8d099ad3ea7850f835335dd7c33fc06afba54f",
       "files": 46
     },
     "crypto-lab": {
@@ -10,8 +10,8 @@
       "files": 3
     },
     "trading-lab-research": {
-      "sha": "f4b65b7e69cfc9c9d727c4dda22666dbf57dfab0",
-      "files": 23
+      "sha": "fa0c7c1185ad37624edc9e0a54d305dc0eb28408",
+      "files": 28
     }
   },
   "left_out": [],
@@ -38,18 +38,28 @@
     },
     {
       "repo": "trading-lab-research",
+      "file": "docs/adr/0003-not-used.md",
+      "lines": 2
+    },
+    {
+      "repo": "trading-lab-research",
       "file": "docs/adr/0004-oci-trading-host.md",
       "lines": 1
     },
     {
       "repo": "trading-lab-research",
       "file": "docs/adr/0005-desks.md",
+      "lines": 3
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/adr/0009-integration-branch.md",
       "lines": 1
     },
     {
       "repo": "trading-lab-research",
-      "file": "docs/runbooks/crypto-desk.md",
-      "lines": 5
+      "file": "docs/runbooks/cloud-routines.md",
+      "lines": 4
     },
     {
       "repo": "trading-lab-research",
@@ -59,12 +69,17 @@
     {
       "repo": "trading-lab-research",
       "file": "docs/runbooks/gcp-host.md",
-      "lines": 4
+      "lines": 6
     },
     {
       "repo": "trading-lab-research",
       "file": "docs/runbooks/oci-host.md",
       "lines": 5
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/runbooks/options-clone.md",
+      "lines": 2
     }
   ]
 }
