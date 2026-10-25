@@ -1,6 +1,6 @@
 ---
 title: "ADR 0002: Runtime state outside git, and a computed deploy gate"
-description: "Copied from trading-lab-research@fa0c7c1 (docs/adr/0002-runtime-state-and-deploy-gate.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@9cb2966 (docs/adr/0002-runtime-state-and-deploy-gate.md) on 2026-10-25. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-09-29

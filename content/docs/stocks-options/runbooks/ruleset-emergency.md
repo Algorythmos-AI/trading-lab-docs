@@ -1,6 +1,6 @@
 ---
 title: "Ruleset emergency"
-description: "Copied from trading-lab-research@fa0c7c1 (docs/runbooks/ruleset-emergency.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@9cb2966 (docs/runbooks/ruleset-emergency.md) on 2026-10-25. Do not edit here."
 ---
 
 `main` and `integration` are each protected by a repository ruleset (ADR 0009). Both require a pull request and

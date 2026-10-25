@@ -1,6 +1,6 @@
 ---
 title: "Dead-man's switches: who notices when the host goes quiet"
-description: "Copied from trading-lab-research@fa0c7c1 (docs/runbooks/dead-man-switches.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@9cb2966 (docs/runbooks/dead-man-switches.md) on 2026-10-25. Do not edit here."
 ---
 
 Three independent monitors, none of them on the trading host:

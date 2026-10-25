@@ -1,6 +1,6 @@
 ---
 title: "ADR 0008: The host deploys itself, inside the same gate"
-description: "Copied from trading-lab-research@fa0c7c1 (docs/adr/0008-automatic-deploy.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@9cb2966 (docs/adr/0008-automatic-deploy.md) on 2026-10-25. Do not edit here."
 ---
 
 - **Status:** accepted on merge by the owner. Supersedes the "owner still deploys" part of ADR 0007.

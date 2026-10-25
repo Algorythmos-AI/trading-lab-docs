@@ -1,6 +1,6 @@
 ---
 title: "Options desk: paper positions"
-description: "Copied from trading-lab-research@fa0c7c1 (docs/runbooks/options-positions.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@9cb2966 (docs/runbooks/options-positions.md) on 2026-10-25. Do not edit here."
 ---
 
 The Options desk's **Paper positions** pane shows the open option positions of a second Alpaca **paper** account,
