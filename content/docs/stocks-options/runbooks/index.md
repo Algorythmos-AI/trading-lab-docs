@@ -1,6 +1,6 @@
 ---
 title: Runbooks
-description: "18 copied from trading-lab-research@fa0c7c1 on 2026-10-25."
+description: "18 copied from trading-lab-research@9cb2966 on 2026-10-25."
 ---
 
 Step-by-step instructions for one operation or one incident. Copied; change the source, then sync.

@@ -1,12 +1,19 @@
 ---
 title: Changelog
-description: "301 merged pull requests in Stocks & Options, by week. Generated on 2026-10-25."
+description: "308 merged pull requests in Stocks & Options, by week. Generated on 2026-10-25."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
 
 ## Week of 2026-10-19
 
+- 2026-10-25 · #313 · Release 2026-10-25 (3)
+- 2026-10-25 · #312 · research: the two registered bull flags start on Monday 2026-10-26
+- 2026-10-25 · #310 · Release 2026-10-25 (2)
+- 2026-10-25 · #311 · fix(research): a withdrawn registry row does not set the order of later counts
+- 2026-10-25 · #309 · research: register the two re-specified bull flags (HYP-0032, HYP-0033, EXP-0027)
+- 2026-10-25 · #308 · research: DEC-0011 accepted, DEC-0029 withdrawn
+- 2026-10-25 · #307 · docs(runbooks): the weekly supervisor report routine exists
 - 2026-10-25 · #306 · Release 2026-10-25
 - 2026-10-25 · #304 · chore(crypto): the closed desk's code leaves the tree; the options jobs page
 - 2026-10-25 · #305 · docs(runbooks): the six cloud routines, what depends on them, and the weekly report draft

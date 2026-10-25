@@ -1,6 +1,6 @@
 ---
 title: "ADR 0005: Desks"
-description: "Copied from trading-lab-research@fa0c7c1 (docs/adr/0005-desks.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@9cb2966 (docs/adr/0005-desks.md) on 2026-10-25. Do not edit here."
 ---
 
 > 3 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
