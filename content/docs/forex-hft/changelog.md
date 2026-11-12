@@ -1,9 +1,13 @@
 ---
 title: Changelog
-description: "28 merged pull requests in Forex HFT, by week. Generated on 2026-10-25."
+description: "29 merged pull requests in Forex HFT, by week. Generated on 2026-11-12."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
+
+## Week of 2026-11-09
+
+- 2026-11-09 · #30 · docs: point org references at algorythmos-handbook
 
 ## Week of 2026-10-19
 

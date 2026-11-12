@@ -1,6 +1,6 @@
 ---
 title: "ADR 0022: The model file, the model registry, the exact ridge model, and the scorer"
-description: "Copied from hft-lab@bf8d099 (docs/adr/0022-model-file-registry-and-scorer.md) on 2026-10-25. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0022-model-file-registry-and-scorer.md) on 2026-11-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. No model has been trained on real data and none ships. The models in the

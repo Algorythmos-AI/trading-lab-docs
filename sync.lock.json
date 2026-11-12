@@ -1,8 +1,8 @@
 {
-  "synced_on": "2026-10-25",
+  "synced_on": "2026-11-12",
   "sources": {
     "hft-lab": {
-      "sha": "bf8d099ad3ea7850f835335dd7c33fc06afba54f",
+      "sha": "cfb883c5923cf83f256580852f44e42057d9bf4b",
       "files": 46
     },
     "crypto-lab": {
@@ -10,8 +10,8 @@
       "files": 3
     },
     "trading-lab-research": {
-      "sha": "9cb29669a3fe92aca2b2f2cba4280a035fa6d249",
-      "files": 28
+      "sha": "491d91387218f180306aba19d31eee714ecf4122",
+      "files": 31
     }
   },
   "left_out": [],
@@ -68,8 +68,18 @@
     },
     {
       "repo": "trading-lab-research",
+      "file": "docs/runbooks/feed-agreement.md",
+      "lines": 2
+    },
+    {
+      "repo": "trading-lab-research",
       "file": "docs/runbooks/gcp-host.md",
       "lines": 6
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/runbooks/keys-and-feeds.md",
+      "lines": 1
     },
     {
       "repo": "trading-lab-research",

@@ -1,6 +1,6 @@
 ---
 title: "Crypto desk"
-description: "Copied from crypto-lab@8c240c1 (docs/runbooks/crypto-desk.md) on 2026-10-25. Do not edit here."
+description: "Copied from crypto-lab@8c240c1 (docs/runbooks/crypto-desk.md) on 2026-11-12. Do not edit here."
 ---
 
 > 5 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.

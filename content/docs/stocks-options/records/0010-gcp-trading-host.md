@@ -1,6 +1,6 @@
 ---
 title: "ADR 0010: The trading host is a GCP free-tier VM running the OCI host's helpers"
-description: "Copied from trading-lab-research@9cb2966 (docs/adr/0010-gcp-trading-host.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@491d913 (docs/adr/0010-gcp-trading-host.md) on 2026-11-12. Do not edit here."
 ---
 
 - **Status:** accepted on merge by the owner. Supersedes [ADR 0004](/stocks-options/records/0004-oci-trading-host).

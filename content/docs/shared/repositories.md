@@ -3,7 +3,7 @@ title: "Repositories"
 description: "The trading repositories as the organisation catalog records them."
 ---
 
-Generated from `.github-private@c1176c3` on 2026-10-25. Do not edit; run the sync.
+Generated from `.github-private@778a31d` on 2026-11-12. Do not edit; run the sync.
 
 | Repository | Kind | Lifecycle | Visibility now | Intended | Data class |
 |---|---|---|---|---|---|

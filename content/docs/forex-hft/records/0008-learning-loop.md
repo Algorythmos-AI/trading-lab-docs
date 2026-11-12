@@ -1,6 +1,6 @@
 ---
 title: "ADR 0008: The learning loop: weekend training, automatic promotion, automatic rollback"
-description: "Copied from hft-lab@bf8d099 (docs/adr/0008-learning-loop.md) on 2026-10-25. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0008-learning-loop.md) on 2026-11-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10

@@ -1,0 +1,166 @@
+---
+title: Using the desk through a session
+description: A trading day on the Options page, in order, for one person trading long single-leg options by hand.
+---
+
+<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. Words in bold are labels as the page prints them; SPY and the prices are examples.</Callout>
+
+You trade long calls and puts by hand in your broker's app. The Options page sits beside it, on the laptop or the
+phone. It reads prices and your journal, works out your own rules, and tells you where each name stands. It places
+nothing. Session times on it are New York time; the one exception is the line under the desk that says when the
+levels were published, which gives Sydney time.
+
+## Before the open
+
+**The focus cards.** Under **Today's focus** there is one card per name picked after the close, in rank order. On a
+phone the cards sit side by side and you swipe; on a laptop they stack, two across on a wide screen. Each card reads
+top to bottom:
+
+| On the card | What it is |
+|---|---|
+| The rank and the name (#1 SPY) | Where the name sits on the card's list. |
+| **Breakout watch**, **Hold support** or **Range: wait** | The card's lean for the day. |
+| The state chip | The board's live word for this name (see below). |
+| The pre-market line | Where the name sits before the open, its pre-market price and the gap from the close. |
+| The ladder | The levels drawn to scale, the grey no-trade box between the two triggers, and the live price. |
+| **CALL above** and **PUT below** | One strip per side: the trigger price, the live distance to it, then **In ≈** (the limit price to aim for), **Stop** (the chart stop, or −25% on the option) and **T1** (the first target). |
+| Under the strips | **How each side works**; a row of other triggers, tagged on the page as under test, with **What the other triggers mean** folded under it; a fold for a plan that is under test; **Draw on chart**; and **Size this call** or **Size this put** (the trade ticket). |
+
+**The pre-open check.** The card is refreshed with pre-market prices at 08:50 and should be in by 09:05. The line
+beside **Today's focus** then reads **Pre-market check** and the time. Before that it reads **Picked** and the time
+of the evening build.
+
+**The rules strip** under the cards shows the session's fixed times and limits: no entries before 09:35, none from
+11:30 to 13:00, out after 5 minutes if the trade is not working, at most 5 trades a day. Be flat by 15:10, or 12:10
+on a half day.
+
+**Feed and age.** Three places say where prices come from and how old they are:
+
+- The feed line on the board: the name of whichever feed the board is reading (the code's default is IEX),
+  that prices are fetched every 2 seconds rather than streamed, how long ago the last trades printed, and when the
+  page last got an answer. A name with no trade today is counted apart.
+- The feed health strip under the rail: one chip each for the levels, the pre-open refresh, the live prices, the
+  session bars, your journal and the server check, each with its state (such as **On time**, **Waiting**,
+  **Late** or **Failed**) and its age.
+- The hero's price line, which says what the price is: **live** and its time, **last trade**, **pre** or **close**.
+
+**"Paused"** means the prices are too old to act on. In the session, if the page has had no answer for 20 seconds,
+or a name's last trade is more than 2 minutes old, that name reads **PRICES PAUSED**. The hero greys out and says
+no entry is shown on old prices. Check your broker's app instead.
+
+Look at: the cards' triggers, the pre-market line, and the strip's chips.
+
+## From 09:35: the Trade now board
+
+Before 09:35 the board is folded away, and the hero says when entries start and shows the #1 name's two triggers.
+From 09:35 every focus name has a state, but the board itself draws a row only for a name worth acting on: a
+**GET READY**, an **ENTER ZONE**, a live other trigger, or a name whose **I'm in** form you have open. The most
+urgent comes first. Every other name is counted in one line that sends you to the glance above, and names whose
+prices are paused are listed apart. Each name's word is always on its chip in the glance and on its card.
+
+| State | Where you see it | In plain words |
+|---|---|---|
+| **NO TRADE** | Glance and card chip | Nothing to do now, for one of these reasons: too early, the midday pause, too late to enter, your day's limit, or price sitting mid-way through yesterday's range. |
+| **WATCH** | Glance and card chip | Price is away from both triggers. The card shows the live distance to each. |
+| **GET READY** | Board row, glance, card | A trigger has broken, or price is at it. Wait for the 2-minute close and a retest that holds. |
+| **ENTER ZONE** | Board row, glance, card | The break held its retest. The row shows the entry, the stop and the first target. |
+| **PLAN OFF** | Glance and card chip | Price went back through the level. That side's plan is off. |
+| **MISSED** | Glance and card chip | The retest window passed, or price already ran past T1. Don't chase. |
+| Other triggers | Board row, glance, card | Tagged on the page as under test, with their own numbers. |
+| **PRICES PAUSED** | A line on the board, glance, card | Prices too old to judge. |
+
+The **Now** panel at the top shows the most urgent name large, with its three numbers as tiles. **Cockpit** turns
+the page into one full-screen board for a second monitor or a tablet: the rail, the hero and the four ladders,
+with the notices still on screen. Its switch is on the rail, on the phone too.
+
+What you do in your broker's app is never automated. The site places no order, holds no order and cannot see an
+order you place.
+
+Look at: the hero's word and side, its cautions, and the rail's clock to the next boundary.
+
+## Before buying: the trade ticket
+
+Open **Size this call** (or put) on the card, or the hero's size button. Type the option's price per share as your
+broker quotes it: 1.20, not 120. The site's own option chain is 15 minutes behind, so its numbers never feed the
+ticket.
+
+With no price typed, a table shows **The most a share you may pay** for 1 to 5 contracts, under the $200 premium
+cap and with the $50 stop rule. Once you type a price it shows **Contracts**, the stop to place (−25%, rounded up
+to the tick), the loss if filled at the stop with fees, the fees and the total premium. For example, a typed 1.20
+gives one contract and a stop of 0.90. A price that breaks a rule is said not to fit your rules, with the reason.
+
+Estimates at the chart stop and T1 appear only when you also pick a strike and an expiry, the page has a live stock
+price, and a volatility can be solved from your price; there are none under $0.05 or within a tick of the option's
+intrinsic value.
+
+Look at: **Contracts** and the stop to place. Check the tick in your broker.
+
+## In the trade: the manage card
+
+Tap **I'm in** on an entry row, or wait for your broker's fills to reach the journal (the card says these are up to
+2 minutes behind). A card titled **In a trade · SPY call** then shows one word, large:
+
+- **HOLD**, **TRAIL**, **SELL HALF** or **EXIT**, with one line on what to do;
+- **CHECK** when the card cannot judge the trade: prices paused or off, or a note the journal's fills do not show.
+
+Under the word sit:
+
+- the stop;
+- how far the stock is from the stop;
+- the **Not working in** countdown (rule 6, 5 minutes);
+- the trail;
+- the time to be flat by;
+- a **P&L** label that points you to your broker. The manage card shows no live P&L for your own trades.
+
+Add your option fill (price a share and contracts) and the card shows the stop to place in your broker. Tick the box
+that says the stop is placed once you have placed it. The tick is yours: the page cannot see your broker. Under it
+the card says the room left today if this stop fills, such as "If this stop fills: $50.00 of your $100 day limit
+left.", or why it cannot say.
+
+An **I'm in** note and its tick live in that browser only. A trade noted on the laptop does not show on the phone
+until the journal has the fill.
+
+## Stopping: Done for today
+
+**Done for today** sits in the rail. One tap asks "Stop for today? Entry prompts will be hidden on both devices.",
+and **Confirm** saves it on the site. **Undo** shows for 60 seconds.
+
+Once set, the rail reads **Done for today · set** and the time, on the laptop and the phone. Every entry prompt is
+hidden: names read **DONE TODAY**, a name you are still in reads **IN A TRADE**, and the hero shows no tiles and no
+size button. Manage cards, stops and exit words stay exactly as they were. The other device picks it up within 30
+seconds, or when you return to its tab. If a read fails, the rail says **Could not check**, never that the day is
+open.
+
+## After the close
+
+Outside market hours, when the Options page shows the fold with the last card's review, it also shows the line
+**Day review: your last day against your rules**. See [the day review](/stocks-options/day-review).
+
+The **Trades** page holds your own closed trades in four groups:
+
+| Group | What it holds |
+|---|---|
+| **Today** | The rules and the room left, then this session's trades as they close, and a link to the day review. |
+| **The record** | Every closed trade for the period, kind and ticker you pick: totals, **Loss size**, patterns and **Every trade**. |
+| **History** | The record over time as a calendar, and **Money** in and out of the account. |
+| **The clone** | The paper bot that trades your rules with its own paper money. |
+
+## What the site will not do
+
+- **No orders.** Its broker access is read only. It cannot place, hold, change or cancel an order.
+- **No advice.** The ticket and the card are your own rules worked out, not a recommendation.
+- **No prompts on your phone.** No entry or exit prompt for your own trades reaches the phone. **Sound** and
+  **Browser notification** work only while the page is open in that browser.
+- **Nothing after your exit.** No page shows what a trade did after you sold it.
+- **No board labels yet.** Which board state you traded from is not recorded; that labeller is not built.
+
+## Sources
+
+Files read for this page, at the commit named at the top: `dashboard/src/app/options/page.tsx`,
+`dashboard/src/components/options-focus.tsx`, `components/client/now-hero.tsx`, `components/client/ticket.tsx`,
+`lib/ticket.ts`, `components/client/trade-manage.tsx`, `lib/manage-stop.ts`, `lib/trade-manage.ts`,
+`lib/what-if.ts`, `components/client/done-today.tsx`, `components/client/status-rail.tsx`,
+`components/client/feed-strip.tsx`, `components/client/live-layer.tsx`, `components/client/trade-now.tsx`,
+`components/client/cockpit.tsx`, `components/client/focus-glance.tsx`, `lib/trade-now.ts`, `lib/trade-state.ts`,
+`lib/labels.ts`, `lib/trade-rules.ts`, `lib/focus-card.ts`, `lib/feed-watch.ts`, `lib/feed-provenance.ts`,
+`lib/alpaca-feed.ts`, `components/trades-page.tsx`, `components/trades-jump-bar.tsx`. All under `dashboard/src/`.

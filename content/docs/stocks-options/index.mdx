@@ -3,13 +3,13 @@ title: Stocks & Options
 description: US stocks and long options on paper accounts. Running nightly on the cloud server.
 ---
 
-<Callout type="info">Source: `trading-lab-research@6562d6f`, read 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@6562d6f` on 2026-10-13.</Callout>
 
 ## In one paragraph
 
 The oldest platform and the only one running every trading day. It holds a research engine, a stocks desk that
 scans, signals, and trades one strategy on an Alpaca **paper** account, an options desk that prepares levels,
-rules and option arithmetic for the owner's own decisions, and the status site that shows every desk.
+rules and option arithmetic for your own decisions, and the status site that shows every desk.
 
 The crypto desk has left it (closed 2026-10-24); renaming the repository `options-lab` is the owner's call.
 
@@ -19,15 +19,15 @@ The crypto desk has left it (closed 2026-10-24); renaming the repository `option
 |---|---|
 | Jobs | Running on the cloud server since 2026-10-01 |
 | Stocks: proof of edge in backtest (G1) | <Standing is="failed" /> 75 trials, none pass |
-| Stocks: forward and paper evidence (G2) | <Standing is="open" /> 14 of 30 clean sessions, 4 of 50 trades at 24 October |
+| Stocks: forward and paper evidence (G2) | <Standing is="open" /> 24 of 30 clean sessions, 7 of 50 trades at 6 November |
 | Broker acceptance, live, scale (G3 to G5) | <Standing is="not started" /> |
-| Options workstation | Brief, Live and Review views in use; evidence phase <Standing is="not started" /> |
+| Options desk | Focus cards, the Trade now board, the trade ticket, the manage card and the day review exist; it places no orders. Evidence phase <Standing is="not started" /> |
 | Real money | None. Paper accounts only |
 
 ## Reading this honestly
 
 No strategy here has shown an edge. The one stocks candidate failed its backtest gate, and its re-run on corrected
-data is accepted but not yet done. Forward evidence is being collected because that is the next written
+data is accepted (DEC-0011) but has no experiment record yet. Forward evidence is being collected because that is the next written
 step, not because a result is expected.
 
 ## Pages
@@ -37,6 +37,12 @@ step, not because a result is expected.
   <Card title="How it runs" href="/stocks-options/how-it-runs" description="The job schedule, the host, and how a deploy happens." />
   <Card title="Gates" href="/stocks-options/gates" description="K0 to G5 and what each requires." />
   <Card title="Options workstation" href="/stocks-options/options-workstation" description="Phases P0 to P6 and what is switched on." />
+  <Card title="Using the desk through a session" href="/stocks-options/desk-day-to-day" description="A trading day on the Options page, step by step." />
+  <Card title="The day review" href="/stocks-options/day-review" description="One day of your positions against your rules." />
   <Card title="Architecture" href="/stocks-options/architecture" description="How the pieces fit and what keeps them apart." />
   <Card title="Facts and register" href="/stocks-options/facts" description="States, counts and research record ids, generated from the repository." />
 </Cards>
+
+## Sources
+
+Files read for the standing above, at `491d913`: `config/dashboard.yaml` (gates), `research/forward/archive/2026-W45/scorecard_2026-11-06.md` (G2 counts only), `dashboard/src/app/options/page.tsx`, `dashboard/src/app/review/page.tsx`, and the research register in [facts and register](/stocks-options/facts).

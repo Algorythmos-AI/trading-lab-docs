@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the KILL and FLATTEN switches"
-description: "Copied from hft-lab@bf8d099 (docs/runbooks/kill-and-flatten.md) on 2026-10-25. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/kill-and-flatten.md) on 2026-11-12. Do not edit here."
 ---
 
 For the owner. The two switches are files in the platform's state directory on the host,

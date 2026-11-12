@@ -1,10 +1,10 @@
 {
-  "synced_on": "2026-10-25",
+  "synced_on": "2026-11-12",
   "sources": {
-    "hft-lab": "bf8d099",
+    "hft-lab": "cfb883c",
     "crypto-lab": "8c240c1",
-    "trading-lab-research": "9cb2966",
+    "trading-lab-research": "491d913",
     "trading-kb": "b9c29f8",
-    ".github-private": "c1176c3"
+    ".github-private": "778a31d"
   }
 }
