@@ -3,7 +3,7 @@ title: "Facts and register"
 description: "Phase states, counts and the research register, generated from the repository."
 ---
 
-Generated from `hft-lab@bf8d099` on 2026-10-25. Do not edit; run the sync.
+Generated from `hft-lab@cfb883c` on 2026-11-12. Do not edit; run the sync.
 
 ## Phase states
 
@@ -29,7 +29,7 @@ From `config/ops.yaml`.
 | Decision records | 5 |
 | Experiment records | 9 |
 | Hypothesis records | 6 |
-| Merged pull requests | 28 |
+| Merged pull requests | 29 |
 
 ## Research register
 

@@ -3,7 +3,7 @@ title: How it runs
 description: The schedule, the host, and how changes reach it.
 ---
 
-<Callout type="info">Source: `trading-lab-research@6562d6f`, read 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@6562d6f` on 2026-10-13.</Callout>
 
 ## Schedule
 
@@ -18,9 +18,9 @@ All times are New York time, so they move against Sydney clocks at each daylight
 | `dashboard` | Every 5 minutes in session, 15 otherwise | Builds and sends the status snapshot |
 | `options-live` | Same rhythm, one minute later | Option positions, open interest, rule states |
 
-The crypto jobs left the schedule when the [crypto desk](/crypto) was closed on 2026-10-24. Five more jobs run
-beside these: the options clone's session and nightly review, the options pipeline check, and the deploy
-notice and automatic deploy.
+The crypto jobs left the schedule when the [crypto desk](/crypto) was closed on 2026-10-24. Six more jobs run
+beside these: the options clone's session and nightly review, the options pipeline check, the deploy notice and
+automatic deploy, and a weekly read of the economic release calendar (Fridays 21:30) for the Calendar page.
 
 ## Host
 
@@ -38,7 +38,8 @@ notice and automatic deploy.
 ## When something goes wrong
 
 Runbooks cover: kill and flatten, not flat at the close, latch reset, rollback, disk full, status site late,
-dead-man switches, secret rotation, backups, position alerts and the options live job.
+dead-man switches, secret rotation, backups, position alerts, the options live job, keys and data feeds, the feed
+agreement report and the public-repository guards. See [runbooks](/stocks-options/runbooks).
 
 ## Sources
 

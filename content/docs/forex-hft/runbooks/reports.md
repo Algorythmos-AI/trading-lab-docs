@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the daily summary and the weekly scorecard"
-description: "Copied from hft-lab@bf8d099 (docs/runbooks/reports.md) on 2026-10-25. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/reports.md) on 2026-11-12. Do not edit here."
 ---
 
 For the owner. `python -m hftlab.ops.report` reads the journals and writes two reports. It changes nothing

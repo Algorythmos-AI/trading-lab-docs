@@ -1,6 +1,6 @@
 ---
 title: "ADR 0025: Gradient boosting: one optional library to train with, whole-number trees to score with"
-description: "Copied from hft-lab@bf8d099 (docs/adr/0025-gradient-boosting-optional-set-and-whole-number-trees.md) on 2026-10-25. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0025-gradient-boosting-optional-set-and-whole-number-trees.md) on 2026-11-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested on synthetic rows and streams only. No model of this

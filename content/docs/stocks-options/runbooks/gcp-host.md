@@ -1,6 +1,6 @@
 ---
 title: "The GCP free-tier trading host: provision, operate, rebuild"
-description: "Copied from trading-lab-research@9cb2966 (docs/runbooks/gcp-host.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@491d913 (docs/runbooks/gcp-host.md) on 2026-11-12. Do not edit here."
 ---
 
 > 6 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
@@ -174,6 +174,9 @@ lapses, and `sudo wt-set-secrets` with a new token is the fix. Then go to step 4
    with `sudo wt-set-secrets` (Enter keeps every other value). The evidence job pushes to GitHub over HTTPS with
    this token; it never pushes through `origin`. Its pull requests target `integration`; they merge on their own
    only when the repository setting "Allow auto-merge" is on, otherwise you merge them like any other.
+   While the repository is not private the job pushes nothing and says so in its log each week; it pages once when
+   the visibility changes, and once for any publishing step that fails (`public-repo-guards.md`). `make status`
+   shows the last answer and when it was confirmed.
    Weeks the job could not push while the repository was public are archived one at a time, oldest first, each
    after the previous one has merged:
    ```

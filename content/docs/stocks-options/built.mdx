@@ -3,9 +3,9 @@ title: What is built
 description: The research engine, the stocks desk, the options desk and the status site.
 ---
 
-<Callout type="info">Source: `trading-lab-research@6562d6f`, read 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@6562d6f` on 2026-10-13.</Callout>
 
-## Engine (`src/wt/`, Python 3.12, about 24,000 lines)
+## Engine (`src/wt/`, Python 3.12, about 25,000 lines)
 
 | Area | What it does |
 |---|---|
@@ -22,6 +22,7 @@ description: The research engine, the stocks desk, the options desk and the stat
 | `analytics` | Gate definitions, replay, forward books per trial, and the views the status site shows |
 | `ops` | Job runner, schedule, unit generators, deploy gate, pre-flight, alerts, heartbeat, locks, publishing, backup |
 | `research` | Run manifests and the trial registry |
+| `owner` | Your own trades from the journal, grouped into positions, with each position's result |
 
 ## Stocks desk
 
@@ -34,16 +35,18 @@ description: The research engine, the stocks desk, the options desk and the stat
 ## Options desk
 
 - **Engine:** levels, zones, expected move; four entry rules on probation, replayed on hourly bars.
-- **Edition:** a nightly document for ten large US names, sent signed to the status site.
+- **Edition:** a nightly document for twelve large US names, sent signed to the status site.
 - **Live job:** reads a second paper account and sends open option positions, open interest and in-session
   rule states. Read-only.
-- **Workstation page:** see [Options workstation](/stocks-options/options-workstation).
+- **Options page:** focus cards, the Trade now board, a trade ticket and a manage card for your own trades. See
+  [using the desk through a session](/stocks-options/desk-day-to-day) and [Options workstation](/stocks-options/options-workstation).
+- **Day review:** one day of your positions against your rules. See [the day review](/stocks-options/day-review).
 
 ## Status site (`dashboard/`, lab.algorythmos.com)
 
 - Next.js, static-first, behind sign-in on every address.
-- Pages for stocks (overview, today, radar, options, trades, strategies, research, operations, risk, engineering),
-  one closed page for crypto and one parked page for forex.
+- Pages for stocks (overview, today, radar, options, card record, trades, day review, calendar, strategies,
+  research, operations, risk, engineering, glossary), one closed page for crypto and one parked page for forex.
 - The host pushes signed snapshots built from an allowlist; the site validates them against a strict format
   and refuses anything else. The site never pulls from the host.
 
@@ -51,14 +54,14 @@ description: The research engine, the stocks desk, the options desk and the stat
 
 | Kind | Count |
 |---|---|
-| Hypotheses | 28 |
-| Decisions | 28 |
-| Experiments | 22 |
-| Design records | 6 |
-| Runbooks | 16 |
-| Unit test files | 106, plus 58 on the status site |
-| Merged pull requests | 209 |
+| Hypotheses | 50 |
+| Decisions | 46 |
+| Experiments | 31 numbered, plus one debug record |
+| Design records | 10 |
+| Runbooks | 21 |
+| Unit test files | 119, plus 105 on the status site |
+| Merged pull requests, all branches, when synced | 396 (see [facts](/stocks-options/facts)) |
 
 ## Sources
 
-Files read for this page, at the commit named at the top: `README.md`, `src/wt/` module docstrings, `config/risk.yaml`, `dashboard/README.md`.
+Files read for this page, at the commit named at the top: `README.md`, `src/wt/` module docstrings, `config/risk.yaml`, `config/options_desk.yaml`, `dashboard/README.md`, `dashboard/src/app/`, `tests/unit/`, `dashboard/test/`. Record counts are the generated ones in [facts and register](/stocks-options/facts).

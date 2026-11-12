@@ -1,9 +1,115 @@
 ---
 title: Changelog
-description: "345 merged pull requests, by week. Generated on 2026-10-25."
+description: "434 merged pull requests, by week. Generated on 2026-11-12."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
+
+## Week of 2026-11-09
+
+### Forex HFT (1)
+
+- 2026-11-09 · #30 · docs: point org references at algorythmos-handbook
+
+### Stocks & Options (39)
+
+- 2026-11-12 · #401 · research: DEC-0046 ACCEPTED (merging this is the owner's acceptance of the two-stage selection)
+- 2026-11-12 · #400 · research: DEC-0046 (proposed): the Options desk picks its names in two stages; Stage 1 scoring of a saved bundle
+- 2026-11-12 · #399 · feat(dashboard): the board-feed stamp, a chained per-minute record of the board's feed, and SIP named as authoritative
+- 2026-11-12 · #398 · fix(data): the options clone, options live and the pipeline check refuse a data request without a feed at run time
+- 2026-11-12 · #397 · feat(dashboard): the option chain can read OPRA in real time, with its feed and age on every line
+- 2026-11-12 · #396 · fix(dashboard): an edition is fresh only when built from the session just before it, and a missing build date warns
+- 2026-11-12 · #395 · research: the board reads SIP; EXP-0031 ends without a verdict; EXP-0033 asks its questions on SIP (DEC-0050)
+- 2026-11-12 · #394 · Release 2026-11-12
+- 2026-11-12 · #392 · feat(dashboard): the day review: one screen for a day's positions against the rules, loss size first
+- 2026-11-12 · #393 · test(live): the page recorder reads the journal after the session, not while it is being written
+- 2026-11-12 · #391 · fix(calendar): after #389: a run outside the calendar is matched as before, and an unknown Fed row fails with a reason
+- 2026-11-12 · #390 · feat(dashboard): the fill-time check: the journal's times matched to the option tape, once, in counts and seconds (DEC-0049 point 4)
+- 2026-11-12 · #389 · fix(calendar): the session calendar runs to 2029-12-31 (held: changes the engine label)
+- 2026-11-12 · #388 · fix(data): every Alpaca market-data request names its feed, and a test fails on one that does not
+- 2026-11-12 · #387 · *(title withheld)*
+- 2026-11-11 · #386 · fix(ops): no phone alert carries a symbol, a level or an error's text; restricted paths are checked in CI; the evidence run alerts when it fails
+- 2026-11-11 · #385 · feat(dashboard): a log-only probe of Alpaca's raw snapshot, as evidence before the bad-data guards
+- 2026-11-11 · #384 · feat(dashboard): the feed agreement report: a session replayed on IEX and on SIP bars, compared slot by slot
+- 2026-11-11 · #383 · Release 2026-11-11
+- 2026-11-11 · #382 · research: DEC-0044 note on the engine label the next release changes
+- 2026-11-11 · #381 · feat(dashboard): the feed watch: every routine's document is checked against its schedule, with a health strip on the Options page
+- 2026-11-11 · #380 · fix(dashboard): the board names its feed and shows how old its prices are; the feed is a setting
+- 2026-11-11 · #379 · fix(options): the pipeline check alerts when the macro, earnings or session calendar is about to run out
+- 2026-11-11 · #378 · fix(dashboard): a failed price request is retried in seconds, and a rate limit's wait stands
+- 2026-11-11 · #377 · fix(options): the pipeline check alerts when market data is unreachable, and its alert carries counts only
+- 2026-11-11 · #376 · fix(calendar): 2027 CPI and jobs dates, AVGO and AMD earnings rows, coverage per event type
+- 2026-11-11 · #375 · fix(dashboard): an edition dated ahead of the clock is refused, and a stored one gives way
+- 2026-11-11 · #374 · Release 2026-11-11
+- 2026-11-11 · #373 · fix(dashboard): before the release: no whole-journal work each second on Options; bad rows neither break nor hide
+- 2026-11-11 · #372 · feat(dashboard): the desk's states worked out on the server each settled slot, logged only
+- 2026-11-11 · #371 · feat(dashboard): a Done for today button the owner sets on either device
+- 2026-11-11 · #370 · feat(dashboard): the site on a phone: two-row header, compact rail, three levels across, trades as cards
+- 2026-11-11 · #369 · feat(dashboard): the manage card shows the stop to place, and the day's count and room stay honest
+- 2026-11-11 · #368 · feat(dashboard): a trade ticket on the Options desk sizes a trade from the price you type
+- 2026-11-10 · #367 · feat(dashboard): the owner's trades as positions, after fees, with a loss-size panel
+- 2026-11-10 · #366 · research: server desk states and alerts (DEC-0044); the owner's trades attributed to the board (DEC-0045)
+- 2026-11-09 · #365 · Release 2026-11-09
+- 2026-11-09 · #364 · feat(dashboard): the Radar says when it updates and which cloud jobs do it
+- 2026-11-09 · #363 · docs: point org references at algorythmos-handbook
+
+## Week of 2026-11-02
+
+### Stocks & Options (34)
+
+- 2026-11-08 · #362 · data(forward): evidence for 2026-W45
+- 2026-11-07 · #361 · Release 2026-11-07
+- 2026-11-07 · #360 · feat(options): what-if checks and a bigger manage card
+- 2026-11-06 · #359 · Release 2026-11-06
+- 2026-11-06 · #358 · feat(options): the Options page you read at a glance: hero, rail, glance, ladders on the cards, Cockpit
+- 2026-11-06 · #357 · feat(options): the price ladder for each focus name, not yet on the page
+- 2026-11-06 · #356 · fix(options): one source of truth on the Options page; first entry 09:35 (DEC-0043)
+- 2026-11-06 · #355 · ci(dashboard): give the dashboard checks 35 minutes, the gate 40
+- 2026-11-06 · #354 · Release 2026-11-06 (4): the advisory Options desk (DEC-0042)
+- 2026-11-06 · #353 · feat(options): the focus card as numbered steps, and the manage card (DEC-0042)
+- 2026-11-06 · #352 · feat(options): the Trade now board: one state, one instruction per focus name (DEC-0042)
+- 2026-11-06 · #351 · feat(options): the trade-now engine: live states, cautions and the manage logic (DEC-0042)
+- 2026-11-06 · #350 · *(title withheld)*
+- 2026-11-06 · #349 · Release 2026-11-06 (3): dashboard audit fixes
+- 2026-11-06 · #348 · fix(dashboard): the production audit's page conflicts and UI bugs
+- 2026-11-06 · #347 · Release 2026-11-06 (2): research arms on
+- 2026-11-06 · #346 · research(options): turn on the DEC-0041 research arms
+- 2026-11-05 · #345 · Release 2026-11-06
+- 2026-11-05 · #344 · feat(options): the DEC-0041 research arms on the clone, off by default (HYP-0034..0047)
+- 2026-11-05 · #343 · research: a year of an options level trader's posts, cleaned and coded (research/external/desi-trade)
+- 2026-11-05 · #342 · research(options): pre-register fourteen research arms on the clone (DEC-0041, EXP-0030)
+- 2026-11-05 · #341 · Release 2026-11-05 (2)
+- 2026-11-05 · #340 · feat(dashboard): each focus card lists its chart lines in one colour code
+- 2026-11-05 · #339 · Release 2026-11-05
+- 2026-11-05 · #338 · fix(dashboard): Calendar key colours, no results for months not begun
+- 2026-11-04 · #337 · Carry hotfix #336 into integration
+- 2026-11-04 · #336 · fix(ops): the econ-calendar job no longer skips itself
+- 2026-11-04 · #334 · Release 2026-11-04
+- 2026-11-04 · #335 · *(title withheld)*
+- 2026-11-04 · #329 · data(forward): evidence for 2026-W44
+- 2026-11-04 · #330 · chore(deps): bump the dashboard group in /dashboard with 13 updates
+- 2026-11-04 · #331 · chore(deps): bump the actions group with 3 updates
+- 2026-11-04 · #332 · dashboard: a Calendar page, the market year from XNYS with your days on it
+- 2026-11-04 · #333 · ops: a weekly economic calendar from FRED, the Fed, BLS and BEA for the Calendar page
+
+## Week of 2026-10-26
+
+### Stocks & Options (14)
+
+- 2026-10-30 · #328 · Release 2026-10-29
+- 2026-10-30 · #327 · options: the clone's contract cap rises to $15 from 2026-10-30 (DEC-0039, EXP-0028)
+- 2026-10-29 · #326 · Release 2026-10-29
+- 2026-10-29 · #325 · Card record: scoreboard, the day's path, trade tickets and plain words
+- 2026-10-29 · #324 · Card record: exact prices, a trades table and a glossary
+- 2026-10-29 · #323 · Release 2026-10-29
+- 2026-10-29 · #322 · Options: a Card record link beside Today's focus
+- 2026-10-29 · #321 · Release 2026-10-29
+- 2026-10-29 · #320 · Card record: how the focus card did, on its own page, Options and Today
+- 2026-10-29 · #319 · chore(deps): msgpack 1.2.4 clears CVE-2026-114613
+- 2026-10-28 · #315 · Release 2026-10-26
+- 2026-10-28 · #318 · Options desk: add AVGO and AMD (DEC-0038)
+- 2026-10-27 · #317 · fix(oms): a stop confirmed cancelled no longer blocks the exit that replaces it
+- 2026-10-27 · #316 · fix(forward): HOD v2 reads EXP-0014's volume curve from a frozen file, so it runs on the host
 
 ## Week of 2026-10-19
 
@@ -11,8 +117,9 @@ Titles and dates of merged pull requests. Weeks start on Monday (UTC).
 
 - 2026-10-24 · #28 · The desk is parked (HFT-DEC-0005): the laptop run written down
 
-### Stocks & Options (62)
+### Stocks & Options (63)
 
+- 2026-10-25 · #314 · chore(dashboard): vite 8.3.3 and vitest 5.0.3 clear the 14 open security alerts
 - 2026-10-25 · #313 · Release 2026-10-25 (3)
 - 2026-10-25 · #312 · research: the two registered bull flags start on Monday 2026-10-26
 - 2026-10-25 · #310 · Release 2026-10-25 (2)

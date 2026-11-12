@@ -1,6 +1,6 @@
 ---
 title: "Rotate secrets"
-description: "Copied from trading-lab-research@9cb2966 (docs/runbooks/secret-rotation.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@491d913 (docs/runbooks/secret-rotation.md) on 2026-11-12. Do not edit here."
 ---
 
 **Dashboard secrets** (ingest HMAC, cron secret, ntfy topic, deployment-protection bypass):

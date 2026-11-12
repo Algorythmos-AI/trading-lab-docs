@@ -1,6 +1,6 @@
 ---
 title: "ADR 0015: The independent risk gate"
-description: "Copied from hft-lab@bf8d099 (docs/adr/0015-risk-gate.md) on 2026-10-25. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0015-risk-gate.md) on 2026-11-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. The gate's shape is decided here. Every limit in `config/risk.yaml` is

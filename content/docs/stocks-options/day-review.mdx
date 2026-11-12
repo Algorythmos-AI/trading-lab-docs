@@ -1,0 +1,94 @@
+---
+title: The day review
+description: What the Day review page shows about one day of your own option positions, and how to read it.
+---
+
+<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. Released to production in pull request 394.</Callout>
+
+The Day review (`/review`) puts one New York day of your own option positions against your rules, on one screen.
+It reads the same journal as the Trades page and takes every figure from the Trades page's own functions, so the
+two pages agree about the same day. The one exception is at the end of this page.
+
+It opens on the latest day with a closed call or put. Add `?day=` and a date (written 2026-11-02) to open
+another.
+
+## The four tiles, in order
+
+| Tile | Value | Line under it |
+|---|---|---|
+| **Rules kept** | Positions with no rule broken, of the day's positions | The day's trade cap and loss limit, kept or broken |
+| **Loss size** | Dollars lost beyond −25% of premium, added up over the day's losers | How many losers went past the stop, how many lost over $50, and how many are left out |
+| **Result** | The day's result after fees | Its R50, the result before fees when the fees are an estimate, and a note when it counts sales that are not listed |
+| **Trades** | Positions taken | Won, lost and still open |
+
+The order is on purpose. A day can make money and still break the rules or let a loss run, so the page asks
+how the day was traded before it says what it paid.
+
+## The two loss sizes
+
+- **Beyond −25% of premium.** A loser sold for less than three quarters of what it cost, by at least a cent. The
+  tile adds up the dollars past that line. The test is on the price you sold at, before fees.
+- **A loss over $50 before fees.** Rule 4's limit on one trade. A big position can lose more than $50 without
+  passing −25%, so the two are counted apart.
+
+Only when nothing is left out and neither happened does the tile give the all-clear: "Every loss at plan size."
+when there were losers, otherwise "No losers today." or "No losers this day."
+
+## R25 and R50
+
+- **R25** is a result in quarters of the premium paid: −1 is exactly the −25% stop.
+- **R50** is a result in units of $50, the most one trade may risk.
+
+Because the −25% test is before fees, a result a little under −1 R25 can still be inside the stop.
+
+## Positions
+
+The day's positions in the order you opened them: **Opened**, **Closed**, **Contract**, **Contracts**, **Cost**,
+**Result**, **R25**, **R50** and **Rules**. On a phone each is a card of three lines. A loser past the stop
+carries a second line with the dollars "beyond the plan". **Rules** reads **Rules kept**, the rules broken
+("Rule 5", "Rules 5, 7"), or **Open** for a position still held with no rule broken yet.
+
+## The rules legend
+
+Under the list, each rule broken that day appears once, in number order, with its short title as the Trades page
+writes it, for example "Rule 5: Stop at the chart, −25% at most". Numbers alone do not read.
+
+## Previous and next
+
+The two links in the header go to the nearest days either side that have positions. A side with none has no link.
+
+## Words on the page
+
+| Words | Meaning |
+|---|---|
+| **Still open** | Contracts of this position are still held. It has no result, and it is never shown as rules kept. |
+| **left out** | A closed loser the Loss size figures cannot count: it has no cost, or the broker's history has a gap there. A day with one is never given the all-clear. |
+| **as last read** | Today, when the journal is not current. The Rules kept line gives the figures as of the journal's last read time, not as kept. |
+| **Session still open** | Today, during the session: this is the day so far. |
+
+## What you will not find
+
+- **No after-the-sale prices.** The page stops at your exit, so the day is judged on what you did.
+- **No win percentage.** A day of small rule-keeping losses is not made to look worse than it is.
+- **No split by board state or time.** Every figure covers the whole day, so no slice can flatter it
+  (DEC-0045, DEC-0049).
+
+The page also says board labels are not being recorded yet: the labeller that would record which board state you
+traded from is not built.
+
+## The one difference from the Trades page
+
+A contract sold in full at a loss, bought again the same day and still held at the end of it:
+
+- The **Day review** counts the first position as a closed loser and lists the rebuy as its own open row.
+- The **Loss size** panel on the Trades page treats the whole contract that day as still open and leaves the
+  first position out of its figures.
+
+On such a day the two loss counts differ. Otherwise the page's tests hold its figures equal to the Trades page's
+on every day of the test journal.
+
+## Sources
+
+Files read for this page, at the commit named at the top: `dashboard/src/lib/day-review.ts`,
+`dashboard/src/components/day-review.tsx`, `dashboard/src/app/review/page.tsx`, `dashboard/test/day-review.test.ts`,
+`dashboard/src/lib/owner-positions.ts` (R25, R50 and the Loss size panel's open rule), `dashboard/src/lib/trade-rules.ts`.

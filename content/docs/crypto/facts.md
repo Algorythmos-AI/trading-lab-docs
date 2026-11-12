@@ -3,7 +3,7 @@ title: "Facts and register"
 description: "Counts and the research register, generated from the repository."
 ---
 
-Generated from `crypto-lab@8c240c1` on 2026-10-25. Do not edit; run the sync.
+Generated from `crypto-lab@8c240c1` on 2026-11-12. Do not edit; run the sync.
 
 ## Counts
 

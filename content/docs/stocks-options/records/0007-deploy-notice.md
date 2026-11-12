@@ -1,6 +1,6 @@
 ---
 title: "ADR 0007: The host says when a deploy is ready; the owner still deploys"
-description: "Copied from trading-lab-research@9cb2966 (docs/adr/0007-deploy-notice.md) on 2026-10-25. Do not edit here."
+description: "Copied from trading-lab-research@491d913 (docs/adr/0007-deploy-notice.md) on 2026-11-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-12 (the owner's merge of the pull request that carries it)

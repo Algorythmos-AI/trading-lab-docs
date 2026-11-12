@@ -1,6 +1,6 @@
 ---
 title: "ADR 0006: A public repository and the leak mechanism"
-description: "Copied from hft-lab@bf8d099 (docs/adr/0006-public-repo-and-leak-mechanism.md) on 2026-10-25. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0006-public-repo-and-leak-mechanism.md) on 2026-11-12. Do not edit here."
 ---
 
 > 1 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.

@@ -1,15 +1,15 @@
 ---
 title: Copied pages
-description: "Which commit each copied page came from, and what was left out. Generated on 2026-10-25."
+description: "Which commit each copied page came from, and what was left out. Generated on 2026-11-12."
 ---
 
 ## Sources
 
 | Repository | Commit | Files copied |
 |---|---|---|
-| `hft-lab` | `bf8d099` | 46 |
+| `hft-lab` | `cfb883c` | 46 |
 | `crypto-lab` | `8c240c1` | 3 |
-| `trading-lab-research` | `9cb2966` | 28 |
+| `trading-lab-research` | `491d913` | 31 |
 
 ## Left out
 
@@ -34,10 +34,12 @@ These pages are copied with some lines withheld and marked. Everything else on t
 | `trading-lab-research` | `docs/adr/0009-integration-branch.md` | 1 |
 | `trading-lab-research` | `docs/runbooks/cloud-routines.md` | 4 |
 | `trading-lab-research` | `docs/runbooks/dashboard-deploy.md` | 1 |
+| `trading-lab-research` | `docs/runbooks/feed-agreement.md` | 2 |
 | `trading-lab-research` | `docs/runbooks/gcp-host.md` | 6 |
+| `trading-lab-research` | `docs/runbooks/keys-and-feeds.md` | 1 |
 | `trading-lab-research` | `docs/runbooks/oci-host.md` | 5 |
 | `trading-lab-research` | `docs/runbooks/options-clone.md` | 2 |
 
 ## Changelog
 
-7 pull-request title(s) are withheld for the same reasons.
+10 pull-request title(s) are withheld for the same reasons.

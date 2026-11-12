@@ -3,16 +3,17 @@ title: Options workstation
 description: A desk for long single-leg options decisions. Phases P0 to P6.
 ---
 
-<Callout type="info">Source: `trading-lab-research@6562d6f`, read 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@6562d6f` on 2026-10-13.</Callout>
 
-The workstation prepares information; the owner decides and trades. It places no orders.
+The workstation prepares information; you decide and trade. It places no orders. For how a day on it goes, see
+[using the desk through a session](/stocks-options/desk-day-to-day).
 
 ## Phases
 
 | Phase | Content | State |
 |---|---|---|
 | P0 Foundations | Research records, engine brought into the repository, switch of the nightly routine to it | <Standing is="open" /> Records and engine done; the routine switch waits on a shadow night and the owner's approval |
-| P1 The workstation | Three-pane desk, interactive level map, command palette, phone layout, a page per name | <Standing is="done" /> Hourly range on the map still to come |
+| P1 The workstation | Three-pane desk, interactive level map, command palette, phone layout, a page per name | <Standing is="done" /> The map offers an hourly range once the host has sent enough hourly bars |
 | P2 Volatility and day context | Volatility index, earnings dates, macro events in the edition | <Standing is="waiting">built, switched off</Standing> |
 | P3 Prices, open interest, calculator | Option chain, Black-Scholes calculator, open-interest marks, volatility shape | <Standing is="done" /> |
 | P4 Triggers and alerts | In-session rule states, trigger board, countdown to the hourly close, notices | <Standing is="done" /> Alerts go to the log; phone alerts after a week of observation |
@@ -33,14 +34,30 @@ The workstation prepares information; the owner decides and trades. It places no
 - Brief, Live and Review views; keyboard navigation; a command palette; a single-pane phone layout.
 - A page per name with linked zones and compact rows.
 - A count of how far the delayed feed and the reference feed agree.
+- Focus cards, the Trade now board, a trade ticket, a manage card for open trades, and a link to the
+  [day review](/stocks-options/day-review).
+
+## The fill-time check
+
+A one-off check that the times in your trade journal are the times your orders really filled. It matches each
+journal time for an option trade to the public option tape for the same contract, and compares that with windows
+a few minutes either side, where a real fill time should match far less often.
+
+- **Runs once, started by you.** There is no button and no schedule. From the signed-in site, send one
+  same-origin `POST` to `/api/desk/fill-check` with the body `{"confirm":"run-once"}`. A `GET` on the same path
+  shows the result. Once a result is stored, asking again returns it and runs nothing.
+- **Keeps counts and seconds only.** The stored result holds session dates, counts, rates, time offsets in
+  seconds, reasons a trade was not checked, and a one-word verdict. No price, contract or result in money is
+  stored or logged.
+- **Until it runs**, the `GET` answers `not_run`. Whether it has been run is not recorded in the repository.
 
 ## Document formats
 
 | Document | Site accepts | Host sends |
 |---|---|---|
 | Options edition | 2 | 1 |
-| Options live | 3 (hourly bars accepted, not yet drawn) | 2 |
+| Options live | 3 | Up to 3: 2 with rule states, 3 once it also carries hourly bars |
 
 ## Sources
 
-Files read for this page, at the commit named at the top: `config/options_desk.yaml`, `src/wt/options/`, `dashboard/src/lib/editions.ts`, merged pull requests 155 to 208.
+Files read for this page, at the commit named at the top: `config/options_desk.yaml`, `src/wt/options/` (`live.py`, `edition.py`), `dashboard/src/lib/editions.ts`, `dashboard/src/lib/hourly.ts`, `dashboard/src/app/options/page.tsx`, `dashboard/src/lib/fill-check.ts`, `dashboard/src/lib/fill-check-run.ts`, merged pull requests 155 to 208.

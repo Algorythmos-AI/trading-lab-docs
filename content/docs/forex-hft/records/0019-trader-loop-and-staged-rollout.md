@@ -1,6 +1,6 @@
 ---
 title: "ADR 0019: The trader loop, its tape, and the staged rollout"
-description: "Copied from hft-lab@bf8d099 (docs/adr/0019-trader-loop-and-staged-rollout.md) on 2026-10-25. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0019-trader-loop-and-staged-rollout.md) on 2026-11-12. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Built and tested against the fake broker and the shadow venue only. With

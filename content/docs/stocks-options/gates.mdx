@@ -3,14 +3,14 @@ title: Gates
 description: K0 to G5. Each is a written test that must pass before the next stage.
 ---
 
-<Callout type="info">Source: `trading-lab-research@fa0c7c1`, read 2026-10-25.</Callout>
+<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@fa0c7c1` on 2026-10-25.</Callout>
 
 | Gate | What it asks | State |
 |---|---|---|
 | K0 | Knowledge extracted and catalogued | <Standing is="done" /> |
 | G0 | Engine, data and controls in place | <Standing is="done" /> |
 | G1 | Proof of edge in backtest | <Standing is="failed" /> 75 trials, none pass |
-| G2 | Paper and forward evidence, judged as two halves (DEC-0037). G2a asks whether the desk behaves: 30 clean sessions, a streak of 20 without incident, and 90% of readable sessions matching a replay. G2b asks whether it pays: 50 trades | <Standing is="open" /> 14 of 30 clean sessions and 4 of 50 trades at 24 October |
+| G2 | Paper and forward evidence, judged as two halves (DEC-0037). G2a asks whether the desk behaves: 30 clean sessions, a streak of 20 without incident, and 90% of readable sessions matching a replay. G2b asks whether it pays: 50 trades | <Standing is="open" /> 24 of 30 clean sessions and 7 of 50 trades at 6 November |
 | G3 | Broker acceptance: contract suite, read-only production checks, a canary order by the owner | <Standing is="not started" /> |
 | G4 | Live at very small size | <Standing is="not started" /> |
 | G5 | Scale in steps, with capital capped | <Standing is="not started" /> |
@@ -18,8 +18,8 @@ description: K0 to G5. Each is a written test that must pass before the next sta
 ## What G1 failing means
 
 No registered rule has shown an edge after costs. The one candidate's backtest is to be re-run on corrected data
-under an accepted decision (DEC-0011, 25 October); the re-run has not happened yet. Ten further trials run
-forward-only, and two corrected bull-flag trials join them from 26 October.
+under an accepted decision (DEC-0011, 25 October); the register holds no experiment record for the re-run yet.
+Ten further trials run forward-only, and two corrected trials (HYP-0032, HYP-0033) joined them on 26 October.
 
 G3 to G5 are written down so the path is known. Nothing is being built for them.
 
@@ -32,4 +32,4 @@ G3 to G5 are written down so the path is known. Nothing is being built for them.
 
 ## Sources
 
-Files read for this page, at the commit named at the top: `config/dashboard.yaml` (gates), `docs/audits/STOCKS_FORENSIC_AUDIT.md` (plan status and open decisions).
+Files read for this page, at the commit named at the top: `config/dashboard.yaml` (gates), `research/forward/archive/2026-W45/scorecard_2026-11-06.md` (G2 counts only), `docs/audits/STOCKS_FORENSIC_AUDIT.md` (open decisions; unchanged since `fa0c7c1`).
