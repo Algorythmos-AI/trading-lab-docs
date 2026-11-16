@@ -42,7 +42,11 @@ function register(show, files) {
     const line = show(primary).split('\n').find((l) => /status/i.test(l));
     if (!line) continue;
     const low = line.toLowerCase();
-    if (rec.status === '—') rec.status = STATUS_WORDS.find((w) => low.includes(w)) ?? '—';
+    // The word that comes first on the line, so "accepted on ... Proposed on ..." reads as accepted.
+    if (rec.status === '—') {
+      const first = STATUS_WORDS.map((w) => [w, low.indexOf(w)]).filter(([, i]) => i >= 0).sort((a, b) => a[1] - b[1] || b[0].length - a[0].length)[0];
+      rec.status = first ? first[0] : '—';
+    }
     rec.date = (line.match(/\b20\d{2}-\d{2}-\d{2}\b/) ?? ['—'])[0];
   }
   const num = (id) => Number(id.match(/(\d+)$/)[1]);
