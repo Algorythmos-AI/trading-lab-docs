@@ -1,10 +1,10 @@
 {
-  "synced_on": "2026-11-12",
+  "synced_on": "2026-11-16",
   "sources": {
     "hft-lab": "cfb883c",
     "crypto-lab": "8c240c1",
-    "trading-lab-research": "491d913",
+    "trading-lab-research": "03b91fe",
     "trading-kb": "b9c29f8",
-    ".github-private": "778a31d"
+    "algorythmos-handbook": "4a680eb"
   }
 }

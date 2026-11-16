@@ -3,7 +3,7 @@ title: "Facts and register"
 description: "Gate states, the job schedule, counts and the research register, generated from the repository."
 ---
 
-Generated from `trading-lab-research@491d913` on 2026-11-12. Do not edit; run the sync.
+Generated from `trading-lab-research@03b91fe` on 2026-11-16. Do not edit; run the sync.
 
 ## Gate states
 
@@ -21,7 +21,7 @@ From `config/dashboard.yaml`.
 
 ## Job schedule
 
-From `src/wt/ops/schedule.py`. Includes the crypto jobs until that desk is cut over.
+From `src/wt/ops/schedule.py`.
 
 | Job | When |
 |---|---|
@@ -42,13 +42,13 @@ From `src/wt/ops/schedule.py`. Includes the crypto jobs until that desk is cut o
 
 | | |
 |---|---|
-| Design records | 10 |
-| Runbooks | 21 |
-| Decision records | 46 |
-| Experiment records | 32 |
-| Hypothesis records | 50 |
+| Design records | 11 |
+| Runbooks | 24 |
+| Decision records | 50 |
+| Experiment records | 35 |
+| Hypothesis records | 59 |
 | Lesson records | 6 |
-| Merged pull requests | 396 |
+| Merged pull requests | 442 |
 
 ## Research register
 
@@ -92,7 +92,7 @@ Ids, statuses and dates only.
 | `DEC-0034` | Decision | accepted | 2026-10-22 |
 | `DEC-0035` | Decision | accepted | 2026-10-23 |
 | `DEC-0036` | Decision | accepted | 2026-10-24 |
-| `DEC-0037` | Decision | pre-registered | 2026-10-24 |
+| `DEC-0037` | Decision | accepted | 2026-10-24 |
 | `DEC-0038` | Decision | accepted | 2026-10-27 |
 | `DEC-0039` | Decision | accepted | 2026-10-29 |
 | `DEC-0040` | Decision | accepted | 2026-11-04 |
@@ -101,7 +101,11 @@ Ids, statuses and dates only.
 | `DEC-0043` | Decision | accepted | 2026-11-06 |
 | `DEC-0044` | Decision | accepted | 2026-11-11 |
 | `DEC-0045` | Decision | accepted | 2026-11-11 |
+| `DEC-0046` | Decision | accepted | 2026-11-12 |
+| `DEC-0047` | Decision | accepted | 2026-11-12 |
 | `DEC-0049` | Decision | accepted | 2026-11-12 |
+| `DEC-0050` | Decision | accepted | 2026-11-12 |
+| `DEC-0051` | Decision | accepted | 2026-11-13 |
 | `EXP-0001` | Experiment | registered | — |
 | `EXP-DEBUG-0001` | Experiment | — | — |
 | `EXP-0002` | Experiment | — | — |
@@ -134,6 +138,9 @@ Ids, statuses and dates only.
 | `EXP-0029` | Experiment | — | — |
 | `EXP-0030` | Experiment | — | — |
 | `EXP-0031` | Experiment | — | — |
+| `EXP-0032` | Experiment | — | — |
+| `EXP-0033` | Experiment | — | — |
+| `EXP-0034` | Experiment | — | — |
 | `HYP-0001` | Hypothesis | — | — |
 | `HYP-0002` | Hypothesis | — | — |
 | `HYP-0003` | Hypothesis | — | — |
@@ -184,6 +191,15 @@ Ids, statuses and dates only.
 | `HYP-0048` | Hypothesis | pre-registered | — |
 | `HYP-0049` | Hypothesis | pre-registered | — |
 | `HYP-0050` | Hypothesis | pre-registered | — |
+| `HYP-0051` | Hypothesis | pre-registered | 2026-11-12 |
+| `HYP-0052` | Hypothesis | pre-registered | 2026-11-12 |
+| `HYP-0053` | Hypothesis | pre-registered | 2026-11-12 |
+| `HYP-0054` | Hypothesis | pre-registered | 2026-11-12 |
+| `HYP-0055` | Hypothesis | pre-registered | 2026-11-12 |
+| `HYP-0056` | Hypothesis | pre-registered | — |
+| `HYP-0057` | Hypothesis | pre-registered | — |
+| `HYP-0058` | Hypothesis | pre-registered | — |
+| `HYP-0059` | Hypothesis | pre-registered | 2026-11-13 |
 | `LL-0001` | Lesson | — | — |
 | `LL-0002` | Lesson | — | — |
 | `LL-0003` | Lesson | — | — |

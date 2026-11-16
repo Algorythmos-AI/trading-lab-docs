@@ -3,7 +3,7 @@ title: How it runs
 description: The schedule, the host, and how changes reach it.
 ---
 
-<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@6562d6f` on 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@03b91fe`, read 2026-11-16. First written from `@6562d6f` on 2026-10-13.</Callout>
 
 ## Schedule
 
@@ -12,35 +12,43 @@ All times are New York time, so they move against Sydney clocks at each daylight
 | Job | When | What |
 |---|---|---|
 | `routine` | Mon to Fri 07:30 | Pre-market scan in four stages; no broker calls |
-| `paper-b` | Mon to Fri 08:30 | The paper runner for the stocks strategy |
+| `paper-b` | Mon to Fri 08:30 | Robot B (paper): the stocks strategy on its paper account |
 | `forward` | Mon to Fri 12:40, waits for the close plus 20 minutes | Forward test of registered trials |
 | `weekly` | Fri 20:00 | Weekly scorecard |
 | `dashboard` | Every 5 minutes in session, 15 otherwise | Builds and sends the status snapshot |
 | `options-live` | Same rhythm, one minute later | Option positions, open interest, rule states |
 
 The crypto jobs left the schedule when the [crypto desk](/crypto) was closed on 2026-10-24. Six more jobs run
-beside these: the options clone's session and nightly review, the options pipeline check, the deploy notice and
-automatic deploy, and a weekly read of the economic release calendar (Fridays 21:30) for the Calendar page.
+beside these: the Options clone (paper)'s session and nightly review, the options pipeline check, the deploy notice
+and automatic deploy, and a weekly read of the economic release calendar (Fridays 21:30) for the Calendar page.
+
+One more timer sits outside that table. `wt-webull-pull.timer` reads your own Webull account, read only, every 2
+minutes from 09:00 to 16:58 on weekdays, and once at 17:40 every day. It is off until the owner's cutover; until
+then a cloud routine writes the Trades journal.
 
 ## Host
 
 - One cloud server runs every job as generated service units.
+- The Webull read runs as its own user, `wt-webull`, from a copy of its code the owner installs by its hash. It
+  is the only job that can read the Webull key. A second job, as the usual user, sends what it read to the site.
 - The Mac runs nothing. Its old checkout is kept only as a fallback.
 - Every job goes through one runner with a lock, a pre-flight check, a deadline and a heartbeat.
 
 ## Deploys
 
-- The owner deploys from the host with one command, and only while the deploy gate is open.
+- Work lands on `integration`, which deploys a staging site with synthetic data. `main` is production.
+- Where the owner has switched it on, the host deploys the newest green `main` itself, once an hour.
+- A change to units, host helpers, the deploy code or the Webull code waits for the owner.
 - The gate is computed: it checks that required checks passed on the commit and that no session is in progress.
-- A status-site change is a production deploy and merges only while the gate is open.
 - The host refuses a deploy when the live status site is older than the snapshot format the new code sends.
 
 ## When something goes wrong
 
 Runbooks cover: kill and flatten, not flat at the close, latch reset, rollback, disk full, status site late,
 dead-man switches, secret rotation, backups, position alerts, the options live job, keys and data feeds, the feed
-agreement report and the public-repository guards. See [runbooks](/stocks-options/runbooks).
+agreement report, the public-repository guards, the read-only Webull job, the board feed, the cloud routines and the
+options clone. See [runbooks](/stocks-options/runbooks).
 
 ## Sources
 
-Files read for this page, at the commit named at the top: `src/wt/ops/schedule.py`, `docs/runbooks/`, `docs/adr/0002-runtime-state-and-deploy-gate.md`.
+Files read for this page, at the commit named at the top: `src/wt/ops/schedule.py`, `deploy/oci/systemd/wt-webull-pull.timer`, `docs/runbooks/`, `docs/adr/0002-runtime-state-and-deploy-gate.md`, `docs/adr/0008-automatic-deploy.md`, `docs/adr/0009-integration-branch.md`, `docs/adr/0011-webull-readonly-host.md`.

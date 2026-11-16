@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the gateway and its weekly login"
-description: "Copied from hft-lab@cfb883c (docs/runbooks/weekly-login.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/weekly-login.md) on 2026-11-16. Do not edit here."
 ---
 
 For the owner, and only for the owner: this is the one place where the broker's paper login is used, and

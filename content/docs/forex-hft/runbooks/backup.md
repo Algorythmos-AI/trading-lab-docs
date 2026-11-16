@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the backup and the restore check"
-description: "Copied from hft-lab@cfb883c (docs/runbooks/backup.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/backup.md) on 2026-11-16. Do not edit here."
 ---
 
 For the owner. The backup hands away what cannot be made again and is small. It never deletes anything, here

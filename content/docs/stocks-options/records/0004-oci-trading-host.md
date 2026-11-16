@@ -1,6 +1,6 @@
 ---
 title: "ADR 0004: The trading host moves to an OCI Always Free VM"
-description: "Copied from trading-lab-research@491d913 (docs/adr/0004-oci-trading-host.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/adr/0004-oci-trading-host.md) on 2026-11-16. Do not edit here."
 ---
 
 > 1 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.

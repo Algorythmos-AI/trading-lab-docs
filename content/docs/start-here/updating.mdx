@@ -20,9 +20,14 @@ node scripts/sync.mjs --check   # has a watched path moved in any platform repos
 node scripts/sync.mjs           # copy again and rewrite the changelog
 ```
 
-`--check` watches the copied folders and every file the generated facts read, including `research/`. When it
-reports a change, sync, then read the written pages of that platform against its new facts page and correct
-them in the same pull request.
+`--check` watches the copied folders and every file the generated facts read in the platform repositories,
+including `research/`. It also watches the collection lock files and release tags of `trading-kb`, and
+`catalog.yaml` in `algorythmos-handbook`. It does not watch merged pull requests: every sync rewrites the
+changelog. When it reports a change, sync, then read the written pages of that platform against its new facts
+page and correct them in the same pull request.
+
+The sync reads clones in `~/Code/platforms` (or `DOCS_CLONES`): `hft-lab`, `crypto-lab`, `_monorepo-read` (for
+`trading-lab-research`), `trading-kb` and `algorythmos-handbook`. A shallow clone is enough for the handbook.
 
 The copier leaves a file out whole when it finds wording, an identifier, or a phrase that may not appear here.
 [Copied pages](/shared/copied-pages) lists what came from where and what was left out.

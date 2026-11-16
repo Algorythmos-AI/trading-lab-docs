@@ -1,5 +1,5 @@
 {
-  "synced_on": "2026-11-12",
+  "synced_on": "2026-11-16",
   "sources": {
     "hft-lab": {
       "sha": "cfb883c5923cf83f256580852f44e42057d9bf4b",
@@ -10,8 +10,30 @@
       "files": 3
     },
     "trading-lab-research": {
-      "sha": "491d91387218f180306aba19d31eee714ecf4122",
-      "files": 31
+      "sha": "03b91fe2423dd91ef29da73e206495d1f0d9f0dc",
+      "files": 35
+    }
+  },
+  "extras": {
+    "trading-kb": {
+      "sha": "b9c29f8dd8743efe671544eb81d8c20b40664307",
+      "files": {
+        "collections/hft/kb.lock.json": "c81091f938e20fc2fdcaa5baf59e54b7bda5226e",
+        "collections/shared/kb.lock.json": "58eb31d1ac1193c12e1841d0f3a40a0b0b34fcf7"
+      },
+      "tags": [
+        "hft-2026.10.10",
+        "hft-2026.10.10.1",
+        "hft-2026.10.11",
+        "shared-2026.10.11",
+        "shared-2026.10.11.1"
+      ]
+    },
+    "algorythmos-handbook": {
+      "sha": "4a680eb5756d1a9a8fee8ceecb93b03e3fb3da65",
+      "files": {
+        "catalog.yaml": "1d283e18cbff61d939f1be1f9055c4a42fff82e8"
+      }
     }
   },
   "left_out": [],
@@ -53,13 +75,28 @@
     },
     {
       "repo": "trading-lab-research",
+      "file": "docs/adr/0007-deploy-notice.md",
+      "lines": 1
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/adr/0008-automatic-deploy.md",
+      "lines": 1
+    },
+    {
+      "repo": "trading-lab-research",
       "file": "docs/adr/0009-integration-branch.md",
       "lines": 1
     },
     {
       "repo": "trading-lab-research",
+      "file": "docs/runbooks/board-feed.md",
+      "lines": 6
+    },
+    {
+      "repo": "trading-lab-research",
       "file": "docs/runbooks/cloud-routines.md",
-      "lines": 4
+      "lines": 6
     },
     {
       "repo": "trading-lab-research",
@@ -68,8 +105,13 @@
     },
     {
       "repo": "trading-lab-research",
+      "file": "docs/runbooks/exp0034-read.md",
+      "lines": 3
+    },
+    {
+      "repo": "trading-lab-research",
       "file": "docs/runbooks/feed-agreement.md",
-      "lines": 2
+      "lines": 4
     },
     {
       "repo": "trading-lab-research",
@@ -79,7 +121,7 @@
     {
       "repo": "trading-lab-research",
       "file": "docs/runbooks/keys-and-feeds.md",
-      "lines": 1
+      "lines": 2
     },
     {
       "repo": "trading-lab-research",
@@ -89,6 +131,11 @@
     {
       "repo": "trading-lab-research",
       "file": "docs/runbooks/options-clone.md",
+      "lines": 2
+    },
+    {
+      "repo": "trading-lab-research",
+      "file": "docs/runbooks/webull-readonly.md",
       "lines": 2
     }
   ]

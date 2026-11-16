@@ -1,6 +1,6 @@
 ---
 title: "The OCI trading host: provision, operate, rebuild (ADR 0004)"
-description: "Copied from trading-lab-research@491d913 (docs/runbooks/oci-host.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/runbooks/oci-host.md) on 2026-11-16. Do not edit here."
 ---
 
 > 5 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.

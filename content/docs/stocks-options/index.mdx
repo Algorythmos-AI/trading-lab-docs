@@ -3,13 +3,14 @@ title: Stocks & Options
 description: US stocks and long options on paper accounts. Running nightly on the cloud server.
 ---
 
-<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@6562d6f` on 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@03b91fe`, read 2026-11-16. First written from `@6562d6f` on 2026-10-13.</Callout>
 
 ## In one paragraph
 
 The oldest platform and the only one running every trading day. It holds a research engine, a stocks desk that
-scans, signals, and trades one strategy on an Alpaca **paper** account, an options desk that prepares levels,
-rules and option arithmetic for your own decisions, and the status site that shows every desk.
+scans, signals, and trades one strategy as Robot B (paper) on an Alpaca **paper** account, an options desk that
+prepares levels, rules and option arithmetic for your own decisions, the Options clone (paper), and the status site
+that shows every desk. One job reads your own Webull account, read only, for the Trades page.
 
 The crypto desk has left it (closed 2026-10-24); renaming the repository `options-lab` is the owner's call.
 
@@ -19,10 +20,10 @@ The crypto desk has left it (closed 2026-10-24); renaming the repository `option
 |---|---|
 | Jobs | Running on the cloud server since 2026-10-01 |
 | Stocks: proof of edge in backtest (G1) | <Standing is="failed" /> 75 trials, none pass |
-| Stocks: forward and paper evidence (G2) | <Standing is="open" /> 24 of 30 clean sessions, 7 of 50 trades at 6 November |
+| Stocks: forward and paper evidence (G2) | <Standing is="open" /> 28 of 30 clean sessions, a streak of 4 of 20, and 9 of 50 trades at 13 November |
 | Broker acceptance, live, scale (G3 to G5) | <Standing is="not started" /> |
 | Options desk | Focus cards, the Trade now board, the trade ticket, the manage card and the day review exist; it places no orders. Evidence phase <Standing is="not started" /> |
-| Real money | None. Paper accounts only |
+| Real money | None traded. Paper accounts only; your Webull account is read, never traded |
 
 ## Reading this honestly
 
@@ -45,4 +46,4 @@ step, not because a result is expected.
 
 ## Sources
 
-Files read for the standing above, at `491d913`: `config/dashboard.yaml` (gates), `research/forward/archive/2026-W45/scorecard_2026-11-06.md` (G2 counts only), `dashboard/src/app/options/page.tsx`, `dashboard/src/app/review/page.tsx`, and the research register in [facts and register](/stocks-options/facts).
+Files read for the standing above, at `03b91fe`: `config/dashboard.yaml` (gates), `research/forward/archive/2026-W46/scorecard_2026-11-13.md` (G2 counts only), `docs/adr/0011-webull-readonly-host.md`, `dashboard/src/app/options/page.tsx`, `dashboard/src/app/review/page.tsx`, and the research register in [facts and register](/stocks-options/facts).

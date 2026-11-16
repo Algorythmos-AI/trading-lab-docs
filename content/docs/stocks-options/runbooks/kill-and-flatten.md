@@ -1,6 +1,6 @@
 ---
 title: "Kill switch and flatten"
-description: "Copied from trading-lab-research@491d913 (docs/runbooks/kill-and-flatten.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/runbooks/kill-and-flatten.md) on 2026-11-16. Do not edit here."
 ---
 
 **Stop new entries.** Exits and stops keep being managed:

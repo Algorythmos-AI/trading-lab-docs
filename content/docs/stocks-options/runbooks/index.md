@@ -1,6 +1,6 @@
 ---
 title: Runbooks
-description: "21 copied from trading-lab-research@491d913 on 2026-11-12."
+description: "24 copied from trading-lab-research@03b91fe on 2026-11-16."
 ---
 
 Step-by-step instructions for one operation or one incident. Copied; change the source, then sync.
@@ -8,12 +8,14 @@ Step-by-step instructions for one operation or one incident. Copied; change the 
 | Title | Source |
 |---|---|
 | [Evidence backups, anchors and the primary lease (OCI host, ADR 0004)](/stocks-options/runbooks/backups-and-lease) | `docs/runbooks/backups-and-lease.md` |
+| [The board's stock feed: switching to SIP, checking it, and switching back](/stocks-options/runbooks/board-feed) | `docs/runbooks/board-feed.md` |
 | [Cloud routines](/stocks-options/runbooks/cloud-routines) | `docs/runbooks/cloud-routines.md` |
 | [Dashboard deploys (and the watchdog drill)](/stocks-options/runbooks/dashboard-deploy) | `docs/runbooks/dashboard-deploy.md` |
 | [Dashboard late or stopped](/stocks-options/runbooks/dashboard-late) | `docs/runbooks/dashboard-late.md` |
 | [Dashboard screenshots](/stocks-options/runbooks/dashboard-screenshots) | `docs/runbooks/dashboard-screenshots.md` |
 | [Dead-man's switches: who notices when the host goes quiet](/stocks-options/runbooks/dead-man-switches) | `docs/runbooks/dead-man-switches.md` |
 | [Disk nearly full](/stocks-options/runbooks/disk-full) | `docs/runbooks/disk-full.md` |
+| [EXP-0034: the one read (DEC-0051 section 8)](/stocks-options/runbooks/exp0034-read) | `docs/runbooks/exp0034-read.md` |
 | [Feed agreement: IEX against SIP for the Options board](/stocks-options/runbooks/feed-agreement) | `docs/runbooks/feed-agreement.md` |
 | [The GCP free-tier trading host: provision, operate, rebuild](/stocks-options/runbooks/gcp-host) | `docs/runbooks/gcp-host.md` |
 | [Keys and feeds](/stocks-options/runbooks/keys-and-feeds) | `docs/runbooks/keys-and-feeds.md` |
@@ -28,3 +30,4 @@ Step-by-step instructions for one operation or one incident. Copied; change the 
 | [Rollback a deploy](/stocks-options/runbooks/rollback) | `docs/runbooks/rollback.md` |
 | [Ruleset emergency](/stocks-options/runbooks/ruleset-emergency) | `docs/runbooks/ruleset-emergency.md` |
 | [Rotate secrets](/stocks-options/runbooks/secret-rotation) | `docs/runbooks/secret-rotation.md` |
+| [Webull, read only, on the host](/stocks-options/runbooks/webull-readonly) | `docs/runbooks/webull-readonly.md` |

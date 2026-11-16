@@ -8,17 +8,17 @@ description: "The planned move of the desk to its own repository. It never happe
   options repository instead, and `crypto-lab` was archived. This page is kept as the record of the plan.
 </Callout>
 
-<Callout type="info">Source: `crypto-lab@8c240c1`, read 2026-10-12.</Callout>
+<Callout type="info">Source: `crypto-lab@8c240c1`, read 2026-10-12; the removal from `trading-lab-research@03b91fe`, read 2026-11-16.</Callout>
 
 ## Where it stands
 
 | Step | State |
 |---|---|
 | Repository built by scripted extraction, parity proven | <Standing is="done" /> |
-| Guard in the old repository that marks the desk as moved | <Standing is="done" /> merged; must be deployed to the host first |
+| Guard in the old repository that marks the desk as moved | <Standing is="done" /> merged; no longer needed |
 | Host cutover: state moved, never copied | <Standing is="not started">dropped: the desk was closed</Standing> |
-| 24 clean hours from the new repository | <Standing is="not started" /> |
-| Desk removed from the old repository | <Standing is="done" /> jobs on 2026-10-24, code on 2026-10-25 |
+| 24 clean hours from the new repository | <Standing is="not started">dropped: the desk was closed</Standing> |
+| Desk removed from the old repository | <Standing is="done" /> jobs on 2026-10-24, code on 2026-10-25 (#304) |
 | Old repository renamed `options-lab` | <Standing is="not started" /> owner's go-ahead |
 
 ## How the cutover goes
@@ -31,16 +31,9 @@ description: "The planned move of the desk to its own repository. It never happe
 
 Some steps in the runbook were written without host access and are marked as unverified.
 
-## Why the removal waits
+## Why the removal did not wait
 
-Opening the removal before the cutover and a clean day would delete the desk's code while it still runs from
-the old repository.
-
-## Follow-ups recorded
-
-- rename the Python package, which still carries the old name
-- give the repository its own secrets file
-- a new health check for the backup job
+The removal did not wait: the desk closed first, so nothing ran from the old repository to protect.
 
 ## Sources
 

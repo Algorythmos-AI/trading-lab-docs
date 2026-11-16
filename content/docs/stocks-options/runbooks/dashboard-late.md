@@ -1,6 +1,6 @@
 ---
 title: "Dashboard late or stopped"
-description: "Copied from trading-lab-research@491d913 (docs/runbooks/dashboard-late.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/runbooks/dashboard-late.md) on 2026-11-16. Do not edit here."
 ---
 
 **Signal:**

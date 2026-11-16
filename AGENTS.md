@@ -1,7 +1,8 @@
 # AGENTS.md: rules for contributors to trading-lab-docs
 
-Read the organisation's rules first (`.github-private` `AGENTS.md` and `catalog.yaml`). This file adds the rules
-specific to this repository. Where the two conflict, the organisation file's "Never" sections win.
+Read the organisation's rules first (`AGENTS.md` and `catalog.yaml` in `algorythmos-handbook`, which took them over
+from `.github-private` on 2026-11-09). This file adds the rules specific to this repository. Where the two
+conflict, the organisation file's "Never" sections win.
 
 ## Hard rules
 

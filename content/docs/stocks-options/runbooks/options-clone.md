@@ -1,6 +1,6 @@
 ---
 title: "Options clone (DEC-0030)"
-description: "Copied from trading-lab-research@491d913 (docs/runbooks/options-clone.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/runbooks/options-clone.md) on 2026-11-16. Do not edit here."
 ---
 
 > 2 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
@@ -45,6 +45,9 @@ The options clone is a paper bot. It buys one call or put at a time by the nine 
 | Clear a loss latch, after reading the day's trades | `make reset-options-latch KIND=day\|week\|drawdown REASON="..."` (refused while a session runs) |
 | Use the exact option feed after subscribing to Algo Trader Plus | `touch var/options/switches/opra` |
 | Stop sending orders at all (it still arms and journals) | `orders: off` in `config/options_clone.yaml`, through a pull request and a decision record |
+
+The option feed setting, `feeds.option` in `config/options_clone.yaml`, must be exactly `indicative` or `opra`, lower
+case: anything else is refused before it is sent and the clone runs with no chains.
 
 ## Pages and what to do
 

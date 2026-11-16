@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the trader"
-description: "Copied from hft-lab@cfb883c (docs/runbooks/trader.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/trader.md) on 2026-11-16. Do not edit here."
 ---
 
 For the owner. The trader is `hft-trader.service`: the sleeves, the risk gate, the order manager and the

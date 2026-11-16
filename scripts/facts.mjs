@@ -10,8 +10,14 @@ export const FACT_PATHS = {
   'crypto-lab': ['research', 'docs/adr', 'docs/runbooks'],
   'trading-lab-research': ['config/dashboard.yaml', 'src/wt/ops/schedule.py', 'research', 'docs/adr', 'docs/runbooks'],
 };
+// The other repositories these pages read, and exactly what is read from them. `sync --check` watches these
+// files (by content, so a shallow clone is enough) and, for the knowledge base, its release tags.
+export const EXTRA_SOURCES = [
+  { repo: 'trading-kb', clone: 'trading-kb', files: (all) => all.filter((f) => /^collections\/[a-z]+\/kb\.lock\.json$/.test(f)), tags: true },
+  { repo: 'algorythmos-handbook', clone: 'algorythmos-handbook', files: () => ['catalog.yaml'], tags: false },
+];
 
-const STATUS_WORDS = ['pre-registered', 'registered', 'proposed', 'accepted', 'rejected', 'superseded', 'withdrawn', 'failed', 'passed', 'frozen', 'closed', 'open', 'done'];
+const STATUS_WORDS = ['pre-registered', 'registered', 'proposed', 'accepted', 'rejected', 'superseded', 'withdrawn', 'failed', 'passed', 'frozen', 'closed', 'open', 'done', 'decided'];
 const KIND = { HYP: 'Hypothesis', EXP: 'Experiment', DEC: 'Decision', LL: 'Lesson' };
 const fm = (title, description) => `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify(description)}\n---\n\n`;
 const count = (list, dir) => list.filter((f) => f.startsWith(dir + '/') && /\/\d{4}-[^/]+\.md$|\/[a-z][^/]*\.md$/.test(f) && !/readme\.md$/i.test(f)).length;
@@ -36,7 +42,11 @@ function register(show, files) {
     const line = show(primary).split('\n').find((l) => /status/i.test(l));
     if (!line) continue;
     const low = line.toLowerCase();
-    if (rec.status === '—') rec.status = STATUS_WORDS.find((w) => low.includes(w)) ?? '—';
+    // The word that comes first on the line, so "accepted on ... Proposed on ..." reads as accepted.
+    if (rec.status === '—') {
+      const first = STATUS_WORDS.map((w) => [w, low.indexOf(w)]).filter(([, i]) => i >= 0).sort((a, b) => a[1] - b[1] || b[0].length - a[0].length)[0];
+      rec.status = first ? first[0] : '—';
+    }
     rec.date = (line.match(/\b20\d{2}-\d{2}-\d{2}\b/) ?? ['—'])[0];
   }
   const num = (id) => Number(id.match(/(\d+)$/)[1]);
@@ -108,7 +118,7 @@ export function writeFacts({ root, git, today, shas, prCounts }) {
     out('stocks-options', 'facts.md',
       fm('Facts and register', 'Gate states, the job schedule, counts and the research register, generated from the repository.') +
       `${stamp('trading-lab-research')}\n\n## Gate states\n\nFrom \`config/dashboard.yaml\`.\n\n| Gate | Name | State |\n|---|---|---|\n${gates.map((g) => `| ${g[1]} | ${g[2]} | ${g[3].replace('_', ' ')} |`).join('\n')}\n\n` +
-      `## Job schedule\n\nFrom \`src/wt/ops/schedule.py\`. Includes the crypto jobs until that desk is cut over.\n\n| Job | When |\n|---|---|\n${jobs.map((j) => `| \`${j[0]}\` | ${j[1]} |`).join('\n')}\n\n` +
+      `## Job schedule\n\nFrom \`src/wt/ops/schedule.py\`.\n\n| Job | When |\n|---|---|\n${jobs.map((j) => `| \`${j[0]}\` | ${j[1]} |`).join('\n')}\n\n` +
       counts('trading-lab-research', files, rows) + `\n## Research register\n\nIds, statuses and dates only.\n\n${registerTable(rows)}`);
   }
 
@@ -125,15 +135,15 @@ export function writeFacts({ root, git, today, shas, prCounts }) {
       `${stamp('trading-kb')}\n\n## Collections with a release\n\n| Collection | Sources | Claims | Verified |\n|---|---|---|---|\n${rows.join('\n')}\n\n## Release tags\n\n${tags.map((t) => `- \`${t}\``).join('\n')}\n`);
   }
 
-  // Repositories: the trading entries of the organisation's catalog.
+  // Repositories: the trading entries of the organisation's catalog (algorythmos-handbook since 2026-11-09).
   {
-    const cat = show('.github-private')('catalog.yaml');
+    const cat = show('algorythmos-handbook')('catalog.yaml');
     const field = (line, k) => (line.match(new RegExp(`\\b${k}: ([A-Za-z0-9/_.-]+)`)) ?? [, '—'])[1];
     const rows = cat.split('\n').filter((l) => /^\s+- \{repo: /.test(l) && /product: (trading-lab|hft-lab|crypto-lab|trading-kb)\b/.test(l));
     if (rows.length < 6) throw new Error(`catalog.yaml: expected the trading repositories, read ${rows.length}`);
     out('shared', 'repositories.md',
       fm('Repositories', 'The trading repositories as the organisation catalog records them.') +
-      `${stamp('.github-private')}\n\n| Repository | Kind | Lifecycle | Visibility now | Intended | Data class |\n|---|---|---|---|---|---|\n` +
-      rows.map((l) => `| \`${field(l, 'repo').split('/')[1]}\` | ${field(l, 'kind')} | ${field(l, 'lifecycle')} | ${field(l, 'visibility')} | ${field(l, 'intended_visibility')} | ${field(l, 'data_class')} |`).join('\n') + '\n');
+      `${stamp('algorythmos-handbook')}\n\n| Repository | Kind | Lifecycle | Visibility now | Intended | Data class | Planned name |\n|---|---|---|---|---|---|---|\n` +
+      rows.map((l) => `| \`${field(l, 'repo').split('/')[1]}\` | ${field(l, 'kind')} | ${field(l, 'lifecycle')} | ${field(l, 'visibility')} | ${field(l, 'intended_visibility')} | ${field(l, 'data_class')} | ${field(l, 'target_name')} |`).join('\n') + '\n');
   }
 }

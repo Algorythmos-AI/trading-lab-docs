@@ -3,7 +3,7 @@ title: Using the desk through a session
 description: A trading day on the Options page, in order, for one person trading long single-leg options by hand.
 ---
 
-<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. Words in bold are labels as the page prints them; SPY and the prices are examples.</Callout>
+<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12; the chain, P&L and labeller lines from `@03b91fe` on 2026-11-16. Words in bold are labels as the page prints them; SPY and the prices are examples.</Callout>
 
 You trade long calls and puts by hand in your broker's app. The Options page sits beside it, on the laptop or the
 phone. It reads prices and your journal, works out your own rules, and tells you where each name stands. It places
@@ -81,7 +81,7 @@ Look at: the hero's word and side, its cautions, and the rail's clock to the nex
 ## Before buying: the trade ticket
 
 Open **Size this call** (or put) on the card, or the hero's size button. Type the option's price per share as your
-broker quotes it: 1.20, not 120. The site's own option chain is 15 minutes behind, so its numbers never feed the
+broker quotes it: 1.20, not 120. The chain is 15 minutes behind unless the site reads OPRA; it never sizes the
 ticket.
 
 With no price typed, a table shows **The most a share you may pay** for 1 to 5 contracts, under the $200 premium
@@ -110,7 +110,8 @@ Under the word sit:
 - the **Not working in** countdown (rule 6, 5 minutes);
 - the trail;
 - the time to be flat by;
-- a **P&L** label that points you to your broker. The manage card shows no live P&L for your own trades.
+- a **P&L** line. On a fresh OPRA quote the card shows what a contract sells for at the bid, and its P&L after
+  fees; otherwise it points you to Webull.
 
 Add your option fill (price a share and contracts) and the card shows the stop to place in your broker. Tick the box
 that says the stop is placed once you have placed it. The tick is yours: the page cannot see your broker. Under it
@@ -143,7 +144,7 @@ The **Trades** page holds your own closed trades in four groups:
 | **Today** | The rules and the room left, then this session's trades as they close, and a link to the day review. |
 | **The record** | Every closed trade for the period, kind and ticker you pick: totals, **Loss size**, patterns and **Every trade**. |
 | **History** | The record over time as a calendar, and **Money** in and out of the account. |
-| **The clone** | The paper bot that trades your rules with its own paper money. |
+| **Options clone (paper)** | The paper bot that trades your rules with its own paper money. |
 
 ## What the site will not do
 
@@ -152,7 +153,7 @@ The **Trades** page holds your own closed trades in four groups:
 - **No prompts on your phone.** No entry or exit prompt for your own trades reaches the phone. **Sound** and
   **Browser notification** work only while the page is open in that browser.
 - **Nothing after your exit.** No page shows what a trade did after you sold it.
-- **No board labels yet.** Which board state you traded from is not recorded; that labeller is not built.
+- **No board labels yet.** The labeller is built but switched off, so board labels are not recorded yet.
 
 ## Sources
 

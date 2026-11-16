@@ -1,6 +1,6 @@
 ---
 title: "ADR 0014: A sleeve is a pure function; the idle and the control sleeve come first"
-description: "Copied from hft-lab@cfb883c (docs/adr/0014-sleeves-as-pure-functions.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0014-sleeves-as-pure-functions.md) on 2026-11-16. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11

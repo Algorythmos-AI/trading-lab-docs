@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the recorder"
-description: "Copied from hft-lab@cfb883c (docs/runbooks/recorder.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/recorder.md) on 2026-11-16. Do not edit here."
 ---
 
 For the owner, on the host, once the platform is [installed](/forex-hft/runbooks/install). The recorder is one service,

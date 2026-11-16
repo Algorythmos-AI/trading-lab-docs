@@ -3,9 +3,9 @@ title: What is built
 description: The research engine, the stocks desk, the options desk and the status site.
 ---
 
-<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@6562d6f` on 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@03b91fe`, read 2026-11-16. First written from `@6562d6f` on 2026-10-13.</Callout>
 
-## Engine (`src/wt/`, Python 3.12, about 25,000 lines)
+## Engine (`src/wt/`, Python 3.12, about 30,000 lines)
 
 | Area | What it does |
 |---|---|
@@ -17,17 +17,20 @@ description: The research engine, the stocks desk, the options desk and the stat
 | `risk` | Pre-trade guard inside the order manager, a small virtual account with a loss latch, macro-event calendar |
 | `oms` | Order manager, one position at a time |
 | `brokers` | Alpaca paper adapter (paper hard-coded), read-only adapter, simulator, cancel-only and shadow adapters |
-| `live` | The paper runner: the only path that can place an order |
+| `live` | Robot B (paper) and the Options clone (paper): the only path that can place an order, and only on paper |
 | `options` | Black-Scholes and long-option arithmetic, levels and zones, entry rules, in-session rule states, the edition builder, the live job |
 | `analytics` | Gate definitions, replay, forward books per trial, and the views the status site shows |
 | `ops` | Job runner, schedule, unit generators, deploy gate, pre-flight, alerts, heartbeat, locks, publishing, backup |
 | `research` | Run manifests and the trial registry |
 | `owner` | Your own trades from the journal, grouped into positions, with each position's result |
+| `webull` | Reads your own Webull account, read only, and builds the Trades page's journal from it. Off until the owner's cutover |
+| `knowledge` | The original knowledge-base pipeline: inventory, batches, merge and coverage reports |
+| `specs` | Loads each strategy's specification of record and generates the runtime configs from it |
 
 ## Stocks desk
 
 - **Scan:** a pool is built and ranked before the open, in four timed stages, with no broker calls.
-- **Trade:** one strategy, on paper. Limits: one allowed symbol, at most 10 shares and US$2,000 per position,
+- **Trade:** one strategy, Robot B (paper). Limits: one allowed symbol, at most 10 shares and US$2,000 per position,
   one entry a day.
 - **Evidence:** a forward test and a weekly scorecard.
 - **Kill switch:** a file on the host. While it exists there are no new entries; exits continue.
@@ -36,8 +39,9 @@ description: The research engine, the stocks desk, the options desk and the stat
 
 - **Engine:** levels, zones, expected move; four entry rules on probation, replayed on hourly bars.
 - **Edition:** a nightly document for twelve large US names, sent signed to the status site.
-- **Live job:** reads a second paper account and sends open option positions, open interest and in-session
-  rule states. Read-only.
+- **Live job:** reads the paper account for your manual paper options and sends open option positions, open
+  interest and in-session rule states. Read-only.
+- **Accounts:** Robot B, the options clone and your manual paper options each have their own paper account.
 - **Options page:** focus cards, the Trade now board, a trade ticket and a manage card for your own trades. See
   [using the desk through a session](/stocks-options/desk-day-to-day) and [Options workstation](/stocks-options/options-workstation).
 - **Day review:** one day of your positions against your rules. See [the day review](/stocks-options/day-review).
@@ -45,23 +49,19 @@ description: The research engine, the stocks desk, the options desk and the stat
 ## Status site (`dashboard/`, lab.algorythmos.com)
 
 - Next.js, static-first, behind sign-in on every address.
-- Pages for stocks (overview, today, radar, options, card record, trades, day review, calendar, strategies,
-  research, operations, risk, engineering, glossary), one closed page for crypto and one parked page for forex.
+- Pages for stocks (overview, today, radar, options, card record, feeds, trades, day review, calendar,
+  strategies, research, operations, risk, engineering, glossary), one closed page for crypto and one parked page
+  for forex.
+- The Feeds page (`/options/feeds`) shows which market-data feeds the site uses, how fresh each is, and the board's
+  feed stamps.
 - The host pushes signed snapshots built from an allowlist; the site validates them against a strict format
   and refuses anything else. The site never pulls from the host.
 
 ## Records
 
-| Kind | Count |
-|---|---|
-| Hypotheses | 50 |
-| Decisions | 46 |
-| Experiments | 31 numbered, plus one debug record |
-| Design records | 10 |
-| Runbooks | 21 |
-| Unit test files | 119, plus 105 on the status site |
-| Merged pull requests, all branches, when synced | 396 (see [facts](/stocks-options/facts)) |
+Counts of records, runbooks and merged pull requests are generated at each sync on
+[facts and register](/stocks-options/facts), so they are not copied here.
 
 ## Sources
 
-Files read for this page, at the commit named at the top: `README.md`, `src/wt/` module docstrings, `config/risk.yaml`, `config/options_desk.yaml`, `dashboard/README.md`, `dashboard/src/app/`, `tests/unit/`, `dashboard/test/`. Record counts are the generated ones in [facts and register](/stocks-options/facts).
+Files read for this page, at the commit named at the top: `README.md`, `src/wt/` module docstrings, `config/risk.yaml`, `config/options_desk.yaml`, `config/options_clone.yaml`, `dashboard/README.md`, `dashboard/src/app/`, `docs/adr/0011-webull-readonly-host.md`.

@@ -3,7 +3,7 @@ title: Architecture
 description: How a trading day flows through the engine, and how evidence and status leave it.
 ---
 
-<Callout type="info">Source: `trading-lab-research@f4b65b7` (`README.md`, `docs/adr/`, `src/wt/`), read 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@03b91fe` (`README.md`, `docs/adr/`, `src/wt/`), read 2026-11-16. First written from `@f4b65b7` on 2026-10-13.</Callout>
 
 ## The stocks day
 
@@ -28,7 +28,7 @@ description: How a trading day flows through the engine, and how evidence and st
 ]} />
 
 The options desk places no orders. In session, a live job adds rule states, open paper positions and open
-interest.
+interest. The Options clone (paper) trades the same rules on its own paper account, through the trading layer.
 
 ## Layers
 
@@ -36,8 +36,11 @@ interest.
 |---|---|---|
 | Core | `core` | The paper lock, the clock and the ledgers; everything else depends on it |
 | Research | `data`, `scanner`, `signals`, `backtest`, `research` | No broker calls |
-| Trading | `risk`, `oms`, `brokers`, `live` | The only path that can place an order |
+| Specifications | `specs` | Each strategy's specification of record; runtime configs are generated from it |
+| Knowledge | `knowledge` | The original knowledge-base pipeline; no broker calls |
+| Trading | `risk`, `oms`, `brokers`, `live` | The only path that can place an order, and only on paper |
 | Options | `options` | Reads; never trades |
+| Your trades | `owner`, `webull` | Never trades. `webull` reads your account with a fixed list of read requests; `owner` groups the trades into positions |
 | Operations | `ops`, `analytics` | Runs jobs, gates deploys, publishes status |
 
 ## Design choices
@@ -46,6 +49,8 @@ interest.
 - **Causal by construction.** Features and signals may only read what was known at that moment; tests check it.
 - **Runtime state outside the checkout.** A deploy cannot disturb a running job's state.
 - **Every job through one runner.** Lock, pre-flight, deadline, heartbeat.
+- **The Webull key stays apart.** Only the Webull read job, under its own user, can read it; the job that sends
+  the journal cannot (ADR 0011).
 - **A desk is a record.** Each desk declares its own limits, state and keys, so desks cannot reach into each
   other.
 - **The schedule is code.** Service units are generated from the job table; see

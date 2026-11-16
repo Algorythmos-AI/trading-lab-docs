@@ -1,6 +1,6 @@
 ---
 title: "ADR 0010: The trading host is a GCP free-tier VM running the OCI host's helpers"
-description: "Copied from trading-lab-research@491d913 (docs/adr/0010-gcp-trading-host.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/adr/0010-gcp-trading-host.md) on 2026-11-16. Do not edit here."
 ---
 
 - **Status:** accepted on merge by the owner. Supersedes [ADR 0004](/stocks-options/records/0004-oci-trading-host).
@@ -18,7 +18,9 @@ description: "Copied from trading-lab-research@491d913 (docs/adr/0010-gcp-tradin
 3. **No inbound port.** SSH only through Google's IAP range; the VM has no service account, and the `wt` user is
    firewalled off the metadata server.
 4. **Secrets live in `/etc/wt/secrets.env`** (root 0600), typed by the owner with `sudo wt-set-secrets`, copied at
-   boot to tmpfs. This is weaker than a vault and is accepted for a paper-only host.
+   boot to tmpfs. This is weaker than a vault and is accepted for a paper-only host. *Amended by
+   [ADR 0011](/stocks-options/records/0011-webull-readonly-host): the host also holds the owner's Webull key, which can place real
+   orders; that key is kept apart from these secrets, under the controls ADR 0011 lists.*
 5. **GitHub access is one fine-grained token** used through `gh` as the git credential helper, because the
    organisation does not allow deploy keys. The repositories are private.
 6. **Deploys follow ADR 0008 and ADR 0009:** the gated automatic deploy takes the green tip of `main`; changes to
