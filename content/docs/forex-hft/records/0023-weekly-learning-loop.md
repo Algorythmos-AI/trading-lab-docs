@@ -1,6 +1,6 @@
 ---
 title: "ADR 0023: The weekly learning loop as processes: training, the lineup journal, the decision, the scorer"
-description: "Copied from hft-lab@cfb883c (docs/adr/0023-weekly-learning-loop.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0023-weekly-learning-loop.md) on 2026-11-16. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-11. Every section is built and tested on synthetic streams and against the

@@ -1,6 +1,6 @@
 ---
 title: "Runbook: paper trading on spot, from a laptop, on a float"
-description: "Copied from hft-lab@cfb883c (docs/runbooks/paper-trading-on-spot.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/paper-trading-on-spot.md) on 2026-11-16. Do not edit here."
 ---
 
 How the owner runs the platform on the broker's **paper** account without the server: the recorder and the

@@ -1,6 +1,6 @@
 ---
 title: "Public-repository guards"
-description: "Copied from trading-lab-research@491d913 (docs/runbooks/public-repo-guards.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/runbooks/public-repo-guards.md) on 2026-11-16. Do not edit here."
 ---
 
 The repository is public (since 2026-11-08; the owner decides its visibility). These guards keep restricted and

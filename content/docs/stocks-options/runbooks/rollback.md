@@ -1,6 +1,6 @@
 ---
 title: "Rollback a deploy"
-description: "Copied from trading-lab-research@491d913 (docs/runbooks/rollback.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/runbooks/rollback.md) on 2026-11-16. Do not edit here."
 ---
 
 Every `make deploy` tags the commit it replaced as `runtime-YYYYMMDD-N`. The tag list is in

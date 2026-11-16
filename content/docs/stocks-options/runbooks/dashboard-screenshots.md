@@ -1,6 +1,6 @@
 ---
 title: "Dashboard screenshots"
-description: "Copied from trading-lab-research@491d913 (docs/runbooks/dashboard-screenshots.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/runbooks/dashboard-screenshots.md) on 2026-11-16. Do not edit here."
 ---
 
 The browser tests include pictures of the Options desk (`dashboard/test/e2e/visual.spec.ts`): the three views and a

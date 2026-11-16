@@ -1,6 +1,6 @@
 ---
 title: "The GCP free-tier trading host: provision, operate, rebuild"
-description: "Copied from trading-lab-research@491d913 (docs/runbooks/gcp-host.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/runbooks/gcp-host.md) on 2026-11-16. Do not edit here."
 ---
 
 > 6 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.

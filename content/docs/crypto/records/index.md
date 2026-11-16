@@ -1,6 +1,6 @@
 ---
 title: Design records
-description: "1 copied from crypto-lab@8c240c1 on 2026-11-12."
+description: "1 copied from crypto-lab@8c240c1 on 2026-11-16."
 ---
 
 Each records one decision and why. Copied; change the source, then sync.

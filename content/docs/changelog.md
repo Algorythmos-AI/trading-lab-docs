@@ -1,9 +1,19 @@
 ---
 title: Changelog
-description: "434 merged pull requests, by week. Generated on 2026-11-12."
+description: "480 merged pull requests, by week. Generated on 2026-11-16."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).
+
+## Week of 2026-11-16
+
+### Stocks & Options (5)
+
+- 2026-11-16 · #448 · fix(dashboard): one name for the stock robot: Robot B, not Paper B
+- 2026-11-16 · #446 · Release 2026-11-16: Webull read-only host, the exact paper lock, money labels, the signal pin
+- 2026-11-16 · #445 · feat(dashboard): label every paper, shadow and model figure where it sits (B2)
+- 2026-11-16 · #444 · fix(webull): harden the read-only host job: code the key holder runs, paging, lost fills, cutover (ADR 0011)
+- 2026-11-16 · #443 · feat(dashboard): a derived decision id for the DEC-0051 signal records (E2)
 
 ## Week of 2026-11-09
 
@@ -11,15 +21,56 @@ Titles and dates of merged pull requests. Weeks start on Monday (UTC).
 
 - 2026-11-09 · #30 · docs: point org references at algorythmos-handbook
 
-### Stocks & Options (39)
+### Stocks & Options (80)
 
+- 2026-11-15 · #442 · test(dashboard): pin the signal's code hash for DEC-0051's dry sessions; EXP-0034 precondition 1's commit
+- 2026-11-15 · #441 · feat(dashboard): evidence-class primitives and guard (B1)
+- 2026-11-15 · #438 · feat(feeds): previous session's stamp count
+- 2026-11-15 · #440 · fix(safety): paper lock matches the exact host, checked before the first request
+- 2026-11-15 · #439 · feat(webull): read the owner's Webull account on the host, read only (ADR 0011)
+- 2026-11-15 · #437 · data(forward): evidence for 2026-W46
+- 2026-11-13 · #436 · Release 2026-11-13: the signal log and EXP-0034's read script
+- 2026-11-13 · #435 · research: EXP-0034's README records the commit for preconditions 2 and 3
+- 2026-11-13 · #434 · research: EXP-0034's frozen outcome code and read-once script (DEC-0051 preconditions 2 and 3)
+- 2026-11-13 · #432 · feat(dashboard): the sealed signal log, with its dry mode, after the DEC-0044 record (stage C2b)
+- 2026-11-13 · #433 · docs: the release record of 2026-11-13
+- 2026-11-13 · #431 · docs(runbooks): the daily review routine
+- 2026-11-13 · #426 · Release 2026-11-12 (4): status collector fix; DEC-0051 proposed
+- 2026-11-13 · #427 · research: DEC-0051 accepted: the signal words, their gates and the forward test are registered
+- 2026-11-13 · #430 · fix(dashboard): the board-feed stamp is written again (put cutoff 45 s - 57 s, put given up at the minute's end)
+- 2026-11-13 · #428 · feat(dashboard): the signal core: pure rules for CALL, PUT, WAIT and NO TRADE, and the contract pick, wired to nothing (stage C2a)
+- 2026-11-13 · #429 · research: DEC-0051 (proposed) second round: comparison group, quote time, board-feed stamps
+- 2026-11-12 · #425 · fix(ops): the status collector no longer fails on a planning repository its token cannot see
+- 2026-11-12 · #424 · research: DEC-0051 (proposed): signal words beside the board's states, with HYP-0059 and EXP-0034
+- 2026-11-12 · #423 · Release 2026-11-12 (4): option market on the manage card, volume data
+- 2026-11-12 · #422 · feat(dashboard): a market bar on the Options page: SPY and QQQ direction, VWAP, volume and bid-ask, in colour (stage B2)
+- 2026-11-12 · #420 · feat(dashboard): volume data for the picked names: VWAP, relative volume, bar surge, spread (stage B1)
+- 2026-11-12 · #421 · docs: the release record of 2026-11-12 gains the day's fifth release
+- 2026-11-12 · #418 · feat(dashboard): the option's own market on the manage card and the ticket (stage A of the intelligence plan)
+- 2026-11-12 · #419 · Release 2026-11-12 (3): header pill names the lab host; price freshness on the Options page
+- 2026-11-12 · #417 · feat(dashboard): the header pill says Lab host (VM); on the Options page it shows price freshness
+- 2026-11-12 · #416 · docs: the release record of 2026-11-12 gains the day's fourth release
+- 2026-11-12 · #415 · Release 2026-11-12 (2): open-positions caution, release log
+- 2026-11-12 · #414 · fix(dashboard): the open-positions caution names open options only
+- 2026-11-12 · #413 · docs: a release log, with the record of 2026-11-12
+- 2026-11-12 · #408 · Release 2026-11-12
+- 2026-11-12 · #412 · research: DEC-0047 ACCEPTED (merging this is the owner's acceptance of the forward experiment)
+- 2026-11-12 · #410 · feat(dashboard): every accepted Options edition keeps its own copy with the store's receipt time, and the watchdog repairs a missing one
+- 2026-11-12 · #411 · feat(dashboard): four bad-data guards on the board, each off until the owner switches it on
+- 2026-11-12 · #409 · feat(options): Stage 2 pre-market confirmation and its bundles, with DEC-0046 Amendment 1 (merging accepts the amendment)
+- 2026-11-12 · #407 · docs: the Feeds page's live book in the Alpaca request budget
+- 2026-11-12 · #406 · research: DEC-0047 (proposed): the two-stage selection's accuracy, measured once, forward from the switch
+- 2026-11-12 · #405 · feat(dashboard): the Feeds page (/options/feeds): the authoritative feed, today's board-feed stamps, the board feed's live book and candles, and sessions compared after the close
+- 2026-11-12 · #404 · feat(dashboard): the day's scheduled events on the Trade now board, display only
+- 2026-11-12 · #403 · feat(dashboard): the IEX-vs-SIP comparison on the server: paired samples each minute and a data-quality report after each close
+- 2026-11-12 · #402 · feat(dashboard): the labeller for the owner's trades, as a library that nothing runs yet (EXP-0033)
 - 2026-11-12 · #401 · research: DEC-0046 ACCEPTED (merging this is the owner's acceptance of the two-stage selection)
-- 2026-11-12 · #400 · research: DEC-0046 (proposed): the Options desk picks its names in two stages; Stage 1 scoring of a saved bundle
+- 2026-11-12 · #400 · *(title withheld)*
 - 2026-11-12 · #399 · feat(dashboard): the board-feed stamp, a chained per-minute record of the board's feed, and SIP named as authoritative
 - 2026-11-12 · #398 · fix(data): the options clone, options live and the pipeline check refuse a data request without a feed at run time
 - 2026-11-12 · #397 · feat(dashboard): the option chain can read OPRA in real time, with its feed and age on every line
 - 2026-11-12 · #396 · fix(dashboard): an edition is fresh only when built from the session just before it, and a missing build date warns
-- 2026-11-12 · #395 · research: the board reads SIP; EXP-0031 ends without a verdict; EXP-0033 asks its questions on SIP (DEC-0050)
+- 2026-11-12 · #395 · *(title withheld)*
 - 2026-11-12 · #394 · Release 2026-11-12
 - 2026-11-12 · #392 · feat(dashboard): the day review: one screen for a day's positions against the rules, loss size first
 - 2026-11-12 · #393 · test(live): the page recorder reads the journal after the session, not while it is being written

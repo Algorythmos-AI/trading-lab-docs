@@ -1,6 +1,6 @@
 ---
 title: "ADR 0009: The venue port, its guard and the fake broker"
-description: "Copied from hft-lab@cfb883c (docs/adr/0009-venue-port-guard-and-fake-broker.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0009-venue-port-guard-and-fake-broker.md) on 2026-11-16. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10

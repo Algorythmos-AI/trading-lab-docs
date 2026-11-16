@@ -1,6 +1,6 @@
 ---
 title: "ADR 0011: A synchronous, pumped port; asyncio stays inside the adapter"
-description: "Copied from hft-lab@cfb883c (docs/adr/0011-synchronous-pumped-port.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/adr/0011-synchronous-pumped-port.md) on 2026-11-16. Do not edit here."
 ---
 
 - **Status:** accepted, 2026-10-10

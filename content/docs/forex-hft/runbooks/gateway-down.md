@@ -1,6 +1,6 @@
 ---
 title: "Runbook: the gateway is down"
-description: "Copied from hft-lab@cfb883c (docs/runbooks/gateway-down.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/gateway-down.md) on 2026-11-16. Do not edit here."
 ---
 
 For the owner. You are here because of a page `hft:connection_down`, or because the status shows

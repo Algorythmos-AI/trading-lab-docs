@@ -1,6 +1,6 @@
 ---
 title: Design records
-description: "10 copied from trading-lab-research@491d913 on 2026-11-12."
+description: "11 copied from trading-lab-research@03b91fe on 2026-11-16."
 ---
 
 Each records one decision and why. Copied; change the source, then sync.
@@ -17,3 +17,4 @@ Each records one decision and why. Copied; change the source, then sync.
 | [ADR 0008: The host deploys itself, inside the same gate](/stocks-options/records/0008-automatic-deploy) | `docs/adr/0008-automatic-deploy.md` |
 | [ADR 0009: Work lands on integration; main is production](/stocks-options/records/0009-integration-branch) | `docs/adr/0009-integration-branch.md` |
 | [ADR 0010: The trading host is a GCP free-tier VM running the OCI host's helpers](/stocks-options/records/0010-gcp-trading-host) | `docs/adr/0010-gcp-trading-host.md` |
+| [ADR 0011: The owner's Webull account is read on the trading host, read only, by a client that cannot send orders](/stocks-options/records/0011-webull-readonly-host) | `docs/adr/0011-webull-readonly-host.md` |

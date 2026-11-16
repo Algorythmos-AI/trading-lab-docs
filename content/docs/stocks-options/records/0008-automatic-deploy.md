@@ -1,7 +1,9 @@
 ---
 title: "ADR 0008: The host deploys itself, inside the same gate"
-description: "Copied from trading-lab-research@491d913 (docs/adr/0008-automatic-deploy.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/adr/0008-automatic-deploy.md) on 2026-11-16. Do not edit here."
 ---
+
+> 1 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
 
 - **Status:** accepted on merge by the owner. Supersedes the "owner still deploys" part of ADR 0007.
 - **Context:** the owner asked for the deploy to stop being a manual step, the day after ADR 0007 chose a notice
@@ -22,7 +24,7 @@ systemd units changed, and a record of who is accountable for what was merged.
 
 1. The host runs `python -m wt.ops.deploy auto` once an hour as the job `deploy-auto`. It is not a trading job
    and never closes the gate.
-2. **It is off until the owner switches it on**: the file `var/deploy/AUTO_ON`. Without it every run is a dry
+[withheld]
    run: it asks every question and writes one line, "would deploy A -> B", and changes nothing. Removing the file
    switches it off again, and is honoured up to the moment before the switch.
 3. `auto` asks what `ready` asks (gate open, main ahead, tip settled for 30 minutes, tip green, dashboard not

@@ -1,6 +1,6 @@
 ---
 title: "ADR 0005: Desks"
-description: "Copied from crypto-lab@8c240c1 (docs/adr/0005-desks.md) on 2026-11-12. Do not edit here."
+description: "Copied from crypto-lab@8c240c1 (docs/adr/0005-desks.md) on 2026-11-16. Do not edit here."
 ---
 
 > 1 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.

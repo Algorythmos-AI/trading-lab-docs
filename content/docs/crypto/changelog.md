@@ -1,6 +1,6 @@
 ---
 title: Changelog
-description: "2 merged pull requests in Crypto, by week. Generated on 2026-11-12."
+description: "2 merged pull requests in Crypto, by week. Generated on 2026-11-16."
 ---
 
 Titles and dates of merged pull requests. Weeks start on Monday (UTC).

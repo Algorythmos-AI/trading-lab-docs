@@ -3,7 +3,7 @@ title: "Facts and register"
 description: "Phase states, counts and the research register, generated from the repository."
 ---
 
-Generated from `hft-lab@cfb883c` on 2026-11-12. Do not edit; run the sync.
+Generated from `hft-lab@cfb883c` on 2026-11-16. Do not edit; run the sync.
 
 ## Phase states
 
@@ -40,8 +40,8 @@ Ids, statuses and dates only.
 | `HFT-DEC-0001` | Decision | proposed | — |
 | `HFT-DEC-0002` | Decision | proposed | — |
 | `HFT-DEC-0003` | Decision | proposed | — |
-| `HFT-DEC-0004` | Decision | — | 2026-10-12 |
-| `HFT-DEC-0005` | Decision | — | 2026-10-24 |
+| `HFT-DEC-0004` | Decision | decided | 2026-10-12 |
+| `HFT-DEC-0005` | Decision | decided | 2026-10-24 |
 | `HFT-EXP-0001` | Experiment | registered | 2026-10-11 |
 | `HFT-EXP-0002` | Experiment | registered | 2026-10-11 |
 | `HFT-EXP-0003` | Experiment | registered | 2026-10-11 |

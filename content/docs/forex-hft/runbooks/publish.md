@@ -1,6 +1,6 @@
 ---
 title: "Runbook: publishing the status snapshot"
-description: "Copied from hft-lab@cfb883c (docs/runbooks/publish.md) on 2026-11-12. Do not edit here."
+description: "Copied from hft-lab@cfb883c (docs/runbooks/publish.md) on 2026-11-16. Do not edit here."
 ---
 
 For the owner. Every five minutes, `hft-publish` checks the recorder's status, pages you when a problem

@@ -1,6 +1,6 @@
 ---
 title: "ADR 0009: Work lands on integration; main is production"
-description: "Copied from trading-lab-research@491d913 (docs/adr/0009-integration-branch.md) on 2026-11-12. Do not edit here."
+description: "Copied from trading-lab-research@03b91fe (docs/adr/0009-integration-branch.md) on 2026-11-16. Do not edit here."
 ---
 
 > 1 line(s) of the source are withheld on this page and marked `[withheld]`. Read the file in its repository for the rest.
