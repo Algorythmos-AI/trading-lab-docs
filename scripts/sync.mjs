@@ -4,13 +4,15 @@
 //   content/docs/<section>/records/*.md, content/docs/<section>/runbooks/*.md   copied, never edited here
 //   content/docs/changelog.md                                                    generated
 //   sync.lock.json                                                               which commit each came from
-// `node scripts/sync.mjs --check` writes nothing and exits 1 when a source has moved since the last sync.
+// `node scripts/sync.mjs --check` writes nothing and exits 1 when a source has moved since the last sync: a
+// copied folder or fact path of a platform repository, a file read from trading-kb or algorythmos-handbook, or
+// a trading-kb release tag. Merged pull requests (the changelog) are not watched; every sync rewrites them.
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { basename, dirname, join, posix } from 'node:path';
 import { scanText } from './scan.mjs';
-import { FACT_PATHS, writeFacts } from './facts.mjs';
+import { EXTRA_SOURCES, FACT_PATHS, writeFacts } from './facts.mjs';
 import { sharesPhrase, withhold } from './withhold.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
@@ -35,6 +37,19 @@ const git = (clone, ...args) =>
 const lockPath = join(root, 'sync.lock.json');
 const lock = existsSync(lockPath) ? JSON.parse(readFileSync(lockPath, 'utf8')) : { sources: {} };
 
+// What is read from a repository outside the platforms: each watched file's object id, and the tag names.
+const fetchExtra = (x) => git(x.clone, 'fetch', '-q', ...(x.tags ? ['--tags'] : []), 'origin', 'main');
+const watchedState = (x) => {
+  const oids = Object.fromEntries(
+    git(x.clone, 'ls-tree', '-r', 'origin/main').split('\n').filter(Boolean).map((l) => {
+      const [meta, path] = l.split('\t');
+      return [path, meta.split(' ')[2]];
+    }),
+  );
+  const files = Object.fromEntries(x.files(Object.keys(oids)).map((f) => [f, oids[f] ?? 'missing']));
+  return { sha: git(x.clone, 'rev-parse', 'origin/main').trim(), files, ...(x.tags ? { tags: git(x.clone, 'tag', '--list').split('\n').filter(Boolean) } : {}) };
+};
+
 if (check) {
   let moved = 0;
   for (const s of SOURCES) {
@@ -48,6 +63,21 @@ if (check) {
         moved++;
         console.log(`${s.repo}: watched paths changed since ${was?.slice(0, 7) ?? 'never'}:\n  ${changed.split('\n').join('\n  ')}`);
       }
+    }
+  }
+  for (const x of EXTRA_SOURCES) {
+    fetchExtra(x);
+    const now = watchedState(x);
+    const was = lock.extras?.[x.repo];
+    const changed = [];
+    if (!was) changed.push('never synced');
+    else {
+      for (const f of new Set([...Object.keys(now.files), ...Object.keys(was.files)])) if (now.files[f] !== was.files[f]) changed.push(f);
+      if (x.tags && JSON.stringify(now.tags) !== JSON.stringify(was.tags)) changed.push(`tags: ${now.tags.filter((t) => !was.tags.includes(t)).join(', ') || 'a tag was removed'}`);
+    }
+    if (changed.length) {
+      moved++;
+      console.log(`${x.repo}: watched files changed since ${was?.sha.slice(0, 7) ?? 'never'}:\n  ${changed.join('\n  ')}`);
     }
   }
   console.log(moved ? `\n${moved} source(s) moved. Run: node scripts/sync.mjs` : `copies are current (synced ${lock.synced_on})`);
@@ -79,7 +109,7 @@ for (const r of CHANGELOG_REPOS) {
     }
   }
 }
-for (const extra of ['trading-kb', '.github-private']) git(extra, 'fetch', '-q', '--tags', 'origin', 'main');
+for (const x of EXTRA_SOURCES) fetchExtra(x);
 
 const yaml = (s) => JSON.stringify(s.replace(/\s+/g, ' ').trim());
 const leftOut = [];
@@ -213,7 +243,11 @@ mkdirSync(join(root, 'content/docs/shared'), { recursive: true });
 writeFileSync(join(root, 'content/docs/shared/copied-pages.md'), page);
 
 const shas = Object.fromEntries(Object.entries(newLock.sources).map(([repo, v]) => [repo, v.sha]));
-for (const extra of ['trading-kb', '.github-private']) shas[extra] = git(extra, 'rev-parse', 'origin/main').trim();
+newLock.extras = {};
+for (const x of EXTRA_SOURCES) {
+  newLock.extras[x.repo] = watchedState(x);
+  shas[x.repo] = newLock.extras[x.repo].sha;
+}
 writeFacts({ root, git, today, shas, prCounts: Object.fromEntries(Object.entries(prLists).map(([k, v]) => [k, v.length])) });
 writeFileSync(join(root, 'lib/synced.json'), JSON.stringify({ synced_on: today, sources: Object.fromEntries(Object.entries(shas).map(([k, v]) => [k, v.slice(0, 7)])) }, null, 2) + '\n');
 
