@@ -10,7 +10,9 @@ description: Which repository does what, what they share, and how the pieces con
 | `trading-lab-research` (to be renamed `options-lab`) | Stocks & Options | Research engine, the stocks desk, the options desk, and the status site |
 | `crypto-lab` | Crypto | The crypto desk, extracted from `trading-lab-research`; archived since the desk closed on 2026-10-24 |
 | `hft-lab` | Forex HFT | The currency-market platform |
+| `trading-focus-card-ledger` | Stocks & Options | Scores the pre-open Focus Card after the close; places no orders |
 | `trading-kb` | Knowledge Base | Sources, extracts and verified claims, one collection per platform |
+| `trading-lab-source` | Knowledge Base | The older stocks course-material store, to be folded in |
 | `trading-lab-docs` | These pages | Documentation only; holds no trading code |
 
 ## How they connect
@@ -19,10 +21,15 @@ description: Which repository does what, what they share, and how the pieces con
 
 - **Each platform is one repository** with its own configuration, kill switch, state, journal, secrets file,
   runbooks and deploy units.
-- **Nothing is imported across platforms.** Knowledge is shared through a tagged knowledge-base release that a
-  platform pins. Status is shared through a versioned snapshot format that the status site checks by hash.
+- **Nothing is imported across platforms.** Knowledge is shared through a tagged release a platform pins; today
+  only Forex HFT pins one. Status is shared through a versioned snapshot format that the status site checks by
+  hash.
 - **The host pushes; the status site never pulls.** A snapshot is built from an allowlist, signed, and sent.
 
 ## Shared on purpose
 
-One cloud server, one status site, and the knowledge base. Everything else is separate.
+One cloud server, one status site, and the knowledge base. Today only Stocks & Options runs on the server and
+reports to the site. Everything else is separate.
+
+The catalog of every repository is `catalog.yaml` in `algorythmos-handbook`; [Repositories](/shared/repositories)
+is generated from it.
