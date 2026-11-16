@@ -3,14 +3,18 @@ title: Roadmap
 description: Now, next and later across the platforms, and the steps waiting on the owner.
 ---
 
-<Callout type="info">State of each repository's `main` on 2026-10-25.</Callout>
+<Callout type="info">State of each repository's `main` on 2026-11-16 (`trading-lab-research@03b91fe`, `hft-lab@cfb883c`, `crypto-lab@8c240c1`, `trading-kb@b9c29f8`).</Callout>
 
 ## Now
 
 | Platform | Work | Waits on |
 |---|---|---|
 | Stocks & Options | Collect forward evidence for G2: sessions, incident-free streak and agreement at the bar (G2a), then trades (G2b) | Time |
-| Stocks & Options | Strategy B trades under a stop rule written down in advance; it stops itself if a line is crossed | Its rule |
+| Stocks & Options | Robot B (paper) trades under a stop rule written down in advance; it stops itself if a line is crossed | Its rule |
+| Stocks & Options | Webull cutover: the read-only job on the host takes over the Trades journal from the cloud routine | Owner |
+| Stocks & Options | The selection forward test (DEC-0047): starts when the new name selection is switched on; read once, at 120 counted sessions or on 2027-09-30 | The switch, then time |
+| Stocks & Options | Four bad-data guards on the board (#411), each off until the owner switches it on | Owner |
+| Stocks & Options | The signal test (DEC-0051): the words CALL, PUT, WAIT and NO TRADE are built and switched off; they come on after Amendment 1, which needs at least 10 dry sessions once all four preconditions are met (two met, one waits on production, one not met) | The preconditions, then 10 sessions |
 | Stocks & Options | Options: five clean shadow nights, then switch the nightly routine to the repository's builder | Five nights, then the owner |
 | Stocks & Options | Options clone: 30 trades and 20 sessions to its verdict | Time |
 | Stocks & Options | Paging: switch the host to the primary role so its health checks alert | Owner |
@@ -29,6 +33,7 @@ description: Now, next and later across the platforms, and the steps waiting on 
 |---|---|
 | Stocks & Options | Broker acceptance, then live at very small size, then scale: only after an edge is shown |
 | Forex HFT | Strategies and weekly learning on real recordings; first snapshot on the status site; more pairs |
+| Crypto | Nothing planned: closed 2026-10-24 (DEC-0036) |
 
 ## Only the owner
 

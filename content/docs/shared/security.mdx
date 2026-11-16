@@ -5,9 +5,13 @@ description: What protects the platforms, and what may be written where.
 
 ## Paper only, enforced in code
 
+Every platform trades paper money. One job reads your own Webull account, read only: its client refuses any order
+request before it is sent. No repository places a real-money order.
+
 | Platform | How |
 |---|---|
-| Stocks & Options | The broker adapter is hard-coded to paper. A lock checks the mode, the endpoint and the account type before any order |
+| Stocks & Options | The broker adapter is hard-coded to paper. A lock checks the mode, the live flag and the exact paper host before the first request, and that the account number on the first answer is a paper account |
+| Webull (read only) | A fixed list of read requests; anything else is refused before it is signed or sent. The key is on the host only, under its own user. The code runs from a copy the owner installs by its hash (ADR 0011, #439, #444) |
 | Crypto | No exchange credentials exist and there is no order route; fills happen in the desk's own simulator |
 | Forex HFT | A lock checks before connecting, after the handshake and before every order; only a paper venue and a simulator are registered |
 
@@ -32,8 +36,9 @@ Never in any repository: secrets, account ids, host names and addresses, market 
 
 ## Secrets
 
-Secrets live in a secrets file on the host, one per platform, set by the owner. They are never pasted into a
-chat, a commit, an issue or a page.
+Secrets live in a secrets file on the host, one per platform, set by the owner. The Webull key has a file of its
+own, readable only by root and the one job that reads Webull; no other job can read it. Secrets are never pasted
+into a chat, a commit, an issue or a page.
 
 ## Reporting a problem
 

@@ -3,7 +3,7 @@ title: The status site
 description: lab.algorythmos.com shows live numbers for every desk. How data reaches it.
 ---
 
-<Callout type="info">Source: `trading-lab-research@88c03fd`, read 2026-10-12.</Callout>
+<Callout type="info">Source: `trading-lab-research@03b91fe`, read 2026-11-16. First written from `@88c03fd` on 2026-10-12.</Callout>
 
 These pages explain; [the status site](https://lab.algorythmos.com) measures. It lives in the stocks and
 options repository and shows every desk.
@@ -20,13 +20,22 @@ The host pushes. The site never connects to the host.
 
 ## Formats
 
-| Document | Sent by | Version |
+The site states the newest version of each document it accepts, and a sender sends nothing newer.
+
+| Document | Sent by | Site accepts up to |
 |---|---|---|
-| Stocks snapshot | Stocks & Options | 3 |
-| Options edition | Stocks & Options | site accepts 2; host sends 1 |
-| Options live | Stocks & Options | site accepts 3; host sends 2 |
+| Stocks snapshot | Stocks & Options host | 3 |
+| Options edition | Stocks & Options, from a cloud routine | 2 |
+| Options live | Stocks & Options host | 3 |
+| Options clone | Stocks & Options host | 1 |
+| Trade journal | Stocks & Options, from a cloud routine until the Webull cutover moves it to the host | 2 |
+| Radar | a cloud routine | 1 |
+| Calendar | Stocks & Options host | 1 |
+| Card record (ledger) | `trading-focus-card-ledger`, from a cloud routine | 1 |
 | Crypto snapshot | Crypto | 1; frozen, nothing sent since the desk closed |
 | Forex snapshot | Forex HFT | 1; nothing sent; the desk is parked |
+
+Some documents come from cloud routines, not the host. They are checked the same way.
 
 A platform owns its format. The site keeps a copy pinned by hash, so a change on either side that the other
 has not accepted is refused rather than half-understood.
@@ -40,4 +49,4 @@ has not accepted is refused rather than half-understood.
 
 ## Sources
 
-Files read for this page, at the commit named at the top: `docs/adr/0001-vercel-dashboard.md`, `docs/adr/0006-external-desk.md`, `dashboard/README.md`.
+Files read for this page, at the commit named at the top: `docs/adr/0001-vercel-dashboard.md`, `docs/adr/0006-external-desk.md`, `dashboard/README.md`, `dashboard/src/lib/editions.ts`, `src/wt/options/live.py`, `src/wt/ops/publish.py`, `docs/runbooks/cloud-routines.md`, `docs/adr/0011-webull-readonly-host.md`.

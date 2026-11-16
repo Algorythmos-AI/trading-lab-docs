@@ -3,7 +3,7 @@ title: Options workstation
 description: A desk for long single-leg options decisions. Phases P0 to P6.
 ---
 
-<Callout type="info">Source: `trading-lab-research@491d913`, read 2026-11-12. First written from `@6562d6f` on 2026-10-13.</Callout>
+<Callout type="info">Source: `trading-lab-research@03b91fe`, read 2026-11-16. First written from `@6562d6f` on 2026-10-13.</Callout>
 
 The workstation prepares information; you decide and trade. It places no orders. For how a day on it goes, see
 [using the desk through a session](/stocks-options/desk-day-to-day).
@@ -28,6 +28,14 @@ The workstation prepares information; you decide and trade. It places no orders.
 | Volatility index contract | Not set | The contract is chosen |
 | Earnings file | Empty | Dates are filled in |
 | Rule alerts | Log only | After a week of observed rule states |
+| Signal words | Built, not shown | DEC-0051 Amendment 1 is written (see below) |
+
+## Signal words
+
+The desk can give each focus name one word: CALL, PUT, WAIT or NO TRADE. The words are built and switched off.
+They come on only after DEC-0051 Amendment 1, which needs at least 10 dry sessions recorded after all four of its
+preconditions are met. Two are met. A third is merged and waits to be confirmed in production. The fourth, one
+full session of board-feed stamps, is not met yet.
 
 ## On the page
 
@@ -36,6 +44,8 @@ The workstation prepares information; you decide and trade. It places no orders.
 - A count of how far the delayed feed and the reference feed agree.
 - Focus cards, the Trade now board, a trade ticket, a manage card for open trades, and a link to the
   [day review](/stocks-options/day-review).
+- The card record. It is scored after each close by `trading-focus-card-ledger`. A session with no saved card is
+  listed as missed, with its reason, and never filled in silently.
 
 ## The fill-time check
 
@@ -60,4 +70,4 @@ a few minutes either side, where a real fill time should match far less often.
 
 ## Sources
 
-Files read for this page, at the commit named at the top: `config/options_desk.yaml`, `src/wt/options/` (`live.py`, `edition.py`), `dashboard/src/lib/editions.ts`, `dashboard/src/lib/hourly.ts`, `dashboard/src/app/options/page.tsx`, `dashboard/src/lib/fill-check.ts`, `dashboard/src/lib/fill-check-run.ts`, merged pull requests 155 to 208.
+Files read for this page, at the commit named at the top: `config/options_desk.yaml`, `src/wt/options/` (`live.py`, `edition.py`), `dashboard/src/lib/editions.ts`, `dashboard/src/lib/hourly.ts`, `dashboard/src/app/options/page.tsx`, `dashboard/src/lib/fill-check.ts`, `dashboard/src/lib/fill-check-run.ts`, `dashboard/src/lib/signal-record.ts`, `research/experiments/EXP-0034-desk-signal-gates/README.md` (precondition dates only), the `trading-focus-card-ledger` README, merged pull requests 155 to 208.
